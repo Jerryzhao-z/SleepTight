@@ -10,4 +10,6 @@ Git English help: http://rogerdudler.github.io/git-guide/
 
 ![Architecture](https://github.com/Jerryzhao-z/SleepTightAndroid/blob/master/SleepTightarchitecture.jpg)
 
-###
+### Flux
+
+![Flux](https://github.com/Jerryzhao-z/SleepTightAndroid/blob/master/flux.jpg)
