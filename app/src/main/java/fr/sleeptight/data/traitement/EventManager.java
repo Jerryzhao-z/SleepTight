@@ -16,8 +16,8 @@ import com.google.api.services.calendar.model.Event;
  */
 public interface EventManager {
     List<Event> getEventFromGoogle(Date begin, Date end);
-    boolean updateEventToGoogle(Event event);
-    boolean updateEventToSleepTight(List<Event> events);
-    boolean deleteEventFromGoogle(String eventId);
-    boolean deleteEventFromSleepTight(String eventId);
+    EventList updateEventToGoogle(SingleEvent event);
+    EventList updateEventToSleepTight(List<SingleEvent> events);
+    EventList deleteEventFromGoogle(String eventId);
+    EventList deleteEventFromSleepTight(String eventId);
 }

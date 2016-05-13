@@ -1,17 +1,17 @@
 package fr.sleeptight.data.traitement;
 
 /**
- * Created by User on 2016/5/11.
+ * Created by zhengrui on 2016/5/11.
  */
 public interface AccountManager {
-    createAccount;
-    setUsername;
-    setPassword;
-    setTokenGoogle;
-    setTokenfitbit;
-    deleteTokenGoogle;
-    deleteTokenfitbit;
-    login;
-    logout;
+    User createAccount(String Name, String password);
+    User setUsername(String Name);
+    User setPassword(String password);
+    User setTokenGoogle(Token token);
+    User setTokenfitbit(Token token);
+    User deleteTokenGoogle();
+    User deleteTokenfitbit();
+    User login(String Name, String password);
+    User logout();
 
 }
