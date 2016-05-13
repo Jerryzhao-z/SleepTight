@@ -28,7 +28,7 @@ Java 1.8+
 
 UI: https://github.com/wasabeef/awesome-android-ui
 ResideMenu: https://github.com/SpecialCyCi/AndroidResideMenu
-
+Tricks for Android studio: https://www.youtube.com/watch?v=Y2GC6P5hPeA
 ### Erreurs
 -- 13/5/2016
 il y a une erreur sur le processus de tokenization

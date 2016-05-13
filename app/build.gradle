@@ -19,11 +19,6 @@ android {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.0'
@@ -33,4 +28,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'com.google.apis:google-api-services-calendar:v3-rev181-1.22.0'
+    compile 'com.prolificinteractive:material-calendarview:1.2.1'
 }
