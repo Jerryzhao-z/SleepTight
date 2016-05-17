@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <View
+        android:id="@+id/top_line"
+        android:layout_width="2dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="50dp"
+        android:background="@color/gray" />
+
+    <ImageView
+        android:id="@+id/img_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/top_line"
+        android:layout_marginLeft="40dp"
+        android:src="@drawable/petitpoint" />
+
+    <TextView
+        android:id="@+id/show_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_line"
+        android:text="时间" />
+
+    <View
+        android:id="@+id/bottom_line"
+        android:layout_width="2dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/img_icon"
+        android:layout_marginLeft="50dp"
+        android:background="@color/gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/timeline_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/top_line"
+        android:layout_toEndOf="@+id/top_line"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="8dp">
+
+        <ImageView
+            android:id="@+id/show_image"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:src="@drawable/petitsleeptightblanc" />
+
+        <TextView
+            android:id="@+id/show_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="所包含的内容" />
+    </LinearLayout>
+
+</RelativeLayout>

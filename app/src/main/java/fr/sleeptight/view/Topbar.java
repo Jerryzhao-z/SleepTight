@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 public class Topbar extends RelativeLayout {
 
     public Topbar(Context context, AttributeSet attrs) {
-
         super(context, attrs);
     }
 }
