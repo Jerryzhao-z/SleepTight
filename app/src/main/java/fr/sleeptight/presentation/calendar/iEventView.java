@@ -15,5 +15,5 @@ public interface iEventView {
     void showTime(Date time);
     void showImage(Bitmap image);
     void showImportance(int importance);
-
+    void showEvent(SingleEvent event);
 }

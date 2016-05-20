@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="1">
     <fr.sleeptight.view.Topbar
         android:id="@+id/topbar"
         android:layout_width="wrap_content"
         android:layout_height="46dp"
+        app:topBarTitleText="Calendar"
         ></fr.sleeptight.view.Topbar>
     <fragment
         android:id="@+id/fragmentCalendar"
