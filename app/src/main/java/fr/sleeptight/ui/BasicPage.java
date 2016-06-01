@@ -24,9 +24,9 @@ public class BasicPage extends AppCompatActivity {
     public void Slide_Bar(Toolbar toolbar){
         new DrawerBuilder().withActivity(this).build();
         PrimaryDrawerItem item0 = new PrimaryDrawerItem().withName(R.string.drawer_item_0).withIdentifier(0).withIcon(FontAwesome.Icon.faw_home);
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_1).withIdentifier(1).withIcon(FontAwesome.Icon.faw_eye);
-        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName(R.string.drawer_item_2).withIdentifier(2).withIcon(FontAwesome.Icon.faw_file_text_o);
-        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName(R.string.drawer_item_3).withIdentifier(3).withIcon(FontAwesome.Icon.faw_file_text_o);
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_1).withIdentifier(1).withIcon(FontAwesome.Icon.faw_bed);
+        PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName(R.string.drawer_item_2).withIdentifier(2).withIcon(FontAwesome.Icon.faw_heartbeat);
+        PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName(R.string.drawer_item_3).withIdentifier(3).withIcon(FontAwesome.Icon.faw_clock_o);
 
         Drawer result = new DrawerBuilder()
                 .withActivity(this)
