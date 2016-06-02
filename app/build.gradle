@@ -40,4 +40,5 @@ dependencies {
     compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
     compile "com.mikepenz:iconics-core:2.6.0@aar"
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
+    compile "com.mikepenz:itemanimators:0.2.4@aar"
 }
