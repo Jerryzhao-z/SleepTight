@@ -1,8 +1,47 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="fr.sleeptight">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fr.sleeptight">
 
-    <application android:allowBackup="true" android:label="@string/app_name"
-        android:icon="@mipmap/ic_launcher" android:theme="@style/AppTheme">
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.HomePage"
+            android:label="@string/title_activity_home_page"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
+        <activity
+            android:name=".ui.page.Page1"
+            android:label="@string/title_activity_page1"
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".ui.BasicPage"
+            android:label="@string/title_activity_basic_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.page.Page2"
+            android:label="@string/title_activity_page2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.page.SleepPlanActivity"
+            android:label="@string/title_activity_sleep_plan"
+            android:parentActivityName=".ui.HomePage"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.sleeptight.ui.HomePage" />
+        </activity>
     </application>
 
 </manifest>
