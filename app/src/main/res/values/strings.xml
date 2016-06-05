@@ -20,5 +20,6 @@
 
 
     <string name="sleep_plan_button">Go to sleep !</string>
+    <string name="title_activity_user_manager_test">userManagerTest</string>
 
 </resources>

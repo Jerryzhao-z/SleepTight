@@ -25,6 +25,7 @@ import fr.sleeptight.R;
 import fr.sleeptight.ui.page.Page1;
 import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
+import fr.sleeptight.ui.user_branch.UserManagerTest;
 
 public class BasicPage extends AppCompatActivity {
     private Drawer result = null;
@@ -123,6 +124,8 @@ public class BasicPage extends AppCompatActivity {
 								case 2:
 									intent  = new Intent(getApplicationContext(), SleepPlanActivity.class);
 									break;
+                                case 3:
+                                    intent  = new Intent(getApplicationContext(), UserManagerTest.class);
 								default: break;
 							}
 							if (intent != null) {
