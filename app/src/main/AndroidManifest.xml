@@ -42,6 +42,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
+        <activity
+            android:name=".ui.chart.PieChartActivity"
+            android:label="@string/title_activity_pie_chart"
+            android:parentActivityName=".ui.HomePage"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.sleeptight.ui.HomePage" />
+        </activity>
     </application>
 
 </manifest>
