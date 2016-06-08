@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/chartPie"
+        android:title="Pie Chart">
+    </item>
+    <item
+        android:id="@+id/charBar"
+        android:title="Bar Chart">
+    </item>
+    <item
+        android:id="@+id/chartLine"
+        android:title="Line chart">
+    </item>
+
+</menu>

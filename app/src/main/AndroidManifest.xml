@@ -25,10 +25,7 @@
             android:name=".ui.page.Page1"
             android:label="@string/title_activity_page1"
             android:theme="@style/CustomTheme" />
-        <activity
-            android:name=".ui.BasicPage"
-            android:label="@string/title_activity_basic_page"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.BasicPage" />
         <activity
             android:name=".ui.page.Page2"
             android:label="@string/title_activity_page2"
@@ -46,11 +43,12 @@
             android:name=".ui.chart.PieChartActivity"
             android:label="@string/title_activity_pie_chart"
             android:parentActivityName=".ui.HomePage"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
+        <activity android:name=".ui.chart.BasicChartPage"></activity>
     </application>
 
 </manifest>
