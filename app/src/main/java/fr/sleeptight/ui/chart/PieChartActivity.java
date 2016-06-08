@@ -35,8 +35,7 @@ import java.util.ArrayList;
 import fr.sleeptight.R;
 import fr.sleeptight.ui.BasicPage;
 
-public class PieChartActivity extends BasicPage implements OnSeekBarChangeListener,
-        OnChartValueSelectedListener {
+public class PieChartActivity extends BasicPage implements OnChartValueSelectedListener {
 
     private PieChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
@@ -63,34 +62,23 @@ public class PieChartActivity extends BasicPage implements OnSeekBarChangeListen
         setSupportActionBar(toolbar);
 
         Slide_Bar(toolbar);
-
         /* view部分结束 */
 
-        tvX = (TextView) findViewById(R.id.tvXMax);
-        tvY = (TextView) findViewById(R.id.tvYMax);
-
-        mSeekBarX = (SeekBar) findViewById(R.id.seekBar1);
-        mSeekBarY = (SeekBar) findViewById(R.id.seekBar2);
-
-        mSeekBarY.setProgress(10);
-
-        mSeekBarX.setOnSeekBarChangeListener(this);
-        mSeekBarY.setOnSeekBarChangeListener(this);
 
         mChart = (PieChart) findViewById(R.id.chart1);
         mChart.setUsePercentValues(true);
         mChart.setDescription("");
         mChart.setExtraOffsets(5, 10, 5, 5);
-
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
         // tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
         //mChart.setCenterTextTypeface(Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf"));
         // 字体兼容问题这里我暂时删去 by ZHOU
 
-        mChart.setCenterText(generateCenterSpannableText());
+        //mChart.setCenterText(generateCenterSpannableText()); 中心文字
 
-        mChart.setDrawHoleEnabled(true);
+        //中心挖洞
+        mChart.setDrawHoleEnabled(false);
         mChart.setHoleColor(Color.WHITE);
 
         mChart.setTransparentCircleColor(Color.WHITE);
@@ -102,6 +90,7 @@ public class PieChartActivity extends BasicPage implements OnSeekBarChangeListen
         mChart.setDrawCenterText(true);
 
         mChart.setRotationAngle(0);
+
         // enable rotation of the chart by touch
         mChart.setRotationEnabled(true);
         mChart.setHighlightPerTapEnabled(true);
@@ -112,16 +101,18 @@ public class PieChartActivity extends BasicPage implements OnSeekBarChangeListen
         // add a selection listener
         mChart.setOnChartValueSelectedListener(this);
 
-        setData(3, 100);
+        //setData(3, 100);
+        initData();
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         // mChart.spin(2000, 0, 360);
 
         Legend l = mChart.getLegend();
-        l.setPosition(LegendPosition.RIGHT_OF_CHART);
+        l.setPosition(LegendPosition.ABOVE_CHART_RIGHT);
         l.setXEntrySpace(7f);
-        l.setYEntrySpace(0f);
-        l.setYOffset(0f);
+        l.setTextSize(12f);
+        l.setYOffset(100f);
+        l.setForm(Legend.LegendForm.SQUARE);
     }
 
     @Override
@@ -192,14 +183,6 @@ public class PieChartActivity extends BasicPage implements OnSeekBarChangeListen
         return true;
     }
 
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-        tvX.setText("" + (mSeekBarX.getProgress() + 1));
-        tvY.setText("" + (mSeekBarY.getProgress()));
-
-        setData(mSeekBarX.getProgress(), mSeekBarY.getProgress());
-    }
 
     private void setData(int count, float range) {
 
@@ -259,18 +242,77 @@ public class PieChartActivity extends BasicPage implements OnSeekBarChangeListen
 
         mChart.invalidate();
     }
-
+//中心文字
     private SpannableString generateCenterSpannableText() {
 
-        SpannableString s = new SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda");
-        s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
-        s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
+       /* SpannableString s = new SpannableString("SleepTight\ndeveloped by Philipp Jahoda");
+        s.setSpan(new RelativeSizeSpan(1.7f), 0, 10, 0);
+        s.setSpan(new StyleSpan(Typeface.NORMAL), 10, s.length() - 15, 0);
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
         s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
         s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
         s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
+        */
+        SpannableString s = new SpannableString("");
         return s;
     }
+
+
+
+    //周写的
+    private void initData() {
+        ArrayList<Entry> yVals = new ArrayList<Entry>();
+        Entry v1 = new Entry(20, 0);
+        Entry v2 = new Entry(50, 1);
+        Entry v3 = new Entry(30, 2);
+        yVals.add(v1);
+        yVals.add(v2);
+        yVals.add(v3);
+        PieDataSet dataSet = new PieDataSet(yVals, "");
+
+        //饼块间距
+        dataSet.setSliceSpace(5f);
+        dataSet.setSelectionShift(20f);
+
+        dataSet.setColors(initColor());
+
+        ArrayList<String> xVals = new ArrayList<String>();
+        xVals.add("Awake");
+        xVals.add("Deep Sleep");
+        xVals.add("Light Sleep");
+
+        //dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+
+        PieData data = new PieData(xVals, dataSet);
+        data.setValueFormatter(new PercentFormatter());
+        data.setValueTextSize(15f);
+         data.setValueTextColor(Color.WHITE);
+        mChart.setData(data);
+    }
+
+    private ArrayList<Integer> initColor(){
+
+    ArrayList<Integer> colors = new ArrayList<Integer>();
+          final int[] my_COLORS = {
+                Color.rgb(192, 255, 140), Color.rgb(255, 247, 140), Color.rgb(140, 234, 255), Color.rgb(255, 140, 157)};
+       /* for (int c : ColorTemplate.VORDIPLOM_COLORS)
+                colors.add(c);*/
+
+       /* for (int c : ColorTemplate.JOYFUL_COLORS)
+                colors.add(c);*/
+
+        /*for (int c : ColorTemplate.COLORFUL_COLORS)
+                colors.add(c);
+
+        for (int c : ColorTemplate.LIBERTY_COLORS)
+                colors.add(c);*/
+
+        for (int c : my_COLORS)
+                colors.add(c);
+       // colors.add(ColorTemplate.getHoloBlue());
+        return colors;
+    }
+
 
     @Override
     public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
@@ -285,17 +327,5 @@ public class PieChartActivity extends BasicPage implements OnSeekBarChangeListen
     @Override
     public void onNothingSelected() {
         Log.i("PieChart", "nothing selected");
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-        // TODO Auto-generated method stub
-
     }
 }
