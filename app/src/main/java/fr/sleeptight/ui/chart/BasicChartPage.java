@@ -28,6 +28,8 @@ public class BasicChartPage extends BasicPage {
                 break;
             }
             case R.id.charBar: {
+                Intent intent  = new Intent(getApplicationContext(), BarChartActivity.class);
+                startActivity(intent);
                 break;
             }
             case R.id.chartLine: {

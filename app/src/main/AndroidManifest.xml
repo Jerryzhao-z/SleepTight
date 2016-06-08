@@ -48,7 +48,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
-        <activity android:name=".ui.chart.BasicChartPage"></activity>
+        <activity android:name=".ui.chart.BasicChartPage" />
+        <activity
+            android:name=".ui.chart.BarChartActivity"
+            android:label="@string/title_activity_bar_chart"
+            android:parentActivityName=".ui.HomePage"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.sleeptight.ui.HomePage" />
+        </activity>
     </application>
 
 </manifest>

@@ -38,23 +38,25 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /* 读取layout 附着toolbar menu */
         setContentView(R.layout.activity_pie_chart);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Slide_Bar(toolbar);
-        /* view部分结束 */
 
-
+        /*生成饼图*/
         mChart = (PieChart) findViewById(R.id.chart1);
+        initChartPie();
+    }
+
+    private void initChartPie(){
         mChart.setUsePercentValues(true);
         mChart.setDescription("");
         mChart.setExtraOffsets(5, 10, 5, 5);
         mChart.setDragDecelerationFrictionCoef(0.95f);
 
-         tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
-         mChart.setCenterTextTypeface(Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf"));
+        tf = Typeface.createFromAsset(getAssets(), "OpenSans-Regular.ttf");
+        mChart.setCenterTextTypeface(Typeface.createFromAsset(getAssets(), "OpenSans-Light.ttf"));
         // 字体兼容问题这里我暂时删去 by ZHOU
 
         //mChart.setCenterText(generateCenterSpannableText()); 中心文字
@@ -95,24 +97,6 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
         l.setTextSize(12f);
         l.setYOffset(100f);
         l.setForm(Legend.LegendForm.SQUARE);
-    }
-
-
-
-
-    /*中心文字*/
-    private SpannableString generateCenterSpannableText() {
-
-       /* SpannableString s = new SpannableString("SleepTight\ndeveloped by Philipp Jahoda");
-        s.setSpan(new RelativeSizeSpan(1.7f), 0, 10, 0);
-        s.setSpan(new StyleSpan(Typeface.NORMAL), 10, s.length() - 15, 0);
-        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
-        s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
-        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
-        */
-        SpannableString s = new SpannableString("");
-        return s;
     }
 
 
@@ -173,6 +157,20 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
         return colors;
     }
 
+    /*中心文字*/
+    private SpannableString generateCenterSpannableText() {
+
+       /* SpannableString s = new SpannableString("SleepTight\ndeveloped by Philipp Jahoda");
+        s.setSpan(new RelativeSizeSpan(1.7f), 0, 10, 0);
+        s.setSpan(new StyleSpan(Typeface.NORMAL), 10, s.length() - 15, 0);
+        s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
+        s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
+        s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
+        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
+        */
+        SpannableString s = new SpannableString("");
+        return s;
+    }
 
     @Override
     public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
