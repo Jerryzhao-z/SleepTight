@@ -64,7 +64,7 @@ public class UserManagerTest extends AppCompatActivity {
                 String confirm = passwordConfirm.getText().toString();
 
                 if (password.equals(confirm)) {
-                    User user = new User(username, password);
+                    User user = User.getInstance(username, password);
                     user.setId();
                 } else
                     reponseText.setText("passwords aren't equal");
