@@ -50,11 +50,13 @@
         </activity>
         <activity
             android:name=".ui.user_branch.LoginActivity"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".ui.user_branch.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"
+           ></activity>
     </application>
 
 </manifest>

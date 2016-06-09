@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        inputUsername = (EditText) findViewById(R.id.email);
+        inputUsername = (EditText) findViewById(R.id.username);
         inputPassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
@@ -87,6 +87,11 @@ public class LoginActivity extends AppCompatActivity {
 
         pDialog.setMessage("Logging in ...");
         showDialog();
+
+        Toast.makeText(getApplicationContext(),
+                "Welcome "+username, Toast.LENGTH_LONG)
+                .show();
+
         thread = new Thread(new Runnable(){
             @Override
             public void run() {
@@ -97,9 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 hideDialog();
 
-                /*Toast.makeText(getApplicationContext(),
-                        "Welcome "+username, Toast.LENGTH_LONG)
-                        .show();*/
+
 
                 Intent i = new Intent(getApplicationContext(),
                         HomePage.class);

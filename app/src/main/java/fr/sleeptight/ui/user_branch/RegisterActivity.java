@@ -85,6 +85,10 @@ public class RegisterActivity extends AppCompatActivity {
                             .login();
 
             showDialog();
+            Toast.makeText(getApplicationContext(),
+                    "Sign up succeeded", Toast.LENGTH_LONG)
+                    .show();
+
            thread = new Thread(new Runnable(){
                     @Override
                     public void run() {
@@ -96,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-
+                        hideDialog();
 
                         Intent i = new Intent(getApplicationContext(),
                                 HomePage.class);
