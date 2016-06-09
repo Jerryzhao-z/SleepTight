@@ -32,15 +32,14 @@ public class User {
     private String userName;
     private EventList recentEvents;
 
-    private RequestQueue requestQueue = NoHttp.newRequestQueue();
+    private static RequestQueue requestQueue = NoHttp.newRequestQueue();
     private static final int SIGNUP = 0x0001;
-
+    private OnResponseListener<JSONObject> authResponseListener;
     private User(){}
 
     private User(String userName, String pw)
     {
-        currentUser = new User();
-        currentUser.setUsername(userName)
+        this.setUsername(userName)
             .setPassword(pw);
     }
 
@@ -61,24 +60,24 @@ public class User {
     // setters for properties
     public User setUsername(String username)
     {
-        currentUser.userName = username;
-        return currentUser;
+        this.userName = username;
+        return this;
     }
 
     public User setPassword(String pw)
     {
-        currentUser.password = pw;
-        return currentUser;
+        this.password = pw;
+        return this;
     }
 
     public User setId()
     {
         try {
-            currentUser.createAccountInServer();
+            this.createAccountInServer();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }finally {
-            return currentUser;
+            return this;
         }
     }
 
@@ -86,23 +85,30 @@ public class User {
      * if the user is anonyme, create AccountInserver
      * will return null, otherwise, the id generated.
      */
-    private User createAccountInServer() throws UnsupportedEncodingException {
-        if(password != null && userName != null)
+    public User createAccountInServer() throws UnsupportedEncodingException {
+        if(this.password != null && this.userName != null)
         {
             //json
-            SignupFormat user = new SignupFormat(currentUser.userName, currentUser.password);
+            SignupFormat user = new SignupFormat(this.userName, this.password);
             String json_request = JSON.toJSONString(user);
             JsonRequest request = new JsonRequest("http://sleeptight2016.herokuapp.com/api/v1.0/users/", RequestMethod.POST);
             request.setRequestBody(json_request.getBytes(NoHttp.CHARSET_UTF8));
             request.setContentType("application/json");
-
+            authResponseListener = new JsonResponseListener(this);
             requestQueue.add(SIGNUP, request, authResponseListener);
         }
         return this;
     }
 
-    private OnResponseListener<JSONObject> authResponseListener = new OnResponseListener<JSONObject>()
+    class JsonResponseListener implements OnResponseListener<JSONObject>
     {
+        private User user;
+
+        public JsonResponseListener(User user)
+        {
+            this.user = user;
+        }
+
         @Override
         public void onStart(int what)
         {
@@ -116,8 +122,8 @@ public class User {
                 try {
                     String usernameReponse = response.get().getString("username");
                     String idReponse = response.get().getString("id");
-                    if (usernameReponse == currentUser.userName)
-                        currentUser.id = idReponse;
+                    if (usernameReponse == this.user.userName)
+                        this.user.id = idReponse;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -147,8 +153,8 @@ public class User {
 
     public User setRecentEvent(EventList recentEvents)
     {
-        currentUser.recentEvents = recentEvents;
-        return currentUser;
+        this.recentEvents = recentEvents;
+        return this;
     }
 
     public EventList getRecentEvents()

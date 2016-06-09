@@ -17,6 +17,8 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.yolanda.nohttp.NoHttp;
 
+import java.io.UnsupportedEncodingException;
+
 import fr.sleeptight.R;
 import fr.sleeptight.data.traitement.User;
 
@@ -63,9 +65,9 @@ public class UserManagerTest extends AppCompatActivity {
                 String password = passwordText.getText().toString();
                 String confirm = passwordConfirm.getText().toString();
 
-                if (password.equals(confirm)) {
-                    User user = User.getInstance(username, password);
-                    user.setId();
+                if (password.equals(confirm)){
+                        User user = User.getInstance(username, password);
+                        user.setId();
                 } else
                     reponseText.setText("passwords aren't equal");
             }
