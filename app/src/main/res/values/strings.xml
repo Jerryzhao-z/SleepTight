@@ -20,5 +20,8 @@
 
 
     <string name="sleep_plan_button">Go to sleep !</string>
+    <string name="title_activity_pie_chart">PieChartActivity</string>
+    <string name="title_activity_bar_chart">BarChartActivity</string>
+    <string name="title_activity_line_chart">LineChartActivity</string>
 
 </resources>

@@ -21,6 +21,7 @@ android {
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 
@@ -41,4 +42,5 @@ dependencies {
     compile "com.mikepenz:iconics-core:2.6.0@aar"
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
     compile "com.mikepenz:itemanimators:0.2.4@aar"
+    compile 'com.github.PhilJay:MPAndroidChart:v2.2.5'
 }
