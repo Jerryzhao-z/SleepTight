@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
+
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -22,9 +22,9 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import fr.sleeptight.R;
+import fr.sleeptight.ui.light.LightAuthActivity;
 import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.page.Page1;
-import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
 
 public class BasicPage extends AppCompatActivity {
@@ -127,13 +127,15 @@ public class BasicPage extends AppCompatActivity {
                                 case 3:
                                     intent  = new Intent(getApplicationContext(), SleepPlanActivity.class);
                                     break;
+                                case 4:
+                                    intent  = new Intent(getApplicationContext(), LightAuthActivity.class);
 								default: break;
 							}
 							if (intent != null) {
                                 startActivity(intent);
                             }
 						}
-							
+
                         return false;
                     }
                 })
