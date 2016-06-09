@@ -24,5 +24,6 @@
     <string name="title_activity_bar_chart">BarChartActivity</string>
     <string name="title_activity_line_chart">LineChartActivity</string>
     <string name="title_activity_user_manager_test">userManagerActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 </resources>
