@@ -47,6 +47,7 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
         /*生成饼图*/
         mChart = (PieChart) findViewById(R.id.chart1);
         initChartPie();
+        mChart.animateY(2000);
     }
 
     private void initChartPie(){

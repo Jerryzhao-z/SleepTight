@@ -55,6 +55,7 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
 
         mChart = (BarChart) findViewById(R.id.chart1);
         initBarChart();
+        mChart.animateY(2000);
     }
 
     private void initBarChart() {
