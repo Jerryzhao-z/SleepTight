@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
+import fr.sleeptight.data.acces.CONSTANT;
 import fr.sleeptight.data.acces.JsonRequest;
 import fr.sleeptight.data.acces.SignupFormat;
 import fr.sleeptight.data.acces.SignupResponseFormat;
@@ -33,7 +34,6 @@ public class User {
     private EventList recentEvents;
 
     private static RequestQueue requestQueue = NoHttp.newRequestQueue();
-    private static final int SIGNUP = 0x0001;
     private OnResponseListener<JSONObject> authResponseListener, loginResponseListener;
     private User(){}
 
@@ -70,7 +70,7 @@ public class User {
         return this;
     }
 
-    public User setId() // = sign up in server
+    public User signup() // = sign up in server
     {
         try {
             this.createAccountInServer();
@@ -79,6 +79,45 @@ public class User {
         }finally {
             return this;
         }
+    }
+
+    public User login() // = sign up in server
+    {
+        try {
+            this.loginInServer();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }finally {
+            return this;
+        }
+    }
+
+    public User setId(String id)
+    {
+        this.id = id;
+        return this;
+    }
+
+    //getter
+    public String getUsername()
+    {
+        if(this.userName == null)
+            return "unset";
+        return this.userName;
+    }
+
+    public String getPassword()
+    {
+        if(this.password == null)
+            return "unset";
+        return this.password;
+    }
+
+    public String getId() // = sign up in server
+    {
+        if(this.id == null)
+            return "unset";
+        return this.id;
     }
 
     /* create an account, get generated id from server
@@ -95,10 +134,12 @@ public class User {
             request.setRequestBody(json_request.getBytes(NoHttp.CHARSET_UTF8));
             request.setContentType("application/json");
             authResponseListener = new JsonSignUpResponseListener(this);
-            requestQueue.add(SIGNUP, request, authResponseListener);
+            requestQueue.add(CONSTANT.SIGNUP, request, authResponseListener);
         }
         return this;
     }
+
+    //authResponseListener = new JsonReponseListener(this, "SIGNUP", CONSTANT.SIGNUP);
 
     class JsonSignUpResponseListener implements OnResponseListener<JSONObject>
     {
@@ -118,12 +159,12 @@ public class User {
 
         @Override
         public void onSucceed(int what, Response<JSONObject> response) {
-            if(what == SIGNUP) {
+            if(what == CONSTANT.SIGNUP) {
                 try {
                     String usernameReponse = response.get().getString("username");
                     String idReponse = response.get().getString("id");
                     if (usernameReponse == this.user.userName)
-                        this.user.id = idReponse;
+                        this.user.setId(idReponse);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -149,7 +190,7 @@ public class User {
      *return id of user in server
      *
      */
-    public User login() throws UnsupportedEncodingException {
+    public User loginInServer() throws UnsupportedEncodingException {
         if(this.password != null && this.userName != null)
         {
             //json
@@ -159,7 +200,7 @@ public class User {
             request.setRequestBody(json_request.getBytes(NoHttp.CHARSET_UTF8));
             request.setContentType("application/json");
             loginResponseListener = new JsonLoginResponseListener(this);
-            requestQueue.add(SIGNUP, request, authResponseListener);
+            requestQueue.add(CONSTANT.LOGIN, request, authResponseListener);
         }
         return this;
     }
@@ -182,12 +223,12 @@ public class User {
 
         @Override
         public void onSucceed(int what, Response<JSONObject> response) {
-            if(what == SIGNUP) {
+            if(what == CONSTANT.LOGIN) {
                 try {
                     String usernameReponse = response.get().getString("username");
                     String idReponse = response.get().getString("id");
                     if (usernameReponse == this.user.userName)
-                        this.user.id = idReponse;
+                        this.user.setId(idReponse);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
