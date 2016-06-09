@@ -17,10 +17,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
-import fr.sleeptight.data.acces.CONSTANT;
-import fr.sleeptight.data.acces.JsonRequest;
-import fr.sleeptight.data.acces.SignupFormat;
-import fr.sleeptight.data.acces.SignupResponseFormat;
+import fr.sleeptight.data.acces.*;
 
 /**
  * Created by Zhengrui on 2016/5/13.
@@ -34,7 +31,6 @@ public class User {
     private EventList recentEvents;
 
     private static RequestQueue requestQueue = NoHttp.newRequestQueue();
-    private OnResponseListener<JSONObject> authResponseListener, loginResponseListener;
     private User(){}
 
     private User(String userName, String pw)
@@ -133,15 +129,15 @@ public class User {
             JsonRequest request = new JsonRequest("http://sleeptight2016.herokuapp.com/api/v1.0/users/", RequestMethod.POST);
             request.setRequestBody(json_request.getBytes(NoHttp.CHARSET_UTF8));
             request.setContentType("application/json");
-            authResponseListener = new JsonSignUpResponseListener(this);
+            //authResponseListener = new JsonSignUpResponseListener(this);
             requestQueue.add(CONSTANT.SIGNUP, request, authResponseListener);
         }
         return this;
     }
 
-    //authResponseListener = new JsonReponseListener(this, "SIGNUP", CONSTANT.SIGNUP);
+    OnResponseListener<JSONObject> authResponseListener = new JsonResponseListener(this, "SIGNUP", CONSTANT.SIGNUP);
 
-    class JsonSignUpResponseListener implements OnResponseListener<JSONObject>
+    /*class JsonSignUpResponseListener implements OnResponseListener<JSONObject>
     {
         private User user;
 
@@ -183,7 +179,7 @@ public class User {
         public void onFinish(int what) {
             Log.d("SIGNUP:", "User sign up finished");
         }
-    }
+    }*/
 
 
     /*login methods
@@ -199,12 +195,16 @@ public class User {
             JsonRequest request = new JsonRequest("http://sleeptight2016.herokuapp.com/api/v1.0/users/login", RequestMethod.POST);
             request.setRequestBody(json_request.getBytes(NoHttp.CHARSET_UTF8));
             request.setContentType("application/json");
-            loginResponseListener = new JsonLoginResponseListener(this);
-            requestQueue.add(CONSTANT.LOGIN, request, authResponseListener);
+            //loginResponseListener = new JsonLoginResponseListener(this);
+            requestQueue.add(CONSTANT.LOGIN, request, loginResponseListener);
         }
         return this;
     }
 
+    OnResponseListener<JSONObject> loginResponseListener = new JsonResponseListener(this, "LOGIN", CONSTANT.LOGIN);
+
+
+/*
     class JsonLoginResponseListener implements OnResponseListener<JSONObject>
     {
         private User user;
@@ -248,6 +248,7 @@ public class User {
             Log.d("LOGIN:", "User login finished");
         }
     }
+*/
 
     //TODO: verifier s'il existe son id dans la base de donnée
     public boolean exists()

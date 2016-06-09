@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import fr.sleeptight.data.traitement.User;
 
 /**
- * Created by User on 6/9/2016.
+ * Created by zhengrui on 6/9/2016.
  */
 public class JsonResponseListener implements OnResponseListener<JSONObject> {
 
