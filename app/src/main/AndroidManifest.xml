@@ -3,6 +3,7 @@
     package="fr.sleeptight">
 
     <application
+        android:name = "fr.sleeptight.ui.application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,7 +26,10 @@
             android:name=".ui.page.Page1"
             android:label="@string/title_activity_page1"
             android:theme="@style/CustomTheme" />
-        <activity android:name=".ui.BasicPage" />
+        <activity
+            android:name=".ui.BasicPage"
+            android:label="@string/title_activity_basic_page"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.page.Page2"
             android:label="@string/title_activity_page2"
@@ -40,32 +44,13 @@
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
         <activity
-            android:name=".ui.chart.PieChartActivity"
-            android:label="@string/title_activity_pie_chart"
+            android:name=".ui.user_branch.UserManagerTest"
+            android:label="@string/title_activity_user_manager_test"
             android:parentActivityName=".ui.HomePage"
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="fr.sleeptight.ui.HomePage" />
-        </activity>
-        <activity android:name=".ui.chart.BasicChartPage" />
-        <activity
-            android:name=".ui.chart.BarChartActivity"
-            android:label="@string/title_activity_bar_chart"
-            android:parentActivityName=".ui.HomePage"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="fr.sleeptight.ui.HomePage" />
-        </activity>
-        <activity
-            android:name=".ui.chart.LineChartActivity"
-            android:label="@string/title_activity_line_chart"
-            android:parentActivityName=".ui.HomePage"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="fr.sleeptight.ui.HomePage" />
+                android:value="fr.sleeptight.ui.user_branch.UserManagerTest" />
         </activity>
     </application>
 

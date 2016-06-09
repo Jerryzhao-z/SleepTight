@@ -22,10 +22,10 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import fr.sleeptight.R;
-import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.page.Page1;
 import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
+import fr.sleeptight.ui.user_branch.UserManagerTest;
 
 public class BasicPage extends AppCompatActivity {
     private Drawer result = null;
@@ -122,11 +122,10 @@ public class BasicPage extends AppCompatActivity {
 									intent  = new Intent(getApplicationContext(), Page1.class);
 									break;
 								case 2:
-									intent  = new Intent(getApplicationContext(), PieChartActivity.class);
+									intent  = new Intent(getApplicationContext(), SleepPlanActivity.class);
 									break;
                                 case 3:
-                                    intent  = new Intent(getApplicationContext(), SleepPlanActivity.class);
-                                    break;
+                                    intent  = new Intent(getApplicationContext(), UserManagerTest.class);
 								default: break;
 							}
 							if (intent != null) {

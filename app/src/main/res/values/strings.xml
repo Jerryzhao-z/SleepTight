@@ -23,5 +23,6 @@
     <string name="title_activity_pie_chart">PieChartActivity</string>
     <string name="title_activity_bar_chart">BarChartActivity</string>
     <string name="title_activity_line_chart">LineChartActivity</string>
+    <string name="title_activity_user_manager_test">userManagerActivity</string>
 
 </resources>

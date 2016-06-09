@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 
+import com.yolanda.nohttp.NoHttp;
+
 import fr.sleeptight.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Intent newAct = new Intent(getApplicationContext(), HomePage.class);
         startActivity(newAct);
         finish();
+
     }
 
 

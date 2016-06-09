@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 'android-N'
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "fr.sleeptight"
@@ -26,7 +26,7 @@ repositories {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'org.greenrobot:greendao:2.2.0'
     compile 'com.yolanda.nohttp:nohttp:1.0.0'
@@ -39,8 +39,10 @@ dependencies {
         transitive = true
     }
     compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
-    compile "com.mikepenz:iconics-core:2.6.0@aar"
+    compile 'com.mikepenz:iconics-core:2.6.0@aar'
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
-    compile "com.mikepenz:itemanimators:0.2.4@aar"
+    compile 'com.mikepenz:itemanimators:0.2.4@aar'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.5'
+
 }
