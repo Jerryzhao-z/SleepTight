@@ -1,3 +1,4 @@
+
 package fr.sleeptight.ui.user_branch;
 
 import android.app.Activity;
@@ -66,8 +67,8 @@ public class UserManagerTest extends AppCompatActivity {
                 String confirm = passwordConfirm.getText().toString();
 
                 if (password.equals(confirm)){
-                        User user = User.getInstance(username, password);
-                        user.setId();
+                    User user = User.getInstance(username, password);
+                    user.setId();
                 } else
                     reponseText.setText("passwords aren't equal");
             }
@@ -76,5 +77,6 @@ public class UserManagerTest extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
 }
+
+

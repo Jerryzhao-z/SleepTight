@@ -40,7 +40,7 @@ public class User {
     private User(String userName, String pw)
     {
         this.setUsername(userName)
-            .setPassword(pw);
+                .setPassword(pw);
     }
 
     public static synchronized User getInstance()
@@ -172,3 +172,8 @@ public class User {
         return null;
     }
 }
+
+
+
+
+
