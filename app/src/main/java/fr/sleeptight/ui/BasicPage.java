@@ -23,9 +23,11 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import fr.sleeptight.R;
 import fr.sleeptight.ui.chart.PieChartActivity;
+import fr.sleeptight.ui.light.LightAuthActivity;
 import fr.sleeptight.ui.page.Page1;
 import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
+import fr.sleeptight.ui.user_branch.LoginActivity;
 
 public class BasicPage extends AppCompatActivity {
     private Drawer result = null;
