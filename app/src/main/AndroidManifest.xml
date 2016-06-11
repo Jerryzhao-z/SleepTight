@@ -2,13 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.sleeptight">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-
     <application
-        android:name=".ui.application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -31,10 +25,7 @@
             android:name=".ui.page.Page1"
             android:label="@string/title_activity_page1"
             android:theme="@style/CustomTheme" />
-        <activity
-            android:name=".ui.BasicPage"
-            android:label="@string/title_activity_basic_page"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.BasicPage" />
         <activity
             android:name=".ui.page.Page2"
             android:label="@string/title_activity_page2"
@@ -49,14 +40,58 @@
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
         <activity
-            android:name=".ui.user_branch.LoginActivity"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"
-            android:label="@string/title_activity_login" />
+            android:name=".ui.chart.PieChartActivity"
+            android:label="@string/title_activity_pie_chart"
+            android:parentActivityName=".ui.HomePage"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.sleeptight.ui.HomePage" />
+        </activity>
+        <activity android:name=".ui.chart.BasicChartPage" />
+        <activity
+            android:name=".ui.chart.BarChartActivity"
+            android:label="@string/title_activity_bar_chart"
+            android:parentActivityName=".ui.HomePage"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.sleeptight.ui.HomePage" />
+        </activity>
+        <activity
+            android:name=".ui.chart.LineChartActivity"
+            android:label="@string/title_activity_line_chart"
+            android:parentActivityName=".ui.HomePage"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.sleeptight.ui.HomePage" />
+        </activity>
+        <activity
+            android:name=".ui.light.LightAuthActivity"
+            android:label="@string/title_activity_phhome"
+            android:parentActivityName=".ui.HomePage"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="fr.sleeptight.ui.HomePage" />
+        </activity>
+        <activity
+            android:name=".ui.light.PHPushlinkActivity"
+            android:label="@string/title_activity_phpushlink"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.light.LightControlActivity"
+            android:label="@string/title_activity_light_control"
+            android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".ui.user_branch.RegisterActivity"
             android:label="@string/title_activity_register"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
+        <activity
+            android:name=".ui.user_branch.LoginActivity"
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"
-           ></activity>
+            android:label="@string/title_activity_login" />
     </application>
 
 </manifest>
