@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="fr.sleeptight.ui.page.SleepPlanActivity"
-    tools:showIn="@layout/activity_sleep_plan">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="82dp"
+    android:orientation="vertical"
+    android:scaleY="1.10"
+    android:scaleX="1.10"
+    android:textColor="#ffffff"
+    android:background = "@drawable/sleepplan"
+    android:weightSum="1">
+
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="     Do you want to set your wakeup time?"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:text="Do you want to set your wakeup time?"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#ffffff"
+            android:layout_marginTop="15dp"
             android:id="@+id/textView" />
 
         <Switch
@@ -35,100 +34,54 @@
             android:checked="true"
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center_horizontal" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="71dp"
-            android:layout_weight="0.13">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="You want to wake up in which period?"
+            android:id="@+id/textView2"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+             />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="      You want to wake up in which period?   "
-                android:id="@+id/textView2"
-                android:layout_marginTop="34dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
 
-            <EditText
-                android:layout_width="66dp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editText"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="41dp"
-                android:layout_marginStart="41dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="to"
-                android:id="@+id/textView4"
-                android:layout_alignBottom="@+id/editText"
-                android:layout_centerHorizontal="true" />
-
-            <EditText
-                android:layout_width="66dp"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:ems="10"
-                android:id="@+id/editText2"
-                android:layout_alignBottom="@+id/textView4"
-                android:layout_toRightOf="@+id/textView4"
-                android:layout_toEndOf="@+id/textView4"
-                android:layout_marginLeft="47dp"
-                android:layout_marginStart="47dp" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
+    <TimePicker
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleY="0.4"
+        android:scaleX="0.4"
+        android:id="@+id/timePicker"
+        android:layout_gravity="top"
+        android:layout_marginTop="-85dp" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="       Which way you want to be alarmed?"
-        android:id="@+id/textView3"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sleep_plan_button"
-        android:id="@+id/button"
-        android:layout_marginBottom="60dp"
-        android:textSize="25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=" Which way you want to be alarmed?"
+        android:id="@+id/textView3"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-75dp" />
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textView3"
-        android:layout_above="@+id/button">
+
 
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="The classic alarm"
                 android:id="@+id/radioButton"
+                android:textColor="#ffffff"
                 android:checked="true" />
 
             <RadioButton
@@ -136,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:text="Other users&apos; wakingup record"
                 android:id="@+id/radioButton2"
+                android:textColor="#ffffff"
                 android:checked="false" />
 
             <RadioButton
@@ -143,9 +97,25 @@
                 android:layout_height="wrap_content"
                 android:text="The virtual-sunrise simulation"
                 android:id="@+id/radioButton3"
+                android:textColor="#ffffff"
                 android:checked="false" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="      Go to sleep      "
+                android:id="@+id/button"
+                android:textSize="22dp"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/mybutton1"
+
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp" />
         </RadioGroup>
-    </LinearLayout>
 
+</LinearLayout>
 
-</RelativeLayout>
+</ScrollView>

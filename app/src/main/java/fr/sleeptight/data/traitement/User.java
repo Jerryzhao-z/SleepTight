@@ -192,7 +192,7 @@ public class User {
             //json
             SignupFormat user = new SignupFormat(this.userName, this.password);
             String json_request = JSON.toJSONString(user);
-            JsonRequest request = new JsonRequest("http://sleeptight2016.herokuapp.com/api/v1.0/users/login", RequestMethod.POST);
+            JsonRequest request = new JsonRequest("http://sleeptight2016.herokuapp.com/api/v1.0/users/login/", RequestMethod.POST);
             request.setRequestBody(json_request.getBytes(NoHttp.CHARSET_UTF8));
             request.setContentType("application/json");
             //loginResponseListener = new JsonLoginResponseListener(this);

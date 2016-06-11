@@ -22,6 +22,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import fr.sleeptight.R;
+import fr.sleeptight.data.traitement.User;
 import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
 import fr.sleeptight.ui.page.Page1;
@@ -33,6 +34,7 @@ public class BasicPage extends AppCompatActivity {
     private Drawer result = null;
     private AccountHeader headerResult = null;
     private static final int PROFILE_SETTING = 100000;
+    private static final int PROFILE_USER_ID = 666;
 
     public void Slide_Bar(Toolbar toolbar){
         new DrawerBuilder().withActivity(this).build();
@@ -41,8 +43,9 @@ public class BasicPage extends AppCompatActivity {
 
         //final IProfile profile1 = new ProfileDrawerItem().withName("Safae Elabibi").withEmail("safa.elabibie@insa-lyon.fr").withIcon(R.drawable.safae).withIdentifier(101);
         //final IProfile profile2 = new ProfileDrawerItem().withName("Saad Marous").withEmail("saad.marous@insa-lyon.fr").withIcon(R.drawable.saad).withIdentifier(102);
-        IProfile user = new ProfileDrawerItem().withName("Y66ifan Xi66ong").withEmail("yifan.xiong@insa-lyon.fr").withIcon(R.drawable.bear).withIdentifier(103);
         //final IProfile profile4 = new ProfileDrawerItem().withName("Zhao Zhengrui").withEmail("zhao.zhengrui@insa-lyon.fr").withIcon(R.drawable.jerry).withIdentifier(104);
+
+        IProfile user = setAccount();
 
         headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -155,6 +158,26 @@ public class BasicPage extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+
+    private IProfile setAccount(){
+        User curUser = User.getInstance();
+        String username ="";
+        String email="";
+        if(curUser.getId().equals("unset")){
+            username = "Please Sign up";
+            email= "Please Sign up";
+        }else{
+            username = curUser.getUsername();
+            email = username+"@sleeptight.fr";
+        }
+        //username = curUser.getUsername();
+        //email = curUser.getId();
+
+        IProfile res = new ProfileDrawerItem().withName(username).withEmail(email).withIcon(R.drawable.bear).withIdentifier(PROFILE_USER_ID);
+        return res;
+    }
+
 
 
 }

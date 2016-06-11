@@ -3,6 +3,7 @@
     package="fr.sleeptight">
 
     <application
+        android:largeHeap="true"
         android:name=".ui.application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -61,12 +62,11 @@
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
 
-
         <activity
             android:name=".ui.light.LightAuthActivity"
             android:label="@string/title_activity_phhome"
             android:parentActivityName=".ui.HomePage"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
@@ -74,11 +74,11 @@
         <activity
             android:name=".ui.light.PHPushlinkActivity"
             android:label="@string/title_activity_phpushlink"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".ui.light.LightControlActivity"
             android:label="@string/title_activity_light_control"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"/>
         <activity
             android:name=".ui.user_branch.RegisterActivity"
             android:label="@string/title_activity_register"

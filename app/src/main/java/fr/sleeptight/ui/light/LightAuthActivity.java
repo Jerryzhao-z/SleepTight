@@ -56,6 +56,7 @@ public class LightAuthActivity extends BasicPage implements OnItemClickListener 
         setContentView(R.layout.activity_light_auth);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Slide_Bar(toolbar);
 
         // Gets an instance of the Hue SDK.
         phHueSDK = PHHueSDK.create();

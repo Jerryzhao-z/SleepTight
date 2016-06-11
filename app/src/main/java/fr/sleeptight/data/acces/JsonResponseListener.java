@@ -35,7 +35,7 @@ public class JsonResponseListener implements OnResponseListener<JSONObject> {
             try {
                 String usernameReponse = response.get().getString("username");
                 String idReponse = response.get().getString("id");
-                if (usernameReponse == this.user.getUsername())
+                if (usernameReponse.equals(this.user.getUsername()))
                     this.user.setId(idReponse);
             } catch (JSONException e) {
                 e.printStackTrace();

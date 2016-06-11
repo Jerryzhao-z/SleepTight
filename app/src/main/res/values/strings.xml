@@ -13,7 +13,7 @@
     <string name="drawer_item_6">Setting</string>
     <string name="drawer_item_7">Your waking up record</string>
 
-    <string name="title_activity_home_page">HomePage</string>
+    <string name="title_activity_home_page">SleepTight</string>
     <string name="title_activity_page1">Sleep Status</string>
     <string name="title_activity_page2">Synthesis</string>
     <string name="title_activity_sleep_plan">Sleep Plan</string>
