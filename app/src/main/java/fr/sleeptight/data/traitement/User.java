@@ -1,17 +1,11 @@
 package fr.sleeptight.data.traitement;
 
-import android.util.Log;
-
 import com.alibaba.fastjson.JSON;
-import com.yolanda.nohttp.JsonObjectRequest;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.OnResponseListener;
-import com.yolanda.nohttp.Request;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.RequestQueue;
-import com.yolanda.nohttp.Response;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -135,7 +129,7 @@ public class User {
         return this;
     }
 
-    OnResponseListener<JSONObject> authResponseListener = new JsonResponseListener(this, "SIGNUP", CONSTANT.SIGNUP);
+    OnResponseListener<JSONObject> authResponseListener = new UserJsonResponseListener(this, "SIGNUP", CONSTANT.SIGNUP);
 
     /*class JsonSignUpResponseListener implements OnResponseListener<JSONObject>
     {
@@ -201,7 +195,7 @@ public class User {
         return this;
     }
 
-    OnResponseListener<JSONObject> loginResponseListener = new JsonResponseListener(this, "LOGIN", CONSTANT.LOGIN);
+    OnResponseListener<JSONObject> loginResponseListener = new UserJsonResponseListener(this, "LOGIN", CONSTANT.LOGIN);
 
 
 /*

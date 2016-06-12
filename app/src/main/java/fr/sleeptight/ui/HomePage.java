@@ -27,6 +27,7 @@ import fr.sleeptight.R;
 import fr.sleeptight.data.traitement.Light;
 import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
+import fr.sleeptight.ui.listener.ChromeTabListener;
 import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
 
@@ -72,12 +73,14 @@ public class HomePage extends BasicPage {
 
             }
         });
-        img4.setOnClickListener(new View.OnClickListener() {
+/*        img4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent newAct = new Intent(getApplicationContext(), Page2.class);
                 startActivity(newAct);
             }
-        });
+        });*/
+        img4.setOnClickListener(new ChromeTabListener(img4.getId(), this,
+                "http://sleeptight2016.herokuapp.com/api/v1.0/users/fitbit/auth", Boolean.TRUE));
 
 
     }

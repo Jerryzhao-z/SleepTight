@@ -88,6 +88,10 @@
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"
             android:label="@string/title_activity_login"
         ></activity>
+        <activity
+            android:name=".data.fitbit.auth.WebviewActivity"
+            android:label="@string/title_activity_webview">
+        </activity>
     </application>
 
 </manifest>

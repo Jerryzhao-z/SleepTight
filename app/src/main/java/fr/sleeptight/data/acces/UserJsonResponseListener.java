@@ -13,15 +13,22 @@ import fr.sleeptight.ui.ContextHolder;
 /**
  * Created by zhengrui on 6/9/2016.
  */
-public class JsonResponseListener implements OnResponseListener<JSONObject> {
+public class UserJsonResponseListener implements OnResponseListener<JSONObject> {
 
 
     private User user;
     private String purpose;
     private int purposeNumber;
 
-    public JsonResponseListener(User user, String purpose, int purposeNumber) {
+    public UserJsonResponseListener(User user, String purpose, int purposeNumber) {
         this.user = user;
+        this.purpose = purpose;
+        this.purposeNumber = purposeNumber;
+    }
+
+    public UserJsonResponseListener(String purpose, int purposeNumber)
+    {
+        this.user = User.getInstance();
         this.purpose = purpose;
         this.purposeNumber = purposeNumber;
     }
