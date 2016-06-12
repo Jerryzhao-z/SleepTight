@@ -13,6 +13,7 @@ public class application extends Application {
     public void onCreate()
     {
         super.onCreate();
+        ContextHolder.init(this.getApplicationContext());
         NoHttp.init(this);
     }
 }
