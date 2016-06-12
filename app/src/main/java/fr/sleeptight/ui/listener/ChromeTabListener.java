@@ -13,12 +13,11 @@ import android.support.customtabs.CustomTabsIntent;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import fr.sleeptight.R;
-import fr.sleeptight.data.fitbit.auth.ActionBroadcastReceiver;
-import fr.sleeptight.data.fitbit.auth.CustomTabActivityHelper;
-import fr.sleeptight.data.fitbit.auth.WebviewFallback;
+import fr.sleeptight.data.fitbit.chrome.ActionBroadcastReceiver;
+import fr.sleeptight.data.fitbit.chrome.CustomTabActivityHelper;
+import fr.sleeptight.data.fitbit.chrome.WebviewFallback;
 import fr.sleeptight.data.traitement.User;
 import fr.sleeptight.ui.ContextHolder;
 

@@ -89,7 +89,7 @@
             android:label="@string/title_activity_login"
         ></activity>
         <activity
-            android:name=".data.fitbit.auth.WebviewActivity"
+            android:name=".data.fitbit.chrome.WebviewActivity"
             android:label="@string/title_activity_webview">
         </activity>
     </application>

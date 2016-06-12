@@ -1,4 +1,4 @@
-package fr.sleeptight.data.fitbit.auth;
+package fr.sleeptight.data.fitbit.chrome;
 
 
 import android.app.Activity;

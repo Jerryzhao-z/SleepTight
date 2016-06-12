@@ -1,4 +1,4 @@
-package fr.sleeptight.data.fitbit.auth;
+package fr.sleeptight.data.fitbit.chrome;
 
 /**
  * Created by UserUtils on 6/11/2016.
