@@ -78,41 +78,72 @@ public class RegisterActivity extends AppCompatActivity {
                 pDialog.dismiss();
         }
 
-        private void register(String username,String password, String email){
+        private void register(String username,String password, String email) {
             pDialog.setMessage("Registering ...");
             User user = User.getInstance(username, password)
-                            .signup()
-                            .login();
+                    .signup()
+                    .login();
 
-           user.setEmail(email);
+            user.setEmail(email);
 
             showDialog();
-            Toast.makeText(getApplicationContext(),
-                    "Sign up succeeded", Toast.LENGTH_LONG)
-                    .show();
 
-           thread = new Thread(new Runnable(){
-                    @Override
-                    public void run() {
+
+            thread = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    try {
+                        thread.sleep(4000);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    hideDialog();
+
+                    if(User.getInstance().getId().equals("unset")) {
+                        showToast("Sign up Faild");
+
                         try {
-                            thread.sleep(4000);
-
-
+                            thread.sleep(500);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        Intent i = new Intent(getApplicationContext(),
+                                RegisterActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else {
+                        showToast("Sign up Succeeded");
 
-                        hideDialog();
-
+                        try {
+                            thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         Intent i = new Intent(getApplicationContext(),
                                 HomePage.class);
                         startActivity(i);
                         finish();
+                    }
+                }});
+            thread.start();
 
-                    }});
-                    thread.start();
         }
+
+
+            public void showToast(final String toast)
+            {
+                runOnUiThread(new Runnable() {
+                    public void run()
+                    {
+                        Toast.makeText(RegisterActivity.this, toast, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
 }
+
 
 
 

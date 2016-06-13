@@ -157,6 +157,10 @@ public class BasicPage extends AppCompatActivity {
                                 case 4:
                                     toBracelet();
                                     break;
+                                case 7:
+                                    User.getInstance().setId("unset");
+                                    intent  = new Intent(getApplicationContext(), LoginActivity.class);
+                                    break;
 								default: break;
 							}
 							if (intent != null) {

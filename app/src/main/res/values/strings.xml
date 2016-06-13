@@ -5,13 +5,13 @@
     <string name="title_activity_basic_page">BasicPage</string>
 
     <string name="drawer_item_0">Home</string>
-    <string name="drawer_item_1">Event</string>
+    <string name="drawer_item_1">Sleep Event</string>
     <string name="drawer_item_2">Synthesis</string>
     <string name="drawer_item_3">Waking up program</string>
     <string name="drawer_item_4">Bracelet connection</string>
     <string name="drawer_item_5">User profile</string>
     <string name="drawer_item_6">Setting</string>
-    <string name="drawer_item_7">Your waking up record</string>
+    <string name="drawer_item_7">Log out</string>
 
     <string name="title_activity_home_page">SleepTight</string>
     <string name="title_activity_page1">Sleep Status</string>
