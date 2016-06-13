@@ -88,28 +88,59 @@ public class LoginActivity extends AppCompatActivity {
         pDialog.setMessage("Logging in ...");
         showDialog();
 
-        Toast.makeText(getApplicationContext(),
-                "Welcome "+username, Toast.LENGTH_LONG)
-                .show();
-
-        thread = new Thread(new Runnable(){
-            @Override
-            public void run() {
-                try {
-                    thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                hideDialog();
 
 
+            thread = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    try {
+                        thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    hideDialog();
 
-                Intent i = new Intent(getApplicationContext(),
-                        HomePage.class);
-                startActivity(i);
-                finish();
 
-            }});
-        thread.start();
+                    if(User.getInstance().getId().equals("unset")) {
+                        showToast("Login Faild");
+
+                        try {
+                            thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Intent i = new Intent(getApplicationContext(),
+                                LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else{
+                        showToast("Login Succeeded");
+
+                        try {
+                            thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Intent i = new Intent(getApplicationContext(),
+                                HomePage.class);
+                        startActivity(i);
+                        finish();
+                    }
+
+                }});
+            thread.start();
+
+
+    }
+
+
+    public void showToast(final String toast)
+    {
+        runOnUiThread(new Runnable() {
+            public void run()
+            {
+                Toast.makeText(LoginActivity.this, toast, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

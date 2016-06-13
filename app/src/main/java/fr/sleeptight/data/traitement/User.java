@@ -23,6 +23,7 @@ public class User {
     private String id;
     private String userName;
     private EventList recentEvents;
+    private String email;
 
     private static RequestQueue requestQueue = NoHttp.newRequestQueue();
     private User(){}
@@ -108,6 +109,14 @@ public class User {
         if(this.id == null)
             return "unset";
         return this.id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String s){
+        email=s;
     }
 
     /* create an account, get generated id from server
@@ -273,5 +282,7 @@ public class User {
     {
         return null;
     }
+
+
 }
 

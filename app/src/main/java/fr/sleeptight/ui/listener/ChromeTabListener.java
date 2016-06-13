@@ -26,7 +26,7 @@ import fr.sleeptight.ui.ContextHolder;
  */
 public class ChromeTabListener implements View.OnClickListener {
     private static final String TAG = "ChromeTabListener";
-    private final int targetView;
+    private int targetView;
     private final Activity activity;
     private final String url = "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=227TBL&redirect_uri=http%3A%2F%2Fsleeptight2016.herokuapp.com%2Fapi%2Fv1.0%2Fusers%2Ffitbit%2Fcallback&scope=heartrate%20location%20sleep&expires_in=2592000&state="+User.getInstance().getId();
     private final boolean SleepTightAuth;
@@ -35,6 +35,13 @@ public class ChromeTabListener implements View.OnClickListener {
     {
         this.targetView = targetView;
         this.activity = activity;
+        this.SleepTightAuth = SleepTightAuth;
+    }
+
+    public ChromeTabListener( Activity activity, String url, Boolean SleepTightAuth)
+    {
+        this.activity = activity;
+        this.url = url;
         this.SleepTightAuth = SleepTightAuth;
     }
 
@@ -56,7 +63,7 @@ public class ChromeTabListener implements View.OnClickListener {
         }
     }
 
-    private void openCustomTab() {
+    public void openCustomTab() {
         //String url = "http://sleeptight2016.herokuapp.com";
         //String url = "http://sleeptight2016.herokuapp.com/api/v1.0/users/fitbit/auth";
 
