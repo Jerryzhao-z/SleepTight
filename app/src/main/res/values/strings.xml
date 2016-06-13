@@ -28,5 +28,6 @@
     <string name="title_activity_user_manager_test">userManagerActivity</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_simulation">SimulationActivity</string>
 
 </resources>

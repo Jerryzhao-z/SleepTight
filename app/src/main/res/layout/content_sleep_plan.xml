@@ -103,8 +103,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="      Go to sleep      "
-                android:id="@+id/button"
+                android:text="      Simulate the sleep      "
+                android:id="@+id/simulation_button"
                 android:textSize="22dp"
                 android:textColor="#ffffff"
                 android:textAllCaps="false"

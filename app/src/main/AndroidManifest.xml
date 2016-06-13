@@ -3,11 +3,11 @@
     package="fr.sleeptight">
 
     <application
-        android:largeHeap="true"
         android:name=".ui.application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
@@ -50,7 +50,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
-
         <activity android:name=".ui.chart.BasicChartPage" />
         <activity
             android:name=".ui.chart.BarChartActivity"
@@ -61,7 +60,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
-
         <activity
             android:name=".ui.light.LightAuthActivity"
             android:label="@string/title_activity_phhome"
@@ -78,20 +76,22 @@
         <activity
             android:name=".ui.light.LightControlActivity"
             android:label="@string/title_activity_light_control"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"/>
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".ui.user_branch.RegisterActivity"
             android:label="@string/title_activity_register"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"/>
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".ui.user_branch.LoginActivity"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"
             android:label="@string/title_activity_login"
-        ></activity>
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".data.fitbit.chrome.WebviewActivity"
-            android:label="@string/title_activity_webview">
-        </activity>
+            android:label="@string/title_activity_webview"></activity>
+        <activity
+            android:name=".ui.simulation.SimulationActivity"
+            android:label="@string/title_activity_simulation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
