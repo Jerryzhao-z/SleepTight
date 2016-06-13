@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import fr.sleeptight.R;
+import fr.sleeptight.data.fitbit.sleep.SleepRequest;
 import fr.sleeptight.data.traitement.Light;
 import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
@@ -68,9 +69,9 @@ public class HomePage extends BasicPage {
         });
         img3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent newAct = new Intent(getApplicationContext(), LightAuthActivity.class);
-                startActivity(newAct);
-
+                //Intent newAct = new Intent(getApplicationContext(), LightAuthActivity.class);
+                //startActivity(newAct);
+                SleepRequest.getfitbitToken();
             }
         });
 /*        img4.setOnClickListener(new View.OnClickListener() {
@@ -79,12 +80,12 @@ public class HomePage extends BasicPage {
                 startActivity(newAct);
             }
         });*/
-        img4.setOnClickListener(new ChromeTabListener(img4.getId(), this,
-                "http://sleeptight2016.herokuapp.com/api/v1.0/users/fitbit/auth", Boolean.TRUE));
+        img4.setOnClickListener(new ChromeTabListener(img4.getId(), this, Boolean.TRUE));
+/*        img4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SleepRequest.getSleepLog(2016,6,3);
+            }
 
-
+        });*/
     }
-
-
-
 }

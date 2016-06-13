@@ -47,8 +47,9 @@ public class SleepJsonResponseListener implements OnResponseListener<JSONObject>
         public void onSucceed(int what, Response<JSONObject> response) {
             if (what == this.purposeNumber) {
                 try {
-                    JSONArray sleeplogs = response.get().getJSONArray("sleeptestlist");
-                    for(int index=0; index<sleeplogs.length(); index++)
+                    String sleeplogs = response.get().getString("sleeptestlist");
+                    Log.d(purpose+": ", sleeplogs);
+/*                    for(int index=0; index<sleeplogs.length(); index++)
                     {
                         JSONObject sleeplog = sleeplogs.getJSONObject(index);
                         Date startTime = new Date(sleeplog.getString("startTime"));
@@ -59,7 +60,7 @@ public class SleepJsonResponseListener implements OnResponseListener<JSONObject>
                         Log.d(purpose+": ","StartTime is"+startTime.toString()+" duration is "+Integer.toString(duration)+
                                 " awakeDuration is "+Integer.toString(awakeDuration)+" restlessDuration is "+Integer.toString(reslessDuration)+
                                 " efficiency is "+efficiency);
-                    }
+                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

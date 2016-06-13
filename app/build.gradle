@@ -31,7 +31,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'org.greenrobot:greendao:2.2.0'
     compile 'com.yolanda.nohttp:nohttp:1.0.0'
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'com.google.apis:google-api-services-calendar:v3-rev181-1.22.0'
@@ -47,4 +46,6 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.5'
     compile 'com.android.support:customtabs:23.3.0'
     compile 'org.greenrobot:greendao:2.2.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
 }
