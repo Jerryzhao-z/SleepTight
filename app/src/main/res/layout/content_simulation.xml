@@ -14,13 +14,14 @@
     tools:showIn="@layout/activity_simulation">
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:src="@drawable/sleep_icon"
         android:id="@+id/sleep_icon"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="63dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/back_button"
+        android:layout_alignEnd="@+id/back_button" />
 
     <TextView
         android:layout_width="300dp"

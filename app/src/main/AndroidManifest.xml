@@ -75,7 +75,7 @@
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".ui.light.LightControlActivity"
-            android:label="@string/title_activity_light_control"
+            android:label="@string/title_activity_lightcontrol"
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".ui.user_branch.RegisterActivity"

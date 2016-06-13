@@ -57,6 +57,7 @@ public class HomePage extends BasicPage {
             public void onClick(View v) {
                 Intent newAct = new Intent(getApplicationContext(), SleepPlanActivity.class);
                 startActivity(newAct);
+                finish();
             }
         });
 
