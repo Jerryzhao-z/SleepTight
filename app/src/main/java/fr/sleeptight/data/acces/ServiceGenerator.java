@@ -1,6 +1,6 @@
 package fr.sleeptight.data.acces;
 
-import okhttp3.OkHttpClient;
+//import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 /**
  * Created by User on 6/13/2016.

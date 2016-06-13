@@ -208,7 +208,7 @@ public class BasicPage extends AppCompatActivity {
     }
 
     private void toBracelet(){
-        ChromeTabListener cm= new ChromeTabListener(this, "http://sleeptight2016.herokuapp.com/api/v1.0/users/fitbit/auth", Boolean.TRUE);
+        ChromeTabListener cm= new ChromeTabListener(this, Boolean.TRUE);
         cm.openCustomTab();
     }
 

@@ -38,10 +38,9 @@ public class ChromeTabListener implements View.OnClickListener {
         this.SleepTightAuth = SleepTightAuth;
     }
 
-    public ChromeTabListener( Activity activity, String url, Boolean SleepTightAuth)
+    public ChromeTabListener( Activity activity, Boolean SleepTightAuth)
     {
         this.activity = activity;
-        this.url = url;
         this.SleepTightAuth = SleepTightAuth;
     }
 
