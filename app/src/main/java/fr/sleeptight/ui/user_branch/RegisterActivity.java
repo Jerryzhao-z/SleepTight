@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = inputPassword.getText().toString().trim();
 
                 if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    register(username,password);
+                    register(username,password,email);
                 }else{
                     Toast.makeText(getApplicationContext(),
                             "Please enter your details!", Toast.LENGTH_LONG)
@@ -78,11 +78,13 @@ public class RegisterActivity extends AppCompatActivity {
                 pDialog.dismiss();
         }
 
-        private void register(String username,String password){
+        private void register(String username,String password, String email){
             pDialog.setMessage("Registering ...");
             User user = User.getInstance(username, password)
                             .signup()
                             .login();
+
+           user.setEmail(email);
 
             showDialog();
             Toast.makeText(getApplicationContext(),

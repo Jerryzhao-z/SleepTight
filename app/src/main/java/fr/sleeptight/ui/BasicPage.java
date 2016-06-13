@@ -14,9 +14,11 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.ExpandableDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
@@ -25,6 +27,7 @@ import fr.sleeptight.R;
 import fr.sleeptight.data.traitement.User;
 import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
+import fr.sleeptight.ui.listener.ChromeTabListener;
 import fr.sleeptight.ui.page.Page1;
 import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
@@ -41,9 +44,7 @@ public class BasicPage extends AppCompatActivity {
 
 
 
-        //final IProfile profile1 = new ProfileDrawerItem().withName("Safae Elabibi").withEmail("safa.elabibie@insa-lyon.fr").withIcon(R.drawable.safae).withIdentifier(101);
-        //final IProfile profile2 = new ProfileDrawerItem().withName("Saad Marous").withEmail("saad.marous@insa-lyon.fr").withIcon(R.drawable.saad).withIdentifier(102);
-        //final IProfile profile4 = new ProfileDrawerItem().withName("Zhao Zhengrui").withEmail("zhao.zhengrui@insa-lyon.fr").withIcon(R.drawable.jerry).withIdentifier(104);
+
 
         IProfile user = setAccount();
 
@@ -57,27 +58,42 @@ public class BasicPage extends AppCompatActivity {
                         new ProfileSettingDrawerItem().withName("Add Account").withDescription("Add new GitHub Account").withIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_plus_square).actionBar().paddingDp(5).colorRes(R.color.material_drawer_primary_text)).withIdentifier(PROFILE_SETTING),
                         new ProfileSettingDrawerItem().withName("Manage Account").withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(PROFILE_SETTING+1)
                 )
-              /*  .withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
+                .withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
 
                         @Override
                         public boolean onClick(View view, IProfile profile){
-                            Intent intent  = new Intent(getApplicationContext(), HomePage.class);
-                            startActivity(intent);
+                            User curUser = User.getInstance();
+
+                            if(curUser.getId().equals("unset")){
+                                Intent intent  = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(intent);
+                            }else{
+                                Intent intent  = new Intent(getApplicationContext(), HomePage.class);
+                                startActivity(intent);
+                            }
                             return false;
                         }
-                    })*/
+                    })
                 .withOnAccountHeaderProfileImageListener(new AccountHeader.OnAccountHeaderProfileImageListener() {
                     @Override
                     public boolean onProfileImageClick(View view, IProfile profile, boolean current) {
-                        Intent intent  = new Intent(getApplicationContext(), HomePage.class);
-                        startActivity(intent);
+                        User curUser = User.getInstance();
+
+                        if(curUser.getId().equals("unset")){
+                            Intent intent  = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent  = new Intent(getApplicationContext(), HomePage.class);
+                            startActivity(intent);
+                        }
+
                         return false;
                     }
 
                     @Override
                     public boolean onProfileImageLongClick(View view, IProfile profile, boolean current) {
-                        Intent intent  = new Intent(getApplicationContext(), HomePage.class);
-                        startActivity(intent);
+                       /* Intent intent  = new Intent(getApplicationContext(), HomePage.class);
+                        startActivity(intent);*/
                         return false;
                     }
                 })
@@ -89,7 +105,7 @@ public class BasicPage extends AppCompatActivity {
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_1).withIdentifier(1).withIcon(FontAwesome.Icon.faw_bed);
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName(R.string.drawer_item_2).withIdentifier(2).withIcon(FontAwesome.Icon.faw_heartbeat);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName(R.string.drawer_item_3).withIdentifier(3).withIcon(FontAwesome.Icon.faw_bell_o);
-        PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName(R.string.drawer_item_4).withIdentifier(4).withIcon(FontAwesome.Icon.faw_random);
+
         PrimaryDrawerItem item5 = new PrimaryDrawerItem().withName(R.string.drawer_item_5).withIdentifier(5).withIcon(FontAwesome.Icon.faw_github_alt);
         PrimaryDrawerItem item6 = new PrimaryDrawerItem().withName(R.string.drawer_item_6).withIdentifier(6).withIcon(FontAwesome.Icon.faw_cogs);
         PrimaryDrawerItem item7 = new PrimaryDrawerItem().withName(R.string.drawer_item_7).withIdentifier(7).withIcon(FontAwesome.Icon.faw_bullhorn);
@@ -102,10 +118,13 @@ public class BasicPage extends AppCompatActivity {
                 .addDrawerItems(
                         item0,
                         new DividerDrawerItem(),
-                        item1,
                         item2,
+                        item1,
                         item3,
-                        item4,
+                        new ExpandableDrawerItem().withName("Device Connection").withIcon(FontAwesome.Icon.faw_random).withIdentifier(112).withSelectable(false).withSubItems(
+                                new SecondaryDrawerItem().withName("Bracelet").withIdentifier(4).withIcon(FontAwesome.Icon.faw_openid),
+                                new SecondaryDrawerItem().withName("Light").withIdentifier(44).withIcon(FontAwesome.Icon.faw_lightbulb_o)
+                        ),
                         new DividerDrawerItem(),
                         item5,
                         item6,
@@ -130,10 +149,14 @@ public class BasicPage extends AppCompatActivity {
 									intent  = new Intent(getApplicationContext(), PieChartActivity.class);
 									break;
                                 case 3:
-                                    intent  = new Intent(getApplicationContext(), LoginActivity.class);
+                                    intent  = new Intent(getApplicationContext(), SleepPlanActivity.class);
+                                    break;
+                                case 44:
+                                    intent  = new Intent(getApplicationContext(), LightAuthActivity.class);
                                     break;
                                 case 4:
-                                    intent  = new Intent(getApplicationContext(), LightAuthActivity.class);
+                                    toBracelet();
+                                    break;
 								default: break;
 							}
 							if (intent != null) {
@@ -164,18 +187,25 @@ public class BasicPage extends AppCompatActivity {
         User curUser = User.getInstance();
         String username ="";
         String email="";
+        int icon= R.drawable.account;;
         if(curUser.getId().equals("unset")){
             username = "Please Sign up";
             email= "Please Sign up";
+            icon=R.drawable.nouser;
         }else{
             username = curUser.getUsername();
-            email = username+"@sleeptight.fr";
+            email = curUser.getEmail();
         }
         //username = curUser.getUsername();
         //email = curUser.getId();
 
-        IProfile res = new ProfileDrawerItem().withName(username).withEmail(email).withIcon(R.drawable.bear).withIdentifier(PROFILE_USER_ID);
+        IProfile res = new ProfileDrawerItem().withName(username).withEmail(email).withIcon(icon).withIdentifier(PROFILE_USER_ID);
         return res;
+    }
+
+    private void toBracelet(){
+        ChromeTabListener cm= new ChromeTabListener(this, "http://sleeptight2016.herokuapp.com/api/v1.0/users/fitbit/auth", Boolean.TRUE);
+        cm.openCustomTab();
     }
 
 

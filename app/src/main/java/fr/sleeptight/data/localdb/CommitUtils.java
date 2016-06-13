@@ -82,7 +82,7 @@ public class CommitUtils {
      * @param event
      * @return
      */
-    public boolean deleteEvent(Event event) {
+    public boolean deletEvent(Event event) {
 
         boolean flag = false;
         try {

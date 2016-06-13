@@ -26,7 +26,7 @@ import fr.sleeptight.ui.ContextHolder;
  */
 public class ChromeTabListener implements View.OnClickListener {
     private static final String TAG = "ChromeTabListener";
-    private final int targetView;
+    private int targetView;
     private final Activity activity;
     private final String url;
     private final boolean SleepTightAuth;
@@ -34,6 +34,13 @@ public class ChromeTabListener implements View.OnClickListener {
     public ChromeTabListener(int targetView, Activity activity, String url, Boolean SleepTightAuth)
     {
         this.targetView = targetView;
+        this.activity = activity;
+        this.url = url;
+        this.SleepTightAuth = SleepTightAuth;
+    }
+
+    public ChromeTabListener( Activity activity, String url, Boolean SleepTightAuth)
+    {
         this.activity = activity;
         this.url = url;
         this.SleepTightAuth = SleepTightAuth;
@@ -57,7 +64,7 @@ public class ChromeTabListener implements View.OnClickListener {
         }
     }
 
-    private void openCustomTab() {
+    public void openCustomTab() {
         //String url = "http://sleeptight2016.herokuapp.com";
         //String url = "http://sleeptight2016.herokuapp.com/api/v1.0/users/fitbit/auth";
 
