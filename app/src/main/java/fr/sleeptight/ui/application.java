@@ -1,6 +1,8 @@
 package fr.sleeptight.ui;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.yolanda.nohttp.NoHttp;
 
@@ -15,5 +17,11 @@ public class application extends Application {
         super.onCreate();
         ContextHolder.init(this.getApplicationContext());
         NoHttp.init(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+        MultiDex.install(this);
     }
 }

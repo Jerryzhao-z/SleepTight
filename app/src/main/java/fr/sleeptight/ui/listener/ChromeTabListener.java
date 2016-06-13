@@ -91,7 +91,7 @@ public class ChromeTabListener implements View.OnClickListener {
             User user = User.getInstance();
             String auth = user.getUsername() + ":" + user.getPassword();
             Log.d("AUTH", auth + "->" + String.valueOf(Base64.encodeToString(auth.getBytes(), Base64.URL_SAFE | Base64.NO_WRAP)));
-            headers.putString("Authorization", "Basic " + String.valueOf(Base64.encodeToString(auth.getBytes(), Base64.URL_SAFE | Base64.NO_WRAP)));
+            headers.putString("Authorization", User.getToken());
             //headers.putString("second header key", "Pikachu");
             customTabsIntent.intent.putExtra(Browser.EXTRA_HEADERS, headers);
         }

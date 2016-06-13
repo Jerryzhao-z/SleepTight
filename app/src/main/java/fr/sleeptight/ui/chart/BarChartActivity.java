@@ -26,8 +26,15 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.sleeptight.R;
+import fr.sleeptight.data.acces.APIClient.APIClass;
+import fr.sleeptight.data.acces.APIClient.APIService;
+import fr.sleeptight.data.acces.APIClient.ServiceGenerator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BarChartActivity extends  BasicChartPage implements OnChartValueSelectedListener {
 
@@ -154,6 +161,7 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
 
             mChart.setData(data);
         }
+
     }
 
 

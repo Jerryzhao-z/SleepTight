@@ -1,5 +1,7 @@
 package fr.sleeptight.data.traitement;
 
+import android.util.Base64;
+
 import com.alibaba.fastjson.JSON;
 import com.yolanda.nohttp.NoHttp;
 import com.yolanda.nohttp.OnResponseListener;
@@ -119,6 +121,16 @@ public class User {
         email=s;
     }
 
+    public static String getToken()
+    {
+        String auth = currentUser.getUsername()+":"+currentUser.getPassword();
+        return "Basic " + String.valueOf(Base64.encodeToString(auth.getBytes(), Base64.URL_SAFE | Base64.NO_WRAP));
+    }
+
+    public static boolean isUserLoggedIn()
+    {
+        return !currentUser.getId().equals("unset");
+    }
     /* create an account, get generated id from server
      * if the user is anonyme, create AccountInserver
      * will return null, otherwise, the id generated.
