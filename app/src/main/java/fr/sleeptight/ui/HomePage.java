@@ -80,36 +80,7 @@ public class HomePage extends BasicPage {
                 //Intent newAct = new Intent(getApplicationContext(), LightAuthActivity.class);
                 //startActivity(newAct);
                 //zzr: get sleepdata
-                APIService client = ServiceGenerator.createService(APIService.class);
-                Call<List<APIClass.SleepData>> call =  client.getSleepLogTest(2016,6,3);
-                call.enqueue(new Callback<List<APIClass.SleepData>>() {
-                    @Override
-                    public void onResponse(Call<List<APIClass.SleepData>> call, Response<List<APIClass.SleepData>> response) {
-                        if (response.isSuccessful()) {
-                            // tasks available
-                            List<APIClass.SleepData> sleeplogs = response.body();
-                            for(APIClass.SleepData sleep: sleeplogs)
-                            {
-                                Log.d("APIClass.SleepData", "dateofSleep: "+sleep.dateOfSleep);
-                                Log.d("APIClass.SleepData", "minutesAwake: "+sleep.minutesAwake);
-                                Log.d("APIClass.SleepData", "startTime: "+sleep.startTime);
-                                Log.d("APIClass.SleepData", "isMainSleep: "+sleep.isMainSleep);
-                                for(String time: sleep.dateTimeStateReallyAwake)
-                                    Log.d("APIClass.SleepData", "dateTimeStateReallyAwake: "+time);
-                            }
 
-                        } else {
-                            // error response, no access to resource?
-                            Log.d("APIClass.ProfileResetting", response.message());
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<APIClass.SleepData>> call, Throwable t) {
-                        Log.d("Error", t.getMessage());
-                    }
-                });
             }
         });
 /*        img4.setOnClickListener(new View.OnClickListener() {
