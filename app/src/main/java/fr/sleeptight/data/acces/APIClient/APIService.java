@@ -19,4 +19,6 @@ public interface APIService {
 
     @GET("users/fitbit/sleeps/testdata/{year}/{month}/{day}")
     Call<List<APIClass.SleepData>> getSleepLogTest(@Path("year") int year, @Path("month") int month, @Path("day") int day);
+
+   // @GET("test/fitbit")
 }

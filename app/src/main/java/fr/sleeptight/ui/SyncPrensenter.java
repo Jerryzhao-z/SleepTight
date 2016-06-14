@@ -50,7 +50,11 @@ public class SyncPrensenter {
 
 
     //get sleeping hours of a specified day
-    public static float getDurationOfDay(String dateString)
+    public static final int DURATION = 0x0001;
+    public static final int SLEEPTIME = 0x0002;//睡眠时间
+    public static final int AWAKEDURATION = 0x0003;//清醒时间
+    public static final int RESTLESSDURATION = 0x0004;//浅睡眠
+    public static float getDataOfDay(String dateString, int dataType)
     {
 
         Date date = null;
@@ -61,14 +65,29 @@ public class SyncPrensenter {
         }
         //Date date = dateTransfert(dateToTransfert);
         CommitUtils commitUtils = new CommitUtils(ContextHolder.getContext());
-        float duration = 0;
+        float longeur = 0;
         for(Sleep sleep: commitUtils.QuerySleepSpecifitqueDay(date))
         {
-            duration += sleep.getDuration();
+            switch(dataType) {
+                case DURATION:
+                    longeur = longeur + sleep.getDuration()/3600000;
+                    break;
+                case SLEEPTIME:
+                    longeur = longeur + sleep.getMinutesAsleep()/60;
+                    break;
+                case AWAKEDURATION:
+                    longeur = longeur + sleep.getAwakeDuration()/60;
+                    break;
+                case RESTLESSDURATION:
+                    longeur = longeur + sleep.getRestlessDuration()/60;
+                    break;
+                default:
+                    break;
+            }
         }
-        duration /= 3600000;
-        Log.d("Sync", dateString + Float.toString(duration));
-        return duration;
+        longeur /= 3600000;
+        Log.d("Sync", dateString + Float.toString(longeur));
+        return longeur;
     }
 
     public static Date dateTransfert(Date dateToTransfert)
