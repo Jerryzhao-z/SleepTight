@@ -28,6 +28,7 @@ import java.util.List;
 import fr.sleeptight.R;
 import fr.sleeptight.data.acces.APIClient.APIClass;
 import fr.sleeptight.data.acces.APIClient.APIService;
+import fr.sleeptight.data.acces.APIClient.AsyncCall;
 import fr.sleeptight.data.acces.APIClient.ServiceGenerator;
 import fr.sleeptight.data.fitbit.sleep.SleepRequest;
 import fr.sleeptight.data.traitement.Light;
@@ -79,7 +80,7 @@ public class HomePage extends BasicPage {
             public void onClick(View v) {
                 //Intent newAct = new Intent(getApplicationContext(), LightAuthActivity.class);
                 //startActivity(newAct);
-                //zzr: get sleepdata
+                AsyncCall.getSleepCall(2016,6,3);
 
             }
         });

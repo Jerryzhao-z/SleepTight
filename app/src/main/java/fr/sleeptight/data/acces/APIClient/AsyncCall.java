@@ -26,8 +26,10 @@ import retrofit2.Response;
 
 
 public class AsyncCall {
-    static String DatePattern = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+    static String DateTimePattern = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+    static String DatePattern = "yyyy-mm-dd";
     static String TimePattern = "HH:mm:ss";
+    public static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(DateTimePattern);
     public static SimpleDateFormat dateFormatter = new SimpleDateFormat(DatePattern);
     public static SimpleDateFormat timeFormatter = new SimpleDateFormat(TimePattern);
 
@@ -68,7 +70,7 @@ public class AsyncCall {
         });
     }
 
-    public static void getSleepLog(int year, int month, int day)
+    public static void getSleepCall(int year, int month, int day)
     {
         APIService client = ServiceGenerator.createService(APIService.class);
         Call<List<APIClass.SleepData>> call =  client.getSleepLogTest(year,month,day);
@@ -85,7 +87,7 @@ public class AsyncCall {
                         Date startTime = null;
                         Date dateofSleep = null;
                         try {
-                            startTime = dateFormatter.parse(sleep.startTime);
+                            startTime = dateTimeFormatter.parse(sleep.startTime);
                             dateofSleep = dateFormatter.parse(sleep.dateOfSleep);
                         } catch (ParseException e) {
                             e.printStackTrace();
