@@ -90,4 +90,7 @@ public class SyncPrensenter {
     }
 
     public static float getEvaluation()
+    {
+
+    }
 }
