@@ -4,7 +4,9 @@ import android.content.Intent;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +32,7 @@ public class HomePage extends BasicPage {
     private ImageView img3;
     private ImageView img4;
     RefreshMenuItemHelper refreshHelper;
-    Thread thread;
+    private static final String TAG = "HomePage";;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,8 +97,11 @@ public class HomePage extends BasicPage {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
+                SyncPrensenter.getSleepOfWeek();
                 refreshHelper.setMenuItem(item);
                 new RefreshAsyncTask().execute();
+                Log.d(TAG,"--------分隔符-----------");
+                SyncPrensenter.listAllSleepData();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
