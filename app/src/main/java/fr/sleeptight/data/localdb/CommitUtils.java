@@ -5,6 +5,7 @@ package fr.sleeptight.data.localdb;
  */
 import android.content.Context;
 
+import java.util.Date;
 import java.util.List;
 
 import de.greenrobot.dao.query.QueryBuilder;
@@ -29,7 +30,7 @@ public class CommitUtils {
      */
     public boolean insertEvent(Event event) {
         boolean flag = false;
-        flag = manager.getDaoSession().insert(event) != -1 ? true : false;
+        flag = manager.getDaoSession().insertOrReplace(event) != -1 ? true : false;
         return flag;
     }
 
@@ -157,7 +158,7 @@ public class CommitUtils {
      */
     public boolean insertSleep(Sleep sleep) {
         boolean flag = false;
-        flag = manager.getDaoSession().insert(sleep) != -1 ? true : false;
+        flag = manager.getDaoSession().insertOrReplace(sleep) != -1 ? true : false;
         return flag;
     }
 
@@ -249,7 +250,12 @@ public class CommitUtils {
         return manager.getDaoSession().load(Sleep.class, key);
     }
 
-
+    public List<Sleep> QuerySleep(Date startTime, Date dateOfSleep) {
+        QueryBuilder<Sleep> builder = manager.getDaoSession().queryBuilder(Sleep.class);
+        List<Sleep> list = builder.where(SleepDao.Properties.DateOfSleep.eq(dateOfSleep))
+                .where(SleepDao.Properties.StartTime.eq(startTime)).list();
+        return list;
+    }
 /*    *//**
      * 查询数据 条件查询
      * @return
@@ -284,7 +290,7 @@ public class CommitUtils {
      */
     public boolean insertSleepDetail(SleepDetail sleepdetail) {
         boolean flag = false;
-        flag = manager.getDaoSession().insert(sleepdetail) != -1 ? true : false;
+        flag = manager.getDaoSession().insertOrReplace(sleepdetail) != -1 ? true : false;
         return flag;
     }
 
@@ -326,7 +332,6 @@ public class CommitUtils {
             manager.getDaoSession().update(sleepdetail);
             flag = true;
         } catch (Exception e)
-
         {
             e.printStackTrace();
         }
@@ -357,6 +362,7 @@ public class CommitUtils {
         return flag;
 
     }
+
 //
 
     /**
@@ -375,9 +381,6 @@ public class CommitUtils {
         QueryBuilder<SleepDetail> builder = manager.getDaoSession().queryBuilder(SleepDetail.class);
         List<SleepDetail> list = builder.where(SleepDetailDao.Properties.SleepId.eq(SleepId)).list();
         return list;
-        //        .where(StudentDao.Properties.Address.like("北京")).list();
-//        builder.orderAsc(StudentDao.Properties.Age);
-        //return list;
     }
 
     /**

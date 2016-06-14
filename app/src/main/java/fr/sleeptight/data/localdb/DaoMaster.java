@@ -9,7 +9,6 @@ import de.greenrobot.dao.AbstractDaoMaster;
 import de.greenrobot.dao.identityscope.IdentityScopeType;
 
 import fr.sleeptight.data.localdb.EventDao;
-import fr.sleeptight.data.localdb.UserDao;
 import fr.sleeptight.data.localdb.SleepDao;
 import fr.sleeptight.data.localdb.SleepDetailDao;
 
@@ -23,7 +22,6 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(SQLiteDatabase db, boolean ifNotExists) {
         EventDao.createTable(db, ifNotExists);
-        UserDao.createTable(db, ifNotExists);
         SleepDao.createTable(db, ifNotExists);
         SleepDetailDao.createTable(db, ifNotExists);
     }
@@ -31,7 +29,6 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(SQLiteDatabase db, boolean ifExists) {
         EventDao.dropTable(db, ifExists);
-        UserDao.dropTable(db, ifExists);
         SleepDao.dropTable(db, ifExists);
         SleepDetailDao.dropTable(db, ifExists);
     }
@@ -66,7 +63,6 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(SQLiteDatabase db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(EventDao.class);
-        registerDaoClass(UserDao.class);
         registerDaoClass(SleepDao.class);
         registerDaoClass(SleepDetailDao.class);
     }

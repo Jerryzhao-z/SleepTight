@@ -26,8 +26,9 @@ public class EventDao extends AbstractDao<Event, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Title = new Property(1, String.class, "title", false, "TITLE");
         public final static Property Description = new Property(2, String.class, "description", false, "DESCRIPTION");
-        public final static Property StartDate = new Property(3, java.util.Date.class, "startDate", false, "START_DATE");
-        public final static Property EndDate = new Property(4, java.util.Date.class, "endDate", false, "END_DATE");
+        public final static Property Importance = new Property(3, Integer.class, "importance", false, "IMPORTANCE");
+        public final static Property StartDate = new Property(4, java.util.Date.class, "startDate", false, "START_DATE");
+        public final static Property EndDate = new Property(5, java.util.Date.class, "endDate", false, "END_DATE");
     };
 
 
@@ -46,8 +47,9 @@ public class EventDao extends AbstractDao<Event, Long> {
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"TITLE\" TEXT," + // 1: title
                 "\"DESCRIPTION\" TEXT," + // 2: description
-                "\"START_DATE\" INTEGER," + // 3: startDate
-                "\"END_DATE\" INTEGER);"); // 4: endDate
+                "\"IMPORTANCE\" INTEGER," + // 3: importance
+                "\"START_DATE\" INTEGER," + // 4: startDate
+                "\"END_DATE\" INTEGER);"); // 5: endDate
     }
 
     /** Drops the underlying database table. */
@@ -76,14 +78,19 @@ public class EventDao extends AbstractDao<Event, Long> {
             stmt.bindString(3, description);
         }
  
+        Integer importance = entity.getImportance();
+        if (importance != null) {
+            stmt.bindLong(4, importance);
+        }
+ 
         java.util.Date startDate = entity.getStartDate();
         if (startDate != null) {
-            stmt.bindLong(4, startDate.getTime());
+            stmt.bindLong(5, startDate.getTime());
         }
  
         java.util.Date endDate = entity.getEndDate();
         if (endDate != null) {
-            stmt.bindLong(5, endDate.getTime());
+            stmt.bindLong(6, endDate.getTime());
         }
     }
 
@@ -100,8 +107,9 @@ public class EventDao extends AbstractDao<Event, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // title
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // description
-            cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)), // startDate
-            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)) // endDate
+            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // importance
+            cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)), // startDate
+            cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)) // endDate
         );
         return entity;
     }
@@ -112,8 +120,9 @@ public class EventDao extends AbstractDao<Event, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setTitle(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setDescription(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setStartDate(cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)));
-        entity.setEndDate(cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setImportance(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
+        entity.setStartDate(cursor.isNull(offset + 4) ? null : new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setEndDate(cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)));
      }
     
     /** @inheritdoc */
