@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import fr.sleeptight.data.acces.APIClient.AsyncCall;
 import fr.sleeptight.data.localdb.CommitUtils;
@@ -49,6 +50,20 @@ public class SyncPrensenter {
         }
     }
 
+    public static void getSleepOfWeek(Date datetime)
+    {
+        Calendar date = Calendar.getInstance();
+        date.setTime(datetime);
+        Log.d("Envoyer Request first", date.toString());
+        AsyncCall.getSleepCall(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
+
+        for(int i=0; i<6; i++) {
+            Log.d("Date ", Integer.toString(Calendar.DATE));
+            date.add(Calendar.DATE, -1);
+            Log.d("Envoyer Request", date.toString());
+            AsyncCall.getSleepCall(date.get(Calendar.YEAR), date.get(Calendar.MONTH)+1, date.get(Calendar.DAY_OF_MONTH));
+        }
+    }
 
     //get sleeping hours of a specified day
     public static final int DURATION = 0x0001;//unite hour
@@ -119,6 +134,57 @@ public class SyncPrensenter {
             else
                 return 0;
         }
+    }
+
+    public static void generationWeek(Date datetime)
+    {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(datetime);
+        generationTestData(AsyncCall.dateFormatter.format(datetime).toString()
+                , AsyncCall.dateTimeFormatter.format(datetime).toString());
+        for(int i=0; i<6; i++) {
+            calendar.add(Calendar.DATE, -1);
+            Date thisDate = new Date(calendar.getTimeInMillis());
+            generationTestData(AsyncCall.dateFormatter.format(thisDate).toString()
+                    , AsyncCall.dateTimeFormatter.format(thisDate).toString());
+        }
+    }
+
+    public static void generationTestData(String dateofSleepStr, String startTimeStr)
+    {
+        Date startTime = null;
+        Date dateOfSleep = null;
+        try {
+            startTime = AsyncCall.dateTimeFormatter.parse(startTimeStr);
+            dateOfSleep = AsyncCall.dateFormatter.parse(dateofSleepStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        int restlessDuration = 30 + (int)(Math.random()*10) - (int)(Math.random()*10);
+        int awakeCount = 2 ;
+        int awakeningsCount = 3;
+        int awakeDuration = 10 + (int)(Math.random()*5) - (int)(Math.random()*5);
+        boolean isMainSleep = Boolean.TRUE;
+        int minutesAfterWakeup = 0;
+        int minutesAwake = awakeDuration + restlessDuration;
+        int minutesAsleep = 417 + (int)(Math.random()*20) - (int)(Math.random()*20);
+        int minutesToFallAsleep = 0;
+        int restlessCount = 36;
+        int timeInBed = minutesAfterWakeup+minutesAwake+minutesAsleep+minutesToFallAsleep;
+        int efficiency = 100*minutesAsleep/timeInBed;
+        int duration = timeInBed*3600000;
+
+        Sleep sleepobject = new Sleep(null, startTime,
+                restlessDuration, efficiency, awakeCount, awakeningsCount,
+                awakeDuration, dateOfSleep, duration, isMainSleep, minutesAfterWakeup,
+                minutesAwake, minutesAsleep, minutesToFallAsleep, restlessCount, timeInBed);
+        CommitUtils commitUtils = new CommitUtils(ContextHolder.getContext());
+        List<Sleep> sleepsInData = commitUtils.QuerySleepSpecifiqueTime(startTime,dateOfSleep);
+        if(sleepsInData.size() > 0)
+            return;
+        commitUtils.insertSleep(sleepobject);
     }
 
 }
