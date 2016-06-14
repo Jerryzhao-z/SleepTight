@@ -47,11 +47,12 @@ public class LightControlActivity extends BasicPage {
         super.onCreate(savedInstanceState);
         setTitle(R.string.app_name);
         setContentView(R.layout.activity_light_main);
-        phHueSDK = PHHueSDK.getInstance();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Slide_Bar(toolbar);
 
+        phHueSDK = PHHueSDK.getInstance();
         PHBridge bridge = phHueSDK.getSelectedBridge();
         final LightManager lightManager = new LightManagerImpl(bridge);
 

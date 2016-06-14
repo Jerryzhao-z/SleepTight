@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:scaleY="0.4"
         android:scaleX="0.4"
-        android:id="@+id/timePicker"
+        android:id="@+id/wakeup_time_picker"
         android:layout_gravity="top"
         android:layout_marginTop="-85dp" />
 
