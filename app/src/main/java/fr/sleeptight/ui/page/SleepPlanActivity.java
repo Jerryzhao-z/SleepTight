@@ -11,10 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import fr.sleeptight.R;
+import fr.sleeptight.ui.BasicPage;
 import fr.sleeptight.ui.chart.BarChartActivity;
 import fr.sleeptight.ui.chart.PieChartActivity;
 
-public class SleepPlanActivity extends AppCompatActivity {
+public class SleepPlanActivity extends BasicPage {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class SleepPlanActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sleep_plan);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Slide_Bar(toolbar);
 
     }
 

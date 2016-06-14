@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         /* call Home Page */
-        Intent newAct = new Intent(getApplicationContext(), BarChartActivity.class);
+        Intent newAct = new Intent(getApplicationContext(), HomePage.class);
         startActivity(newAct);
         finish();
 
