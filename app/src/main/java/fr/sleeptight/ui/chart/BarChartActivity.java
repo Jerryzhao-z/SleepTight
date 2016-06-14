@@ -136,7 +136,6 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
         float val6 = SyncPrensenter.getDurationOfDay("2016-06-08");
         float val7 = SyncPrensenter.getDurationOfDay("2016-06-07");
         float val8 = SyncPrensenter.getDurationOfDay("2016-06-06");
-        float val9 = SyncPrensenter.getDurationOfDay("2016-06-05");
 
         BarDataSet set1;
 
