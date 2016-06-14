@@ -41,20 +41,7 @@ public class BasicChartPage extends BasicPage {
             }
             case R.id.chartLine: {
                 // get data from database sqlite
-                if(ContextHolder.getContext() != null ) {
-                    CommitUtils sql = new CommitUtils(ContextHolder.getContext());
-                    List<Sleep> sleeps = sql.ListAllSleep();
-                    List<SleepDetail> sleepDetails = sql.ListAllSleepDetail();
-                    for (Sleep sleep : sleeps) {
-                        Log.d(sleep.getDateOfSleep().toString(), Long.toString(sleep.getId()));
-                        for (SleepDetail sleepDetail : sleepDetails)
-                            Log.d(Long.toString(sleepDetail.getSleepId()), sleepDetail.getTime().toString());
-                    }
-                    break;
-                }else
-                {
-                    Log.v("BasicChartPage", ContextHolder.getContext().toString());
-                }
+
             }
         }
         return true;

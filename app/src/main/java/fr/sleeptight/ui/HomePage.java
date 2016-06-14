@@ -80,8 +80,7 @@ public class HomePage extends BasicPage {
             public void onClick(View v) {
                 //Intent newAct = new Intent(getApplicationContext(), LightAuthActivity.class);
                 //startActivity(newAct);
-                AsyncCall.getSleepCall(2016,6,3);
-
+                SyncPrensenter.getSleepOfWeek();
             }
         });
 /*        img4.setOnClickListener(new View.OnClickListener() {
