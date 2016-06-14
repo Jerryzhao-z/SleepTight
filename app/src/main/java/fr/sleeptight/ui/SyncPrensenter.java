@@ -57,6 +57,7 @@ public class SyncPrensenter {
         {
             duration += sleep.getDuration();
         }
+        duration /= 3600000;
         return duration;
     }
 
