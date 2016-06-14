@@ -26,9 +26,9 @@ import retrofit2.Response;
 
 
 public class AsyncCall {
-    static String DateTimePattern = "yyyy-MM-dd'T'HH:mm:ss.SSS";
-    static String DatePattern = "yyyy-mm-dd";
-    static String TimePattern = "HH:mm:ss";
+    public static String DateTimePattern = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+    public static String DatePattern = "yyyy-mm-dd";
+    public static String TimePattern = "HH:mm:ss";
     public static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(DateTimePattern);
     public static SimpleDateFormat dateFormatter = new SimpleDateFormat(DatePattern);
     public static SimpleDateFormat timeFormatter = new SimpleDateFormat(TimePattern);
