@@ -15,6 +15,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import fr.sleeptight.R;
+import fr.sleeptight.data.acces.APIClient.AsyncCall;
 import fr.sleeptight.data.localdb.CommitUtils;
 import fr.sleeptight.data.localdb.Sleep;
 import fr.sleeptight.data.localdb.SleepDetail;
@@ -57,4 +58,11 @@ public class BasicChartPage extends BasicPage {
         Date date= new Date(new Date().getTime() - day_to_today*ONEDAY);
         return new SimpleDateFormat("M/dd").format(date).toString();
     }
+
+    public String get_Date_yy(int day_to_today){
+        final int ONEDAY=24*3600*1000;
+        Date date= new Date(new Date().getTime() - day_to_today*ONEDAY);
+        return AsyncCall.dateFormatter.format(date).toString();
+    }
+
 }

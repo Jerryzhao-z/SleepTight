@@ -26,12 +26,14 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.sleeptight.R;
 import fr.sleeptight.data.acces.APIClient.APIClass;
 import fr.sleeptight.data.acces.APIClient.APIService;
 import fr.sleeptight.data.acces.APIClient.ServiceGenerator;
+import fr.sleeptight.ui.SyncPrensenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -121,8 +123,8 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
         for (int i = 0; i < count; i++) {
-            float mult = (range + 1);
-            float val = (float) (Math.random() * mult);
+
+            float val = SyncPrensenter.getDurationOfDay("2016-06-13");
             yVals1.add(new BarEntry(val, i));
         }
 

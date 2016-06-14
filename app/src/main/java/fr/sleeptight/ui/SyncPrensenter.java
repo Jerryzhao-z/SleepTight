@@ -66,6 +66,7 @@ public class SyncPrensenter {
             duration += sleep.getDuration();
         }
         duration /= 3600000;
+        Log.d("Sync", dateString + Float.toString(duration));
         return duration;
     }
 

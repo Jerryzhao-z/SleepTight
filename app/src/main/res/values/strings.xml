@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SleepTight11</string>
+    <string name="app_name">SleepTight</string>
     <string name="title_activity_main">SleepTightMain</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_basic_page">BasicPage</string>
