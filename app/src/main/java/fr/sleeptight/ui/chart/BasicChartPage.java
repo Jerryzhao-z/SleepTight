@@ -46,7 +46,9 @@ public class BasicChartPage extends BasicPage {
                 break;
             }
             case R.id.chartLine: {
-                // get data from database sqlite
+                Intent intent  = new Intent(getApplicationContext(), LineChartActivity.class);
+                startActivity(intent);
+                break;
 
             }
         }

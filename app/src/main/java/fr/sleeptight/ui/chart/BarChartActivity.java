@@ -83,12 +83,12 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
         xAxis.setDrawGridLines(false);
         xAxis.setSpaceBetweenLabels(2);
 
-        YAxisValueFormatter custom = new MyYAxisValueFormatter();
+        //YAxisValueFormatter custom = new MyYAxisValueFormatter();
 
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTypeface(mTf);
         leftAxis.setLabelCount(8, false);
-        leftAxis.setValueFormatter(custom);
+        //leftAxis.setValueFormatter(custom);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
         leftAxis.setAxisMinValue(0f); // this replaces setStartAtZero(true)
@@ -97,7 +97,7 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
         rightAxis.setDrawGridLines(false);
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(8, false);
-        rightAxis.setValueFormatter(custom);
+        //rightAxis.setValueFormatter(custom);
         rightAxis.setSpaceTop(15f);
         rightAxis.setAxisMinValue(0f); // this replaces setStartAtZero(true)
 
