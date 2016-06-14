@@ -7,6 +7,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.api.services.calendar.Calendar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import fr.sleeptight.R;
@@ -45,5 +50,11 @@ public class BasicChartPage extends BasicPage {
             }
         }
         return true;
+    }
+
+    public String get_Date(int day_to_today){
+        final int ONEDAY=24*3600*1000;
+        Date date= new Date(new Date().getTime() - day_to_today*ONEDAY);
+        return new SimpleDateFormat("M/dd").format(date).toString();
     }
 }

@@ -40,16 +40,6 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
 
     protected BarChart mChart;
     private Typeface mTf;
-    protected String[] mMonths = new String[] {
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
-    };
-
-    protected String[] mParties = new String[] {
-            "Party A", "Party B", "Party C", "Party D", "Party E", "Party F", "Party G", "Party H",
-            "Party I", "Party J", "Party K", "Party L", "Party M", "Party N", "Party O", "Party P",
-            "Party Q", "Party R", "Party S", "Party T", "Party U", "Party V", "Party W", "Party X",
-            "Party Y", "Party Z"
-    };
 
 
     @Override
@@ -115,19 +105,17 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
         l.setFormSize(9f);
         l.setTextSize(11f);
         l.setXEntrySpace(4f);
-        // l.setExtra(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
-        // "def", "ghj", "ikl", "mno" });
-        // l.setCustom(ColorTemplate.VORDIPLOM_COLORS, new String[] { "abc",
-        // "def", "ghj", "ikl", "mno" });
 
-        setData(12, 50);
+
+        setData(7);
     }
 
-    private void setData(int count, float range) {
+    private void setData(int count) {
 
+        float range =50;
         ArrayList<String> xVals = new ArrayList<String>();
-        for (int i = 0; i < count; i++) {
-            xVals.add(mMonths[i % 12]);
+        for (int i = count; i > 0; i--) {
+            xVals.add(this.get_Date(i));
         }
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
