@@ -101,7 +101,8 @@ public class HomePage extends BasicPage {
                 refreshHelper.setMenuItem(item);
                 new RefreshAsyncTask().execute();
                 Log.d(TAG,"--------分隔符-----------");
-                SyncPrensenter.listAllSleepData();
+                //SyncPrensenter.listAllSleepData();
+                //SyncPrensenter.getSleepOfWeek();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

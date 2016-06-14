@@ -39,6 +39,7 @@ public class SyncPrensenter {
         Calendar date = Calendar.getInstance();
         Log.d("Envoyer Request first", date.toString());
         AsyncCall.getSleepCall(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
+
         for(int i=0; i<6; i++) {
             Log.d("Date ", Integer.toString(Calendar.DATE));
             date.add(Calendar.DATE, -1);

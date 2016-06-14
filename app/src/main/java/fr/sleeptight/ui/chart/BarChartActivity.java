@@ -122,11 +122,21 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
-        for (int i = 0; i < count; i++) {
+/*        for (int i = 0; i < count; i++) {
 
-            float val = SyncPrensenter.getDurationOfDay("2016-06-13");
+            float val = SyncPrensenter.getDurationOfDay("2016-06-12");
             yVals1.add(new BarEntry(val, i));
-        }
+        }*/
+        float val0 = SyncPrensenter.getDurationOfDay("2016-06-14");
+        float val1 = SyncPrensenter.getDurationOfDay("2016-06-13");
+        float val2 = SyncPrensenter.getDurationOfDay("2016-06-12");
+        float val3 = SyncPrensenter.getDurationOfDay("2016-06-11");
+        float val4 = SyncPrensenter.getDurationOfDay("2016-06-10");
+        float val5 = SyncPrensenter.getDurationOfDay("2016-06-09");
+        float val6 = SyncPrensenter.getDurationOfDay("2016-06-08");
+        float val7 = SyncPrensenter.getDurationOfDay("2016-06-07");
+        float val8 = SyncPrensenter.getDurationOfDay("2016-06-06");
+        float val9 = SyncPrensenter.getDurationOfDay("2016-06-05");
 
         BarDataSet set1;
 
