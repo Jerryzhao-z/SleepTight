@@ -9,6 +9,7 @@ public class Event {
     private Long id;
     private String title;
     private String description;
+    private Integer importance;
     private java.util.Date startDate;
     private java.util.Date endDate;
 
@@ -19,10 +20,11 @@ public class Event {
         this.id = id;
     }
 
-    public Event(Long id, String title, String description, java.util.Date startDate, java.util.Date endDate) {
+    public Event(Long id, String title, String description, Integer importance, java.util.Date startDate, java.util.Date endDate) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.importance = importance;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -49,6 +51,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getImportance() {
+        return importance;
+    }
+
+    public void setImportance(Integer importance) {
+        this.importance = importance;
     }
 
     public java.util.Date getStartDate() {

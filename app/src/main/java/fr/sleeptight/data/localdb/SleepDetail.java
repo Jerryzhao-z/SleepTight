@@ -1,6 +1,5 @@
 package fr.sleeptight.data.localdb;
 
-import de.greenrobot.dao.AbstractDao;
 import fr.sleeptight.data.localdb.DaoSession;
 import de.greenrobot.dao.DaoException;
 

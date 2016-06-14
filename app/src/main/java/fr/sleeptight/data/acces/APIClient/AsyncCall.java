@@ -96,6 +96,19 @@ public class AsyncCall {
                                 sleep.restlessDuration, sleep.efficiency, sleep.awakeCount, sleep.awakeningsCount,
                                 sleep.awakeDuration, dateofSleep, sleep.duration, sleep.isMainSleep, sleep.minutesAfterWakeup,
                                 sleep.minutesAwake, sleep.minutesAsleep, sleep.minutesToFallAsleep, sleep.restlessCount, sleep.timeInBed);
+                        List<Sleep> sleepsInData = commitUtils.QuerySleepSpecifiqueTime(startTime,dateofSleep);
+                        if(sleepsInData.size()>0)
+                        {
+                            for(Sleep sleeplog: sleepsInData)
+                            {
+                                List<SleepDetail> sleepDetails = commitUtils.ListSleepDetailsOfSleep(sleeplog.getId());
+                                for(SleepDetail sleepDetail: sleepDetails)
+                                {
+                                    commitUtils.deleteSleepDetail(sleepDetail);
+                                }
+                                commitUtils.deleteSleep(sleeplog);
+                            }
+                        }
                         commitUtils.insertSleep(sleepobject);
                         Log.d("APIClass.SleepData", "dateofSleep: "+sleep.dateOfSleep);
                         Log.d("APIClass.SleepData", "minutesAwake: "+sleep.minutesAwake);
