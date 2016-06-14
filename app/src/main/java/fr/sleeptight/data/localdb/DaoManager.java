@@ -29,7 +29,6 @@ public class DaoManager {
      * @return note:为保证数据库的有效性，采用单利模式进行访问
      */
     public static DaoManager getInstance() {
-
         DaoManager instance = null;
         if (manager == null) {
             synchronized (DaoManager.class) {
@@ -39,7 +38,7 @@ public class DaoManager {
                 }
             }
         }
-        return instance;
+        return manager;
     }
 
     /**

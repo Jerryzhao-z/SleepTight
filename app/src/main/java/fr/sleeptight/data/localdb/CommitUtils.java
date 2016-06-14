@@ -7,8 +7,12 @@ import android.content.Context;
 
 import java.util.List;
 
+import de.greenrobot.dao.query.QueryBuilder;
+import fr.sleeptight.ui.ContextHolder;
+
 public class CommitUtils {
     private DaoManager manager;
+    private CommitUtils commitUtils;
 
     public CommitUtils(Context context) {
         manager = DaoManager.getInstance();
@@ -361,6 +365,19 @@ public class CommitUtils {
      */
     public List<SleepDetail> ListAllSleepDetail() {
         return manager.getDaoSession().loadAll(SleepDetail.class);
+    }
+
+    /**
+     * return sleepDetails of one night
+     * @return
+     */
+    public List<SleepDetail> ListSleepDetailsOfSleep(Long SleepId) {
+        QueryBuilder<SleepDetail> builder = manager.getDaoSession().queryBuilder(SleepDetail.class);
+        List<SleepDetail> list = builder.where(SleepDetailDao.Properties.SleepId.eq(SleepId)).list();
+        return list;
+        //        .where(StudentDao.Properties.Address.like("北京")).list();
+//        builder.orderAsc(StudentDao.Properties.Age);
+        //return list;
     }
 
     /**

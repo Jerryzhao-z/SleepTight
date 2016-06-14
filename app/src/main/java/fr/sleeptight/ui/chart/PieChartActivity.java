@@ -23,9 +23,13 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.sleeptight.R;
+import fr.sleeptight.data.localdb.CommitUtils;
+import fr.sleeptight.data.localdb.Sleep;
 import fr.sleeptight.ui.BasicPage;
+import fr.sleeptight.ui.ContextHolder;
 
 public class PieChartActivity extends BasicChartPage implements OnChartValueSelectedListener {
 
@@ -130,6 +134,7 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
         data.setValueTextSize(12f);
         data.setValueTextColor(Color.WHITE);
         mChart.setData(data);
+
     }
 
     /* 关于颜色的一切 */
