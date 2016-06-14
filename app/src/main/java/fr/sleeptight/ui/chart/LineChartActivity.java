@@ -14,6 +14,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -27,6 +28,7 @@ import com.github.mikephil.charting.utils.Utils;
 import java.util.ArrayList;
 
 import fr.sleeptight.R;
+import fr.sleeptight.ui.SyncPrensenter;
 
 
 public class LineChartActivity extends BasicChartPage implements  OnChartValueSelectedListener {
@@ -69,18 +71,19 @@ public class LineChartActivity extends BasicChartPage implements  OnChartValueSe
     private void setData(int count) {
 
         ArrayList<String> xVals = new ArrayList<String>();
-        for (int i = count; i > 0; i--) {
+        for (int i = count; i >= 0; i--) {
             xVals.add(this.get_Date(i));
         }
 
         ArrayList<Entry> yVals = new ArrayList<Entry>();
 
-        for (int i = 0; i < count; i++) {
 
-            float val = (float) (Math.random() * 2) + 80;
+        for (int i = 0; i <= count; i++) {
 
-            yVals.add(new Entry(val, i));
+            float val = SyncPrensenter.getDurationOfDay(get_Date_yy(count-i));
+            yVals.add(new BarEntry(val, i));
         }
+
 
         LineDataSet set1;
 
