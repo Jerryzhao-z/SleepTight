@@ -112,6 +112,9 @@
             android:name=".ui.page.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.calendar.CalendarActivity"
+            android:label="Calendar"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
