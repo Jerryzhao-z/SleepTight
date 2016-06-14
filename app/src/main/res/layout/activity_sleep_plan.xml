@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_sleep_sim" />
+    <include layout="@layout/content_sleep_plan" />
 
 
 </android.support.design.widget.CoordinatorLayout>
