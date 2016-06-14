@@ -3,6 +3,7 @@ package fr.sleeptight.ui;
 import android.text.format.Time;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -48,9 +49,16 @@ public class SyncPrensenter {
 
 
     //get sleeping hours of a specified day
-    public static float getDurationOfDay(Date dateToTransfert)
+    public static float getDurationOfDay(String dateString)
     {
-        Date date = dateTransfert(dateToTransfert);
+
+        Date date = null;
+        try {
+            date = AsyncCall.dateFormatter.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //Date date = dateTransfert(dateToTransfert);
         CommitUtils commitUtils = new CommitUtils(ContextHolder.getContext());
         float duration = 0;
         for(Sleep sleep: commitUtils.QuerySleepSpecifitqueDay(date))
