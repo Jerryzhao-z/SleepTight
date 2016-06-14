@@ -67,4 +67,22 @@ public class APIClass {
             this.dateTimeStateReallyAwake = dateTimeStateReallyAwake;
         }
     }
+
+    public static class ReponseProfile
+    {
+        public String username;
+        public String returns;
+    }
+
+    public static class Profile
+    {
+        public boolean gender;
+        public int age;
+
+        public Profile(boolean gender, int age)
+        {
+            this.gender = gender;
+            this.age = age;
+        }
+    }
 }

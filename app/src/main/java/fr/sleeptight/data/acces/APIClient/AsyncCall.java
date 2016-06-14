@@ -36,7 +36,7 @@ public class AsyncCall {
     public static void resetCall(final String newName, final String newPassword) {
         APIService client = ServiceGenerator.createService(APIService.class);
         APIClass.SimpleUsr usr = new APIClass.SimpleUsr(newName, newPassword);
-        Call<APIClass.ProfileResetting> call = client.ProfileReset(usr);
+        Call<APIClass.ProfileResetting> call = client.profileReset(usr);
         call.enqueue(new Callback<APIClass.ProfileResetting>() {
             @Override
             public void onResponse(Call<APIClass.ProfileResetting> call, Response<APIClass.ProfileResetting> response) {
@@ -157,5 +157,44 @@ public class AsyncCall {
             }
 
         });
+    }
+
+    public static void setProfileCall()
+    {
+        User user = User.getInstance();
+        APIService client = ServiceGenerator.createService(APIService.class);
+        Call<APIClass.ReponseProfile> call = client.setProfile(new APIClass.Profile(user.getGender(), user.getAge()));
+        call.enqueue(new Callback<APIClass.ReponseProfile>() {
+                         @Override
+                         public void onResponse(Call<APIClass.ReponseProfile> call, Response<APIClass.ReponseProfile> response) {
+                             if (response.isSuccessful()) {
+                                 // tasks available
+                                 APIClass.ReponseProfile reponseProfile = response.body();
+                                 if(reponseProfile.returns.equals("invalide"))
+                                     return;
+                                 Context context = ContextHolder.getContext();
+                                 SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+                                 SharedPreferences.Editor editor
+                                         = sharedPreferences.edit();
+                                 if(User.getInstance().getGender())
+                                    editor.putString("gender", "F");
+                                 else
+                                    editor.putString("gender", "M");
+                                 editor.putString("age", Integer.toString(User.getInstance().getAge()));
+                                 editor.commit();
+                             } else {
+                                 // error response, no access to resource?
+                                 Log.d("APIClass.ProfileResetting", response.message());
+
+                             }
+                         }
+
+                         @Override
+                         public void onFailure(Call<APIClass.ReponseProfile> call, Throwable t) {
+                             Log.d("Error", t.getMessage());
+                         }
+                     });
+
+
     }
 }

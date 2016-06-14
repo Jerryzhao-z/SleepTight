@@ -15,10 +15,13 @@ import retrofit2.http.Path;
 public interface APIService {
 
     @POST("users/reset")
-    Call<APIClass.ProfileResetting> ProfileReset(@Body APIClass.SimpleUsr usr);
+    Call<APIClass.ProfileResetting> profileReset(@Body APIClass.SimpleUsr usr);
 
     @GET("users/fitbit/sleeps/testdata/{year}/{month}/{day}")
     Call<List<APIClass.SleepData>> getSleepLogTest(@Path("year") int year, @Path("month") int month, @Path("day") int day);
 
    // @GET("test/fitbit")
+
+    @POST("users/set")
+    Call<APIClass.ReponseProfile> setProfile(@Body APIClass.Profile profile);
 }

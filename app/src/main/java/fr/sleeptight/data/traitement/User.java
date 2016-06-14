@@ -26,6 +26,8 @@ public class User {
     private String userName;
     private EventList recentEvents;
     private String email;
+    private boolean gender; // woman = true, man = false;
+    private int age;
 
     private static RequestQueue requestQueue = NoHttp.newRequestQueue();
     private User(){}
@@ -91,6 +93,17 @@ public class User {
         return this;
     }
 
+    public User setGender(Boolean gender)
+    {
+        this.gender = gender;
+        return this;
+    }
+
+    public User setAge(int age)
+    {
+        this.age = age;
+        return this;
+    }
     //getter
     public String getUsername()
     {
@@ -119,6 +132,16 @@ public class User {
 
     public void setEmail(String s){
         email=s;
+    }
+
+    public boolean getGender()
+    {
+        return this.gender;
+    }
+
+    public int getAge()
+    {
+        return this.age;
     }
 
     public static String getToken()
