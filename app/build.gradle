@@ -51,5 +51,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.android.support:multidex:1.0.0'
+    compile 'com.github.nicolasjafelle:refreshmenuitem:1.0'
+    compile 'com.github.nicolasjafelle:refreshmenuitem:1.0'
 
 }

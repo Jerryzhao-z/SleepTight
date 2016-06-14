@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SleepTight</string>
+    <string name="app_name">SleepTight11</string>
     <string name="title_activity_main">SleepTightMain</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_basic_page">BasicPage</string>
@@ -17,6 +17,7 @@
     <string name="title_activity_page1">Sleep Status</string>
     <string name="title_activity_page2">Synthesis</string>
     <string name="title_activity_sleep_plan">Sleep Plan</string>
+    <string name="title_activity_sleep_sim">Sleep Simulation</string>
 
     <string name="sleep_plan_button">Go to sleep !</string>
     <string name="title_activity_pie_chart">PieChartActivity</string>
@@ -24,9 +25,10 @@
     <string name="title_activity_phhome">Light authentification</string>
     <string name="title_activity_line_chart">LineChartActivity</string>
     <string name="title_activity_phpushlink">PHPushlinkActivity</string>
-    <string name="title_activity_light_control">LightControlActivity</string>
+    <string name="title_activity_lightcontrol">Light control</string>
     <string name="title_activity_user_manager_test">userManagerActivity</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_simulation">Simulation</string>
 
 </resources>
