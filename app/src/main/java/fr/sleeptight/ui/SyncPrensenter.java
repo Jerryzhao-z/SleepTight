@@ -136,14 +136,19 @@ public class SyncPrensenter {
         }
     }
 
-    public static void generationWeek(Date datetime)
+    public static void generationSeveralDayData(String datetime, int nombre)
     {
-
+        Date date = null;
+        try {
+            date = AsyncCall.dateFormatter.parse(datetime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(datetime);
+        calendar.setTime(date);
         generationTestData(AsyncCall.dateFormatter.format(datetime).toString()
                 , AsyncCall.dateTimeFormatter.format(datetime).toString());
-        for(int i=0; i<6; i++) {
+        for(int i=0; i<nombre-1; i++) {
             calendar.add(Calendar.DATE, -1);
             Date thisDate = new Date(calendar.getTimeInMillis());
             generationTestData(AsyncCall.dateFormatter.format(thisDate).toString()
