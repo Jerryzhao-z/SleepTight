@@ -12,6 +12,7 @@ import fr.sleeptight.data.acces.APIClient.AsyncCall;
 import fr.sleeptight.data.localdb.CommitUtils;
 import fr.sleeptight.data.localdb.Sleep;
 import fr.sleeptight.data.localdb.SleepDetail;
+import fr.sleeptight.data.traitement.User;
 
 /**
  * Created by User on 6/14/2016.
@@ -87,6 +88,36 @@ public class SyncPrensenter {
         }
         Log.d("Sync", dateString + Float.toString(longeur));
         return longeur;
+    }
+
+    public static float getEvaluation(String date)
+    {
+        if(!User.isUserLoggedIn())
+            return 0;
+        else{
+            User user = User.getInstance();
+            float timeToSleep = 0;
+            if(user.getGender())
+            {//woman
+                if(user.getAge()>45)
+                    timeToSleep = (float) 7.5;
+                else
+                    timeToSleep = 8;
+            }else
+            {//man
+                if(user.getAge()<18)
+                    timeToSleep = 8;
+                else if(user.getAge()>45)
+                    timeToSleep = (float) 6.5;
+                else
+                    timeToSleep = 7;
+            }
+            float longeur = getDataOfDay(date, SyncPrensenter.SLEEPTIME);
+            if(timeToSleep == 0)
+                return longeur/timeToSleep;
+            else
+                return 0;
+        }
     }
 
 }

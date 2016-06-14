@@ -35,7 +35,9 @@ public class User {
     private User(String userName, String pw)
     {
         this.setUsername(userName)
-                .setPassword(pw);
+                .setPassword(pw)
+                .setGender(false)
+                .setAge(25);
     }
 
     public static synchronized User getInstance()
