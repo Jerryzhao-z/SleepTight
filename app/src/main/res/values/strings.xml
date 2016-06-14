@@ -21,9 +21,9 @@
 
     <string name="sleep_plan_button">Go to sleep !</string>
     <string name="title_activity_pie_chart">PieChartActivity</string>
-    <string name="title_activity_bar_chart">BarChartActivity</string>
+    <string name="title_activity_bar_chart">Sleep Duration Chart</string>
     <string name="title_activity_phhome">Light authentification</string>
-    <string name="title_activity_line_chart">LineChartActivity</string>
+    <string name="title_activity_line_chart">Sleep Evaluation</string>
     <string name="title_activity_phpushlink">PHPushlinkActivity</string>
     <string name="title_activity_lightcontrol">Light control</string>
     <string name="title_activity_user_manager_test">userManagerActivity</string>
