@@ -7,11 +7,11 @@
     </item>
     <item
         android:id="@+id/charBar"
-        android:title="Bar Chart">
+        android:title="Sleep Durtion">
     </item>
     <item
         android:id="@+id/chartLine"
-        android:title="Line chart">
+        android:title="Sleep Evaluation">
     </item>
 
 </menu>
