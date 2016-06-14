@@ -21,6 +21,7 @@ import fr.sleeptight.data.localdb.Sleep;
 import fr.sleeptight.data.localdb.SleepDetail;
 import fr.sleeptight.ui.BasicPage;
 import fr.sleeptight.ui.ContextHolder;
+import fr.sleeptight.ui.SyncPrensenter;
 
 public class BasicChartPage extends BasicPage {
 
@@ -48,6 +49,11 @@ public class BasicChartPage extends BasicPage {
             case R.id.chartLine: {
                 Intent intent  = new Intent(getApplicationContext(), LineChartActivity.class);
                 startActivity(intent);
+                break;
+
+            }
+            case R.id.listData: {
+                SyncPrensenter.listAllSleepData();
                 break;
 
             }
