@@ -85,7 +85,6 @@ public class SyncPrensenter {
                     break;
             }
         }
-        longeur /= 3600000;
         Log.d("Sync", dateString + Float.toString(longeur));
         return longeur;
     }
