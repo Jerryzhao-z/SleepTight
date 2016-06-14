@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Do you want to set your wakeup time?"
+            android:text="Set your wakeup time manually ?"
             android:layout_gravity="center_horizontal"
             android:textColor="#ffffff"
             android:layout_marginTop="15dp"
