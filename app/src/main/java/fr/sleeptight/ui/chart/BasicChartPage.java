@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
 
 import fr.sleeptight.R;
 import fr.sleeptight.data.acces.APIClient.AsyncCall;
@@ -25,6 +26,7 @@ import fr.sleeptight.ui.SyncPrensenter;
 
 public class BasicChartPage extends BasicPage {
 
+    protected static int WEEK=0;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,6 +58,32 @@ public class BasicChartPage extends BasicPage {
                 SyncPrensenter.listAllSleepData();
                 break;
 
+            }
+
+            case R.id.delay: {
+                WEEK++;
+                Intent refresh = new Intent(getApplicationContext(), this.getClass());
+                startActivity(refresh);//Start the same Activity
+                finish(); //finish Activity.
+                break;
+
+            }
+
+            case R.id.reset: {
+                WEEK=0;
+                Intent refresh = new Intent(getApplicationContext(), this.getClass());
+                startActivity(refresh);//Start the same Activity
+                finish(); //finish Activity.
+                break;
+            }
+
+            case R.id.testData: {
+                WEEK=0;
+                SyncPrensenter.generationSeveralDayData(get_Date_yy(0),30);
+                Intent refresh = new Intent(getApplicationContext(), this.getClass());
+                startActivity(refresh);//Start the same Activity
+                finish(); //finish Activity.
+                break;
             }
         }
         return true;

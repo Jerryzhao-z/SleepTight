@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -55,6 +56,7 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
         mChart = (BarChart) findViewById(R.id.chart1);
         initBarChart();
         mChart.animateY(2000);
+
     }
 
     private void initBarChart() {
@@ -114,17 +116,16 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
 
     private void setData(int count) {
 
-        float range =50;
         ArrayList<String> xVals = new ArrayList<String>();
         for (int i = count; i >= 0; i--) {
-            xVals.add(this.get_Date(i));
+            xVals.add(this.get_Date(i+this.WEEK*count));
         }
 
         ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
 
         for (int i = 0; i <= count; i++) {
 
-            float val = SyncPrensenter.getDataOfDay(get_Date_yy(count-i),SyncPrensenter.DURATION);
+            float val = SyncPrensenter.getDataOfDay(get_Date_yy(count-i+this.WEEK*count),SyncPrensenter.DURATION);
             yVals1.add(new BarEntry(val, i));
         }
 

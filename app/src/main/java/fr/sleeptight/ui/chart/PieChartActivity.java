@@ -9,6 +9,7 @@ import android.text.SpannableString;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -35,7 +36,7 @@ import fr.sleeptight.ui.SyncPrensenter;
 public class PieChartActivity extends BasicChartPage implements OnChartValueSelectedListener {
 
     private PieChart mChart;
-
+    private TextView text;
     private Typeface tf;
 
 
@@ -48,7 +49,7 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
         setSupportActionBar(toolbar);
 
         Slide_Bar(toolbar);
-
+        text = (TextView) findViewById(R.id.textView156);
         /*生成饼图*/
         mChart = (PieChart) findViewById(R.id.chart1);
         initChartPie();
@@ -92,7 +93,7 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
         mChart.setOnChartValueSelectedListener(this);
 
         //setData(3, 100);
-        initData(2);
+        initData(0);
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         // mChart.spin(2000, 0, 360);
@@ -110,9 +111,11 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
     private void initData(int day) {
         ArrayList<Entry> yVals = new ArrayList<Entry>();
 
-        float f1 = SyncPrensenter.getDataOfDay(get_Date_yy(day),SyncPrensenter.AWAKEDURATION);
-        float f2 = SyncPrensenter.getDataOfDay(get_Date_yy(day),SyncPrensenter.SLEEPTIME);
-        float f3 = SyncPrensenter.getDataOfDay(get_Date_yy(day),SyncPrensenter.RESTLESSDURATION);
+        float f1 = SyncPrensenter.getDataOfDay(get_Date_yy(day+WEEK),SyncPrensenter.AWAKEDURATION);
+        float f2 = SyncPrensenter.getDataOfDay(get_Date_yy(day+WEEK),SyncPrensenter.SLEEPTIME);
+        float f3 = SyncPrensenter.getDataOfDay(get_Date_yy(day+WEEK),SyncPrensenter.RESTLESSDURATION);
+
+        text.setText(get_Date_yy(day+WEEK));
 
         yVals.add(new Entry(f1, 0));
         yVals.add( new Entry(f2, 1));

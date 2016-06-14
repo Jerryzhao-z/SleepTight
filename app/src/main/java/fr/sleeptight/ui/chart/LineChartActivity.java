@@ -72,7 +72,7 @@ public class LineChartActivity extends BasicChartPage implements  OnChartValueSe
 
         ArrayList<String> xVals = new ArrayList<String>();
         for (int i = count; i >= 0; i--) {
-            xVals.add(this.get_Date(i));
+            xVals.add(this.get_Date(i+this.WEEK*count));
         }
 
         ArrayList<Entry> yVals = new ArrayList<Entry>();
@@ -80,7 +80,7 @@ public class LineChartActivity extends BasicChartPage implements  OnChartValueSe
 
         for (int i = 0; i <= count; i++) {
 
-            float val = SyncPrensenter.getEvaluation(get_Date_yy(count-i));
+            float val = SyncPrensenter.getEvaluation(get_Date_yy(count-i+this.WEEK*count));
             yVals.add(new BarEntry(val, i));
         }
 

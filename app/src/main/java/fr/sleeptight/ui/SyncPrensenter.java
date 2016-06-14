@@ -146,8 +146,8 @@ public class SyncPrensenter {
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        generationTestData(AsyncCall.dateFormatter.format(datetime).toString()
-                , AsyncCall.dateTimeFormatter.format(datetime).toString());
+        generationTestData(AsyncCall.dateFormatter.format(date).toString()
+                , AsyncCall.dateTimeFormatter.format(date).toString());
         for(int i=0; i<nombre-1; i++) {
             calendar.add(Calendar.DATE, -1);
             Date thisDate = new Date(calendar.getTimeInMillis());
@@ -179,7 +179,7 @@ public class SyncPrensenter {
         int restlessCount = 36;
         int timeInBed = minutesAfterWakeup+minutesAwake+minutesAsleep+minutesToFallAsleep;
         int efficiency = 100*minutesAsleep/timeInBed;
-        int duration = timeInBed*3600000;
+        int duration = timeInBed*60000;
 
         Sleep sleepobject = new Sleep(null, startTime,
                 restlessDuration, efficiency, awakeCount, awakeningsCount,

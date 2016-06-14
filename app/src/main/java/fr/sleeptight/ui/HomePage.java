@@ -97,7 +97,9 @@ public class HomePage extends BasicPage {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
+
                 SyncPrensenter.getSleepOfWeek();
+
                 refreshHelper.setMenuItem(item);
                 new RefreshAsyncTask().execute();
 

@@ -15,7 +15,22 @@
     </item>
     <item
         android:id="@+id/listData"
-        android:title="Display all daata (dev）">
+        android:title="Display all data (dev）">
+    </item>
+
+    <item
+        android:id="@+id/delay"
+        android:title="Change Date (dev）">
+    </item>
+
+    <item
+        android:id="@+id/reset"
+        android:title="Reset Date (dev）">
+    </item>
+
+    <item
+        android:id="@+id/testData"
+        android:title="Generate Test Data (dev）">
     </item>
 
 

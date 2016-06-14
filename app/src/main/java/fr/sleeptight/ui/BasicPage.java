@@ -24,6 +24,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import fr.sleeptight.R;
+import fr.sleeptight.data.localdb.DaoManager;
 import fr.sleeptight.data.traitement.User;
 import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
@@ -167,6 +168,7 @@ public class BasicPage extends AppCompatActivity {
                                     break;
                                 case 7:
                                     User.getInstance().setId("unset");
+                                    DaoManager.getInstance().CloseConnection();
                                     intent  = new Intent(getApplicationContext(), LoginActivity.class);
                                     break;
 								default: break;
