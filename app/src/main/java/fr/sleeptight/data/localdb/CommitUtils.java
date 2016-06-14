@@ -250,12 +250,19 @@ public class CommitUtils {
         return manager.getDaoSession().load(Sleep.class, key);
     }
 
-    public List<Sleep> QuerySleep(Date startTime, Date dateOfSleep) {
+    public List<Sleep> QuerySleepSpecifiqueTime(Date startTime, Date dateOfSleep) {
         QueryBuilder<Sleep> builder = manager.getDaoSession().queryBuilder(Sleep.class);
         List<Sleep> list = builder.where(SleepDao.Properties.DateOfSleep.eq(dateOfSleep))
                 .where(SleepDao.Properties.StartTime.eq(startTime)).list();
         return list;
     }
+
+    public List<Sleep> QuerySleepSpecifitqueDay(Date dateOfSleep) {
+        QueryBuilder<Sleep> builder = manager.getDaoSession().queryBuilder(Sleep.class);
+        List<Sleep> list = builder.where(SleepDao.Properties.DateOfSleep.eq(dateOfSleep)).list();
+        return list;
+    }
+
 /*    *//**
      * 查询数据 条件查询
      * @return
