@@ -55,8 +55,7 @@ public class SyncPrensenter {
     public static final int SLEEPTIME = 0x0002;//睡眠时间 , unite minute
     public static final int AWAKEDURATION = 0x0003;//清醒时间, unite minute
     public static final int RESTLESSDURATION = 0x0004;//浅睡眠, unite minute
-    public static float getDataOfDay(String dateString, int dataType)
-    {
+    public static float getDataOfDay(String dateString, int dataType) {
 
         Date date = null;
         try {
@@ -67,11 +66,10 @@ public class SyncPrensenter {
         //Date date = dateTransfert(dateToTransfert);
         CommitUtils commitUtils = new CommitUtils(ContextHolder.getContext());
         float longeur = 0;
-        for(Sleep sleep: commitUtils.QuerySleepSpecifitqueDay(date))
-        {
-            switch(dataType) {
+        for (Sleep sleep : commitUtils.QuerySleepSpecifitqueDay(date)) {
+            switch (dataType) {
                 case DURATION:
-                    longeur = longeur + sleep.getDuration()/3600000;
+                    longeur += sleep.getDuration();
                     break;
                 case SLEEPTIME:
                     longeur = longeur + sleep.getMinutesAsleep();
@@ -86,6 +84,9 @@ public class SyncPrensenter {
                     break;
             }
         }
+        if (dataType == DURATION)
+            longeur /= 3600000;
+
         Log.d("Sync", dateString + Float.toString(longeur));
         return longeur;
     }
@@ -113,7 +114,7 @@ public class SyncPrensenter {
                     timeToSleep = 7;
             }
             float longeur = getDataOfDay(date, SyncPrensenter.SLEEPTIME);
-            if(timeToSleep == 0)
+            if(timeToSleep != 0)
                 return longeur/timeToSleep;
             else
                 return 0;

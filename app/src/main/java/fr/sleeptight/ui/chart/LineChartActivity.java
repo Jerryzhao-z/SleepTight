@@ -80,7 +80,7 @@ public class LineChartActivity extends BasicChartPage implements  OnChartValueSe
 
         for (int i = 0; i <= count; i++) {
 
-            float val = SyncPrensenter.getDataOfDay(get_Date_yy(count-i),SyncPrensenter.DURATION);
+            float val = SyncPrensenter.getEvaluation(get_Date_yy(count-i));
             yVals.add(new BarEntry(val, i));
         }
 
