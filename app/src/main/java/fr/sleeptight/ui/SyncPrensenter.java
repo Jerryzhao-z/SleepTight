@@ -33,10 +33,13 @@ public class SyncPrensenter {
     public static void getSleepOfWeek()
     {
         Calendar date = Calendar.getInstance();
-        for(int i=0; i>(-7); i--) {
-            date.add(Calendar.DATE, i);
+        Log.d("Envoyer Request first", date.toString());
+        AsyncCall.getSleepCall(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
+        for(int i=0; i<6; i++) {
+            Log.d("Date ", Integer.toString(Calendar.DATE));
+            date.add(Calendar.DATE, -1);
             Log.d("Envoyer Request", date.toString());
-            AsyncCall.getSleepCall(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
+            AsyncCall.getSleepCall(date.get(Calendar.YEAR), date.get(Calendar.MONTH)+1, date.get(Calendar.DAY_OF_MONTH));
         }
     }
 
