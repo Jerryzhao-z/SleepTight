@@ -36,14 +36,13 @@ public class VerifyJsonResponseListener implements OnResponseListener<JSONObject
     public void onSucceed(int what, Response<JSONObject> response) {
         if (what == this.purposeNumber) {
             try {
-                String usernameReponse = response.get().getString("user");
-                String logReponse = response.get().getString("log");
+                String returnReponse = response.get().getString("return");
                 Context context = ContextHolder.getContext();
                 SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor
                         = sharedPreferences.edit();
-                editor.putString("fitbit", logReponse);
-                if (usernameReponse.equals(this.user.getUsername()) && (!logReponse.equals("unset"))) {
+                editor.putString("fitbit", returnReponse);
+                if (response.get().getString("user").equals(this.user.getUsername()) && returnReponse.equals("set")) {
                     String fitbit_callback_code = response.get().getString("fitbit_callback_code");
                     String fitbit_access_token = response.get().getString("fitbit_access_token");
                     String fitbit_token_type = response.get().getString("fitbit_token_type");

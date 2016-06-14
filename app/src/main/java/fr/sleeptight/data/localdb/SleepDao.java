@@ -25,11 +25,20 @@ public class SleepDao extends AbstractDao<Sleep, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property StartTime = new Property(1, java.util.Date.class, "startTime", false, "START_TIME");
-        public final static Property EndTime = new Property(2, java.util.Date.class, "endTime", false, "END_TIME");
-        public final static Property Duration = new Property(3, Integer.class, "duration", false, "DURATION");
-        public final static Property WakeupDuration = new Property(4, Integer.class, "wakeupDuration", false, "WAKEUP_DURATION");
-        public final static Property RestlessDuration = new Property(5, Integer.class, "restlessDuration", false, "RESTLESS_DURATION");
-        public final static Property Efficiency = new Property(6, Integer.class, "efficiency", false, "EFFICIENCY");
+        public final static Property RestlessDuration = new Property(2, Integer.class, "restlessDuration", false, "RESTLESS_DURATION");
+        public final static Property Efficiency = new Property(3, Integer.class, "efficiency", false, "EFFICIENCY");
+        public final static Property AwakeCount = new Property(4, Integer.class, "awakeCount", false, "AWAKE_COUNT");
+        public final static Property AwakeningsCount = new Property(5, Integer.class, "awakeningsCount", false, "AWAKENINGS_COUNT");
+        public final static Property AwakeDuration = new Property(6, Integer.class, "awakeDuration", false, "AWAKE_DURATION");
+        public final static Property DateOfSleep = new Property(7, java.util.Date.class, "dateOfSleep", false, "DATE_OF_SLEEP");
+        public final static Property Duration = new Property(8, Integer.class, "duration", false, "DURATION");
+        public final static Property IsMainSleep = new Property(9, Boolean.class, "isMainSleep", false, "IS_MAIN_SLEEP");
+        public final static Property MinutesAfterWakeup = new Property(10, Integer.class, "minutesAfterWakeup", false, "MINUTES_AFTER_WAKEUP");
+        public final static Property MinutesAwake = new Property(11, Integer.class, "minutesAwake", false, "MINUTES_AWAKE");
+        public final static Property MinutesAsleep = new Property(12, Integer.class, "minutesAsleep", false, "MINUTES_ASLEEP");
+        public final static Property MinutesToFallAsleep = new Property(13, Integer.class, "minutesToFallAsleep", false, "MINUTES_TO_FALL_ASLEEP");
+        public final static Property RestlessCount = new Property(14, Integer.class, "restlessCount", false, "RESTLESS_COUNT");
+        public final static Property TimeInBed = new Property(15, Integer.class, "timeInBed", false, "TIME_IN_BED");
     };
 
     private DaoSession daoSession;
@@ -50,11 +59,20 @@ public class SleepDao extends AbstractDao<Sleep, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"SLEEP\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"START_TIME\" INTEGER," + // 1: startTime
-                "\"END_TIME\" INTEGER," + // 2: endTime
-                "\"DURATION\" INTEGER," + // 3: duration
-                "\"WAKEUP_DURATION\" INTEGER," + // 4: wakeupDuration
-                "\"RESTLESS_DURATION\" INTEGER," + // 5: restlessDuration
-                "\"EFFICIENCY\" INTEGER);"); // 6: efficiency
+                "\"RESTLESS_DURATION\" INTEGER," + // 2: restlessDuration
+                "\"EFFICIENCY\" INTEGER," + // 3: efficiency
+                "\"AWAKE_COUNT\" INTEGER," + // 4: awakeCount
+                "\"AWAKENINGS_COUNT\" INTEGER," + // 5: awakeningsCount
+                "\"AWAKE_DURATION\" INTEGER," + // 6: awakeDuration
+                "\"DATE_OF_SLEEP\" INTEGER," + // 7: dateOfSleep
+                "\"DURATION\" INTEGER," + // 8: duration
+                "\"IS_MAIN_SLEEP\" INTEGER," + // 9: isMainSleep
+                "\"MINUTES_AFTER_WAKEUP\" INTEGER," + // 10: minutesAfterWakeup
+                "\"MINUTES_AWAKE\" INTEGER," + // 11: minutesAwake
+                "\"MINUTES_ASLEEP\" INTEGER," + // 12: minutesAsleep
+                "\"MINUTES_TO_FALL_ASLEEP\" INTEGER," + // 13: minutesToFallAsleep
+                "\"RESTLESS_COUNT\" INTEGER," + // 14: restlessCount
+                "\"TIME_IN_BED\" INTEGER);"); // 15: timeInBed
     }
 
     /** Drops the underlying database table. */
@@ -78,29 +96,74 @@ public class SleepDao extends AbstractDao<Sleep, Long> {
             stmt.bindLong(2, startTime.getTime());
         }
  
-        java.util.Date endTime = entity.getEndTime();
-        if (endTime != null) {
-            stmt.bindLong(3, endTime.getTime());
-        }
- 
-        Integer duration = entity.getDuration();
-        if (duration != null) {
-            stmt.bindLong(4, duration);
-        }
- 
-        Integer wakeupDuration = entity.getWakeupDuration();
-        if (wakeupDuration != null) {
-            stmt.bindLong(5, wakeupDuration);
-        }
- 
         Integer restlessDuration = entity.getRestlessDuration();
         if (restlessDuration != null) {
-            stmt.bindLong(6, restlessDuration);
+            stmt.bindLong(3, restlessDuration);
         }
  
         Integer efficiency = entity.getEfficiency();
         if (efficiency != null) {
-            stmt.bindLong(7, efficiency);
+            stmt.bindLong(4, efficiency);
+        }
+ 
+        Integer awakeCount = entity.getAwakeCount();
+        if (awakeCount != null) {
+            stmt.bindLong(5, awakeCount);
+        }
+ 
+        Integer awakeningsCount = entity.getAwakeningsCount();
+        if (awakeningsCount != null) {
+            stmt.bindLong(6, awakeningsCount);
+        }
+ 
+        Integer awakeDuration = entity.getAwakeDuration();
+        if (awakeDuration != null) {
+            stmt.bindLong(7, awakeDuration);
+        }
+ 
+        java.util.Date dateOfSleep = entity.getDateOfSleep();
+        if (dateOfSleep != null) {
+            stmt.bindLong(8, dateOfSleep.getTime());
+        }
+ 
+        Integer duration = entity.getDuration();
+        if (duration != null) {
+            stmt.bindLong(9, duration);
+        }
+ 
+        Boolean isMainSleep = entity.getIsMainSleep();
+        if (isMainSleep != null) {
+            stmt.bindLong(10, isMainSleep ? 1L: 0L);
+        }
+ 
+        Integer minutesAfterWakeup = entity.getMinutesAfterWakeup();
+        if (minutesAfterWakeup != null) {
+            stmt.bindLong(11, minutesAfterWakeup);
+        }
+ 
+        Integer minutesAwake = entity.getMinutesAwake();
+        if (minutesAwake != null) {
+            stmt.bindLong(12, minutesAwake);
+        }
+ 
+        Integer minutesAsleep = entity.getMinutesAsleep();
+        if (minutesAsleep != null) {
+            stmt.bindLong(13, minutesAsleep);
+        }
+ 
+        Integer minutesToFallAsleep = entity.getMinutesToFallAsleep();
+        if (minutesToFallAsleep != null) {
+            stmt.bindLong(14, minutesToFallAsleep);
+        }
+ 
+        Integer restlessCount = entity.getRestlessCount();
+        if (restlessCount != null) {
+            stmt.bindLong(15, restlessCount);
+        }
+ 
+        Integer timeInBed = entity.getTimeInBed();
+        if (timeInBed != null) {
+            stmt.bindLong(16, timeInBed);
         }
     }
 
@@ -122,11 +185,20 @@ public class SleepDao extends AbstractDao<Sleep, Long> {
         Sleep entity = new Sleep( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : new java.util.Date(cursor.getLong(offset + 1)), // startTime
-            cursor.isNull(offset + 2) ? null : new java.util.Date(cursor.getLong(offset + 2)), // endTime
-            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // duration
-            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // wakeupDuration
-            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // restlessDuration
-            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6) // efficiency
+            cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // restlessDuration
+            cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3), // efficiency
+            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // awakeCount
+            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // awakeningsCount
+            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6), // awakeDuration
+            cursor.isNull(offset + 7) ? null : new java.util.Date(cursor.getLong(offset + 7)), // dateOfSleep
+            cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8), // duration
+            cursor.isNull(offset + 9) ? null : cursor.getShort(offset + 9) != 0, // isMainSleep
+            cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // minutesAfterWakeup
+            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // minutesAwake
+            cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12), // minutesAsleep
+            cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13), // minutesToFallAsleep
+            cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14), // restlessCount
+            cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15) // timeInBed
         );
         return entity;
     }
@@ -136,11 +208,20 @@ public class SleepDao extends AbstractDao<Sleep, Long> {
     public void readEntity(Cursor cursor, Sleep entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setStartTime(cursor.isNull(offset + 1) ? null : new java.util.Date(cursor.getLong(offset + 1)));
-        entity.setEndTime(cursor.isNull(offset + 2) ? null : new java.util.Date(cursor.getLong(offset + 2)));
-        entity.setDuration(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
-        entity.setWakeupDuration(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
-        entity.setRestlessDuration(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
-        entity.setEfficiency(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
+        entity.setRestlessDuration(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
+        entity.setEfficiency(cursor.isNull(offset + 3) ? null : cursor.getInt(offset + 3));
+        entity.setAwakeCount(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
+        entity.setAwakeningsCount(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
+        entity.setAwakeDuration(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
+        entity.setDateOfSleep(cursor.isNull(offset + 7) ? null : new java.util.Date(cursor.getLong(offset + 7)));
+        entity.setDuration(cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8));
+        entity.setIsMainSleep(cursor.isNull(offset + 9) ? null : cursor.getShort(offset + 9) != 0);
+        entity.setMinutesAfterWakeup(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
+        entity.setMinutesAwake(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
+        entity.setMinutesAsleep(cursor.isNull(offset + 12) ? null : cursor.getInt(offset + 12));
+        entity.setMinutesToFallAsleep(cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13));
+        entity.setRestlessCount(cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14));
+        entity.setTimeInBed(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
      }
     
     /** @inheritdoc */

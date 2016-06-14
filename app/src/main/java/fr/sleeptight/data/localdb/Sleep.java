@@ -1,8 +1,6 @@
 package fr.sleeptight.data.localdb;
 
 import java.util.List;
-
-import de.greenrobot.dao.AbstractDao;
 import fr.sleeptight.data.localdb.DaoSession;
 import de.greenrobot.dao.DaoException;
 
@@ -14,11 +12,20 @@ public class Sleep {
 
     private Long id;
     private java.util.Date startTime;
-    private java.util.Date endTime;
-    private Integer duration;
-    private Integer wakeupDuration;
     private Integer restlessDuration;
     private Integer efficiency;
+    private Integer awakeCount;
+    private Integer awakeningsCount;
+    private Integer awakeDuration;
+    private java.util.Date dateOfSleep;
+    private Integer duration;
+    private Boolean isMainSleep;
+    private Integer minutesAfterWakeup;
+    private Integer minutesAwake;
+    private Integer minutesAsleep;
+    private Integer minutesToFallAsleep;
+    private Integer restlessCount;
+    private Integer timeInBed;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
@@ -35,14 +42,23 @@ public class Sleep {
         this.id = id;
     }
 
-    public Sleep(Long id, java.util.Date startTime, java.util.Date endTime, Integer duration, Integer wakeupDuration, Integer restlessDuration, Integer efficiency) {
+    public Sleep(Long id, java.util.Date startTime, Integer restlessDuration, Integer efficiency, Integer awakeCount, Integer awakeningsCount, Integer awakeDuration, java.util.Date dateOfSleep, Integer duration, Boolean isMainSleep, Integer minutesAfterWakeup, Integer minutesAwake, Integer minutesAsleep, Integer minutesToFallAsleep, Integer restlessCount, Integer timeInBed) {
         this.id = id;
         this.startTime = startTime;
-        this.endTime = endTime;
-        this.duration = duration;
-        this.wakeupDuration = wakeupDuration;
         this.restlessDuration = restlessDuration;
         this.efficiency = efficiency;
+        this.awakeCount = awakeCount;
+        this.awakeningsCount = awakeningsCount;
+        this.awakeDuration = awakeDuration;
+        this.dateOfSleep = dateOfSleep;
+        this.duration = duration;
+        this.isMainSleep = isMainSleep;
+        this.minutesAfterWakeup = minutesAfterWakeup;
+        this.minutesAwake = minutesAwake;
+        this.minutesAsleep = minutesAsleep;
+        this.minutesToFallAsleep = minutesToFallAsleep;
+        this.restlessCount = restlessCount;
+        this.timeInBed = timeInBed;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -67,30 +83,6 @@ public class Sleep {
         this.startTime = startTime;
     }
 
-    public java.util.Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(java.util.Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public Integer getWakeupDuration() {
-        return wakeupDuration;
-    }
-
-    public void setWakeupDuration(Integer wakeupDuration) {
-        this.wakeupDuration = wakeupDuration;
-    }
-
     public Integer getRestlessDuration() {
         return restlessDuration;
     }
@@ -105,6 +97,102 @@ public class Sleep {
 
     public void setEfficiency(Integer efficiency) {
         this.efficiency = efficiency;
+    }
+
+    public Integer getAwakeCount() {
+        return awakeCount;
+    }
+
+    public void setAwakeCount(Integer awakeCount) {
+        this.awakeCount = awakeCount;
+    }
+
+    public Integer getAwakeningsCount() {
+        return awakeningsCount;
+    }
+
+    public void setAwakeningsCount(Integer awakeningsCount) {
+        this.awakeningsCount = awakeningsCount;
+    }
+
+    public Integer getAwakeDuration() {
+        return awakeDuration;
+    }
+
+    public void setAwakeDuration(Integer awakeDuration) {
+        this.awakeDuration = awakeDuration;
+    }
+
+    public java.util.Date getDateOfSleep() {
+        return dateOfSleep;
+    }
+
+    public void setDateOfSleep(java.util.Date dateOfSleep) {
+        this.dateOfSleep = dateOfSleep;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public Boolean getIsMainSleep() {
+        return isMainSleep;
+    }
+
+    public void setIsMainSleep(Boolean isMainSleep) {
+        this.isMainSleep = isMainSleep;
+    }
+
+    public Integer getMinutesAfterWakeup() {
+        return minutesAfterWakeup;
+    }
+
+    public void setMinutesAfterWakeup(Integer minutesAfterWakeup) {
+        this.minutesAfterWakeup = minutesAfterWakeup;
+    }
+
+    public Integer getMinutesAwake() {
+        return minutesAwake;
+    }
+
+    public void setMinutesAwake(Integer minutesAwake) {
+        this.minutesAwake = minutesAwake;
+    }
+
+    public Integer getMinutesAsleep() {
+        return minutesAsleep;
+    }
+
+    public void setMinutesAsleep(Integer minutesAsleep) {
+        this.minutesAsleep = minutesAsleep;
+    }
+
+    public Integer getMinutesToFallAsleep() {
+        return minutesToFallAsleep;
+    }
+
+    public void setMinutesToFallAsleep(Integer minutesToFallAsleep) {
+        this.minutesToFallAsleep = minutesToFallAsleep;
+    }
+
+    public Integer getRestlessCount() {
+        return restlessCount;
+    }
+
+    public void setRestlessCount(Integer restlessCount) {
+        this.restlessCount = restlessCount;
+    }
+
+    public Integer getTimeInBed() {
+        return timeInBed;
+    }
+
+    public void setTimeInBed(Integer timeInBed) {
+        this.timeInBed = timeInBed;
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

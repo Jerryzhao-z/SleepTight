@@ -3,7 +3,6 @@
    <item android:id="@+id/find_new_bridge"
         android:title="@string/menu_find_bridge"          
         android:showAsAction="never"
-        
-    />
+       />
 
 </menu>

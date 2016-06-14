@@ -10,6 +10,9 @@ import de.greenrobot.dao.DaoException;
  */
 public class SleepDetail {
 
+    public static final int REALLYAWAKE = 0x0003;
+    public static final int AWAKE = 0x0002;
+
     private Long id;
     private Integer state;
     private java.util.Date time;

@@ -54,7 +54,7 @@ public class SleepDetailDao extends AbstractDao<SleepDetail, Long> {
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"STATE\" INTEGER," + // 1: state
                 "\"TIME\" INTEGER," + // 2: time
-                "\"SLEEP_ID\" INTEGER NOT NULL );"); // 4: id
+                "\"SLEEP_ID\" INTEGER NOT NULL);");
     }
 
     /** Drops the underlying database table. */

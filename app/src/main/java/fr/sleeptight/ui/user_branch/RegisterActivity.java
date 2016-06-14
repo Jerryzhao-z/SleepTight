@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = inputPassword.getText().toString().trim();
 
                 if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    register(username,password);
+                    register(username,password,email);
                 }else{
                     Toast.makeText(getApplicationContext(),
                             "Please enter your details!", Toast.LENGTH_LONG)
@@ -78,39 +78,72 @@ public class RegisterActivity extends AppCompatActivity {
                 pDialog.dismiss();
         }
 
-        private void register(String username,String password){
+        private void register(String username,String password, String email) {
             pDialog.setMessage("Registering ...");
             User user = User.getInstance(username, password)
-                            .signup()
-                            .login();
+                    .signup()
+                    .login();
+
+            user.setEmail(email);
 
             showDialog();
-            Toast.makeText(getApplicationContext(),
-                    "Sign up succeeded", Toast.LENGTH_LONG)
-                    .show();
 
-           thread = new Thread(new Runnable(){
-                    @Override
-                    public void run() {
+
+            thread = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    try {
+                        thread.sleep(4000);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    hideDialog();
+
+                    if(User.getInstance().getId().equals("unset")) {
+                        showToast("Sign up Faild");
+
                         try {
-                            thread.sleep(4000);
-
-
+                            thread.sleep(300);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        Intent i = new Intent(getApplicationContext(),
+                                RegisterActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else {
+                        showToast("Sign up Succeeded");
 
-                        hideDialog();
-
+                        try {
+                            thread.sleep(300);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         Intent i = new Intent(getApplicationContext(),
                                 HomePage.class);
                         startActivity(i);
                         finish();
+                    }
+                }});
+            thread.start();
 
-                    }});
-                    thread.start();
         }
+
+
+            public void showToast(final String toast)
+            {
+                runOnUiThread(new Runnable() {
+                    public void run()
+                    {
+                        Toast.makeText(RegisterActivity.this, toast, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
 }
+
 
 
 
