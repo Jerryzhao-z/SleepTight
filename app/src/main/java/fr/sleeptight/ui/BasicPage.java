@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
+
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -29,8 +29,8 @@ import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
 import fr.sleeptight.ui.listener.ChromeTabListener;
 import fr.sleeptight.ui.page.Page1;
-import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
+import fr.sleeptight.ui.page.SleepPlanSimulation;
 import fr.sleeptight.ui.user_branch.LoginActivity;
 
 public class BasicPage extends AppCompatActivity {

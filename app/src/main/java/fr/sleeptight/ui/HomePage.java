@@ -1,21 +1,10 @@
 package fr.sleeptight.ui;
 
-import android.content.Context;
 import android.content.Intent;
 
-import android.content.res.AssetManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,27 +15,12 @@ import android.widget.Toast;
 
 import com.refresh.menuitem.RefreshMenuItemHelper;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 import fr.sleeptight.R;
-import fr.sleeptight.data.acces.APIClient.APIClass;
-import fr.sleeptight.data.acces.APIClient.APIService;
 import fr.sleeptight.data.acces.APIClient.AsyncCall;
-import fr.sleeptight.data.acces.APIClient.ServiceGenerator;
-import fr.sleeptight.data.fitbit.sleep.SleepRequest;
-import fr.sleeptight.data.traitement.Light;
-import fr.sleeptight.data.traitement.User;
 import fr.sleeptight.ui.chart.PieChartActivity;
-import fr.sleeptight.ui.light.LightAuthActivity;
 import fr.sleeptight.ui.listener.ChromeTabListener;
-import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import fr.sleeptight.ui.page.SleepPlanSimulation;
 
 
 public class HomePage extends BasicPage {

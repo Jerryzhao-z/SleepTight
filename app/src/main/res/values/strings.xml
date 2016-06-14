@@ -17,6 +17,7 @@
     <string name="title_activity_page1">Sleep Status</string>
     <string name="title_activity_page2">Synthesis</string>
     <string name="title_activity_sleep_plan">Sleep Plan</string>
+    <string name="title_activity_sleep_sim">Sleep Simulation</string>
 
     <string name="sleep_plan_button">Go to sleep !</string>
     <string name="title_activity_pie_chart">PieChartActivity</string>

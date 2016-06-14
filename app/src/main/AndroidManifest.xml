@@ -33,10 +33,10 @@
             android:label="@string/title_activity_page2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.page.SleepPlanActivity"
-            android:label="@string/title_activity_sleep_plan"
+            android:name=".ui.page.SleepPlanSimulation"
+            android:label="@string/title_activity_sleep_sim"
             android:parentActivityName=".ui.HomePage"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
@@ -87,11 +87,15 @@
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
         <activity
             android:name=".data.fitbit.chrome.WebviewActivity"
-            android:label="@string/title_activity_webview"></activity>
+            android:label="@string/title_activity_webview" />
         <activity
             android:name=".ui.simulation.SimulationActivity"
             android:label="@string/title_activity_simulation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.page.SleepPlanActivity"
+            android:label="@string/title_activity_sleep_plan"
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"></activity>
     </application>
 
 </manifest>
