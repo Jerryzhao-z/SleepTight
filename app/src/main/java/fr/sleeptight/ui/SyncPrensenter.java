@@ -50,10 +50,10 @@ public class SyncPrensenter {
 
 
     //get sleeping hours of a specified day
-    public static final int DURATION = 0x0001;
-    public static final int SLEEPTIME = 0x0002;//睡眠时间
-    public static final int AWAKEDURATION = 0x0003;//清醒时间
-    public static final int RESTLESSDURATION = 0x0004;//浅睡眠
+    public static final int DURATION = 0x0001;//unite hour
+    public static final int SLEEPTIME = 0x0002;//睡眠时间 , unite minute
+    public static final int AWAKEDURATION = 0x0003;//清醒时间, unite minute
+    public static final int RESTLESSDURATION = 0x0004;//浅睡眠, unite minute
     public static float getDataOfDay(String dateString, int dataType)
     {
 
@@ -73,13 +73,13 @@ public class SyncPrensenter {
                     longeur = longeur + sleep.getDuration()/3600000;
                     break;
                 case SLEEPTIME:
-                    longeur = longeur + sleep.getMinutesAsleep()/60;
+                    longeur = longeur + sleep.getMinutesAsleep();
                     break;
                 case AWAKEDURATION:
-                    longeur = longeur + sleep.getAwakeDuration()/60;
+                    longeur = longeur + sleep.getAwakeDuration();
                     break;
                 case RESTLESSDURATION:
-                    longeur = longeur + sleep.getRestlessDuration()/60;
+                    longeur = longeur + sleep.getRestlessDuration();
                     break;
                 default:
                     break;
@@ -89,8 +89,5 @@ public class SyncPrensenter {
         return longeur;
     }
 
-    public static Date dateTransfert(Date dateToTransfert)
-    {
-        return dateToTransfert;
-    }
+    public static float getEvaluation()
 }
