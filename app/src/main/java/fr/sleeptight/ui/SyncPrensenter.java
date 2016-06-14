@@ -89,5 +89,4 @@ public class SyncPrensenter {
         return longeur;
     }
 
-    public static float getEvaluation()
 }

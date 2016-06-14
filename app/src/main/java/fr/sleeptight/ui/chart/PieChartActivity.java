@@ -30,6 +30,7 @@ import fr.sleeptight.data.localdb.CommitUtils;
 import fr.sleeptight.data.localdb.Sleep;
 import fr.sleeptight.ui.BasicPage;
 import fr.sleeptight.ui.ContextHolder;
+import fr.sleeptight.ui.SyncPrensenter;
 
 public class PieChartActivity extends BasicChartPage implements OnChartValueSelectedListener {
 
@@ -91,7 +92,7 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
         mChart.setOnChartValueSelectedListener(this);
 
         //setData(3, 100);
-        initData();
+        initData(2);
 
         mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         // mChart.spin(2000, 0, 360);
@@ -106,14 +107,16 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
 
 
     /* 关于数据的一切 */
-    private void initData() {
+    private void initData(int day) {
         ArrayList<Entry> yVals = new ArrayList<Entry>();
-        Entry v1 = new Entry(20, 0);
-        Entry v2 = new Entry(50, 1);
-        Entry v3 = new Entry(30, 2);
-        yVals.add(v1);
-        yVals.add(v2);
-        yVals.add(v3);
+
+        float f1 = SyncPrensenter.getDataOfDay(get_Date_yy(day),SyncPrensenter.AWAKEDURATION);
+        float f2 = SyncPrensenter.getDataOfDay(get_Date_yy(day),SyncPrensenter.SLEEPTIME);
+        float f3 = SyncPrensenter.getDataOfDay(get_Date_yy(day),SyncPrensenter.RESTLESSDURATION);
+
+        yVals.add(new Entry(f1, 0));
+        yVals.add( new Entry(f2, 1));
+        yVals.add(new Entry(f3, 2));
         PieDataSet dataSet = new PieDataSet(yVals, "");
 
         //饼块间距
@@ -123,9 +126,9 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
         dataSet.setColors(initColor());
 
         ArrayList<String> xVals = new ArrayList<String>();
-        xVals.add("Awake");
-        xVals.add("Deep Sleep");
-        xVals.add("Light Sleep");
+        xVals.add("Awake Duration");
+        xVals.add("Deep Sleep Duration");
+        xVals.add("Restless Duration");
 
         //dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 

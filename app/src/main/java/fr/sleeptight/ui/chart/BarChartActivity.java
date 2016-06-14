@@ -124,7 +124,7 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
 
         for (int i = 0; i <= count; i++) {
 
-            float val = SyncPrensenter.getDurationOfDay(get_Date_yy(count-i));
+            float val = SyncPrensenter.getDataOfDay(get_Date_yy(count-i),SyncPrensenter.DURATION);
             yVals1.add(new BarEntry(val, i));
         }
 

@@ -3,15 +3,20 @@
 
     <item
         android:id="@+id/chartPie"
-        android:title="Pie Chart">
+        android:title="Sleep Analysis">
     </item>
     <item
         android:id="@+id/charBar"
-        android:title="Sleep Durtion">
+        android:title="Sleep Duration">
     </item>
     <item
         android:id="@+id/chartLine"
         android:title="Sleep Evaluation">
     </item>
+    <item
+        android:id="@+id/listData"
+        android:title="Display all daata (dev）">
+    </item>
+
 
 </menu>
