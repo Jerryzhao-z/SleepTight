@@ -139,7 +139,7 @@ public class BarChartActivity extends  BasicChartPage implements OnChartValueSel
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
         } else {
-            set1 = new BarDataSet(yVals1, "DataSet");
+            set1 = new BarDataSet(yVals1, "Unit: hour");
             set1.setBarSpacePercent(35f);
             set1.setColors(ColorTemplate.MATERIAL_COLORS);
 
