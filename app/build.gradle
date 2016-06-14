@@ -29,16 +29,18 @@ repositories {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile('com.mikepenz:materialdrawer:5.2.8@aar') {
+        transitive = true
+    }
+    compile 'com.github.nicolasjafelle:refreshmenuitem:1.0'
+
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'org.greenrobot:greendao:2.2.0'
+    compile 'org.greenrobot:greendao:2.2.1'
     compile 'com.yolanda.nohttp:nohttp:1.0.0'
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'com.google.apis:google-api-services-calendar:v3-rev181-1.22.0'
     compile 'com.android.support:design:23.4.0'
-    compile('com.mikepenz:materialdrawer:5.2.8@aar') {
-        transitive = true
-    }
     compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
     compile 'com.mikepenz:iconics-core:2.6.0@aar'
     compile 'com.mikepenz:google-material-typeface:2.2.0.1.original@aar'
@@ -46,12 +48,10 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.2.5'
     compile 'com.android.support:customtabs:23.3.0'
-    compile 'org.greenrobot:greendao:2.2.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.github.nicolasjafelle:refreshmenuitem:1.0'
-    compile 'com.github.nicolasjafelle:refreshmenuitem:1.0'
-
+    compile 'com.android.support:support-v4:23.4.0'
 }

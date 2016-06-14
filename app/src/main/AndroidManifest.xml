@@ -36,7 +36,7 @@
             android:name=".ui.page.SleepPlanSimulation"
             android:label="@string/title_activity_sleep_sim"
             android:parentActivityName=".ui.HomePage"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
@@ -51,7 +51,6 @@
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
         <activity android:name=".ui.chart.BasicChartPage" />
-
         <activity
             android:name=".ui.chart.BarChartActivity"
             android:label="@string/title_activity_bar_chart"
@@ -61,7 +60,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
-
         <activity
             android:name=".ui.chart.LineChartActivity"
             android:label="@string/title_activity_line_chart"
@@ -71,7 +69,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="fr.sleeptight.ui.HomePage" />
         </activity>
-
         <activity
             android:name=".ui.light.LightAuthActivity"
             android:label="@string/title_activity_phhome"
@@ -107,7 +104,14 @@
         <activity
             android:name=".ui.page.SleepPlanActivity"
             android:label="@string/title_activity_sleep_plan"
-            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar"></activity>
+            android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar" />
+        <activity
+            android:name=".ui.page.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity
+            android:name=".ui.page.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

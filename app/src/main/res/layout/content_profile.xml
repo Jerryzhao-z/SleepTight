@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF" >
 
-    <LinearLayout
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="82dp"
         android:orientation="vertical"
+        android:layout_marginTop="80dp"
         android:scaleY="1.10"
         android:scaleX="1.10"
         android:textColor="#ffffff"
@@ -21,65 +18,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Set your wakeup time manually ?"
+            android:text="Q1.What's your gender ?"
             android:layout_gravity="center_horizontal"
             android:textColor="#ffffff"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/textView" />
-
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/switch1"
-            android:checked="true"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="You want to wake up in which period?"
-            android:id="@+id/textView2"
-            android:textColor="#ffffff"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            />
-
-
-        <TimePicker
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:scaleY="0.4"
-            android:scaleX="0.4"
-            android:id="@+id/wakeup_time_picker"
-            android:layout_gravity="top"
-            android:layout_marginTop="-85dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text=" Which way you want to be alarmed?"
-            android:id="@+id/textView3"
-            android:textColor="#ffffff"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="-75dp" />
-
-
 
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/fbplacename" >
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="The classic alarm"
+                android:text="Female"
                 android:id="@+id/radioButton"
                 android:textColor="#ffffff"
                 android:checked="true" />
@@ -87,35 +44,115 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Other users&apos; wakingup record"
+                android:text="Male"
                 android:id="@+id/radioButton2"
+                android:textColor="#ffffff"
+                android:checked="false" />
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Q2.You often take afternoon break ?"
+            android:id="@+id/textView2"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/fbplacename" >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:id="@+id/radioButton3"
+                android:textColor="#ffffff"
+                android:checked="true" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:id="@+id/radioButton4"
+                android:textColor="#ffffff"
+                android:checked="false" />
+        </RadioGroup>
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=" Q3.How old are you?"
+            android:id="@+id/textView3"
+            android:textColor="#ffffff"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/fbplacename" >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="《18"
+                android:id="@+id/radioButton5"
+                android:textColor="#ffffff"
+                android:checked="true" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18-45"
+                android:id="@+id/radioButton6"
                 android:textColor="#ffffff"
                 android:checked="false" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="The virtual-sunrise simulation"
-                android:id="@+id/radioButton3"
+                android:text="》45"
+                android:id="@+id/radioButton7"
                 android:textColor="#ffffff"
                 android:checked="false" />
+        </RadioGroup>
+
+
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="      Go to sleep      "
+                android:text="      Confirm      "
                 android:id="@+id/simulation_button"
                 android:textSize="22dp"
                 android:textColor="#ffffff"
                 android:textAllCaps="false"
                 android:fontFamily="sans-serif-medium"
                 android:background="@drawable/mybutton1"
-
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp" />
-        </RadioGroup>
+                android:layout_marginTop="70dp" />
+
 
     </LinearLayout>
 
-</ScrollView>
+
+

@@ -29,6 +29,8 @@ import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
 import fr.sleeptight.ui.listener.ChromeTabListener;
 import fr.sleeptight.ui.page.Page1;
+import fr.sleeptight.ui.page.ProfileActivity;
+import fr.sleeptight.ui.page.SettingsActivity;
 import fr.sleeptight.ui.page.SleepPlanActivity;
 import fr.sleeptight.ui.page.SleepPlanSimulation;
 import fr.sleeptight.ui.user_branch.LoginActivity;
@@ -156,6 +158,12 @@ public class BasicPage extends AppCompatActivity {
                                     break;
                                 case 4:
                                     toBracelet();
+                                    break;
+                                case 5:
+                                    intent  = new Intent(getApplicationContext(), ProfileActivity.class);
+                                    break;
+                                case 6:
+                                    intent  = new Intent(getApplicationContext(), SettingsActivity.class);
                                     break;
                                 case 7:
                                     User.getInstance().setId("unset");
