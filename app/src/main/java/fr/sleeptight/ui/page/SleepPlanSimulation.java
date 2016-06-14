@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TimePicker;
 
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -26,6 +27,7 @@ import fr.sleeptight.ui.simulation.SimulationActivity;
 
 public class SleepPlanSimulation extends AppCompatActivity {
     private PHHueSDK phHueSDK;
+    Switch manual;
 
 
     @Override
@@ -56,6 +58,7 @@ public class SleepPlanSimulation extends AppCompatActivity {
             }
         });
 
+        manual = (Switch) findViewById(R.id.switch1);
 
         Button simulation = (Button) findViewById(R.id.simulation_button);
 
@@ -64,12 +67,25 @@ public class SleepPlanSimulation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(bridge != null) {
-                    lightManager.alarm("1",wakeupStartTime,wakeupEndTime, 10, 180);
-                }else{
-                    Log.v("Light connection error", "Light connection failed");
-                }
 
+                if(manual.isChecked()){
+
+
+                    Log.v("switch", "manual");
+                    if (bridge != null) {
+                        lightManager.alarm("1", wakeupStartTime, wakeupEndTime, 10, 180);
+                    } else {
+                        Log.v("Light connection error", "Light connection failed");
+                    }
+                } else {
+                    Log.v("switch", "automatique");
+                    if (bridge != null) {
+                        lightManager.alarm("1", Calendar.getInstance(), Calendar.getInstance(), 10, 180);
+                    } else {
+                        Log.v("Light connection error", "Light connection failed");
+                    }
+
+                }
                 Intent intent = new Intent(getApplicationContext(), SimulationActivity.class);
                 startActivity(intent);
                 finish();
