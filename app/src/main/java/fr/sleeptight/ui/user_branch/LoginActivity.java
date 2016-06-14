@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                         showToast("Login Faild");
 
                         try {
-                            thread.sleep(500);
+                            thread.sleep(300);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                         showToast("Login Succeeded");
 
                         try {
-                            thread.sleep(700);
+                            thread.sleep(300);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

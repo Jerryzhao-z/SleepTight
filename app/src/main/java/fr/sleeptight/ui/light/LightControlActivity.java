@@ -7,10 +7,13 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import fr.sleeptight.data.light.LightManager;
 import fr.sleeptight.data.light.LightManagerImpl;
@@ -24,6 +27,7 @@ import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHSchedule;
 import fr.sleeptight.R;
+import fr.sleeptight.ui.BasicPage;
 
 /**
  * LightControlActivity - The starting point for creating your own Hue App.
@@ -32,26 +36,34 @@ import fr.sleeptight.R;
  * @author SteveyO
  *
  */
-public class LightControlActivity extends Activity {
+public class LightControlActivity extends BasicPage {
     private PHHueSDK phHueSDK;
     private static final int MAX_HUE=65535;
     public static final String TAG = "QuickStart";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.app_name);
         setContentView(R.layout.activity_light_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Slide_Bar(toolbar);
+
         phHueSDK = PHHueSDK.getInstance();
-        Button randomButton;
-        randomButton = (Button) findViewById(R.id.buttonRand);
-        randomButton.setOnClickListener(new OnClickListener() {
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+        final LightManager lightManager = new LightManagerImpl(bridge);
 
+        ToggleButton lightSwitch = (ToggleButton) findViewById(R.id.light1_switch);
+        lightSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                randomLights();
-            }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) lightManager.turnOn("1");
+                else lightManager.turnOff("1");
 
+            }
         });
 
     }

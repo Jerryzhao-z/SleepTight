@@ -15,6 +15,7 @@ import fr.sleeptight.data.localdb.SleepDetail;
  * Created by User on 6/14/2016.
  */
 public class SyncPrensenter {
+
     public static void listAllSleepData() {
         if (ContextHolder.getContext() != null) {
             CommitUtils sql = new CommitUtils(ContextHolder.getContext());
@@ -29,6 +30,7 @@ public class SyncPrensenter {
             Log.v("BasicChartPage", ContextHolder.getContext().toString());
         }
     }
+
 
     public static void getSleepOfWeek()
     {

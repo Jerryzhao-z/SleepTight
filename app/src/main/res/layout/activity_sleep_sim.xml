@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.page.SleepPlanActivity">
+    tools:context=".ui.page.SleepPlanSimulation">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_sleep_plan" />
+    <include layout="@layout/content_sleep_sim" />
 
 
 </android.support.design.widget.CoordinatorLayout>

@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import com.yolanda.nohttp.NoHttp;
 
 import fr.sleeptight.R;
+import fr.sleeptight.ui.user_branch.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         /* call Home Page */
-        Intent newAct = new Intent(getApplicationContext(), HomePage.class);
+        Intent newAct = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(newAct);
         finish();
 

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
+
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.iconics.IconicsDrawable;
@@ -29,8 +29,8 @@ import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
 import fr.sleeptight.ui.listener.ChromeTabListener;
 import fr.sleeptight.ui.page.Page1;
-import fr.sleeptight.ui.page.Page2;
 import fr.sleeptight.ui.page.SleepPlanActivity;
+import fr.sleeptight.ui.page.SleepPlanSimulation;
 import fr.sleeptight.ui.user_branch.LoginActivity;
 
 public class BasicPage extends AppCompatActivity {
@@ -58,7 +58,7 @@ public class BasicPage extends AppCompatActivity {
                         new ProfileSettingDrawerItem().withName("Add Account").withDescription("Add new GitHub Account").withIcon(new IconicsDrawable(this, FontAwesome.Icon.faw_plus_square).actionBar().paddingDp(5).colorRes(R.color.material_drawer_primary_text)).withIdentifier(PROFILE_SETTING),
                         new ProfileSettingDrawerItem().withName("Manage Account").withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(PROFILE_SETTING+1)
                 )
-                .withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
+               /* .withOnAccountHeaderSelectionViewClickListener(new AccountHeader.OnAccountHeaderSelectionViewClickListener() {
 
                         @Override
                         public boolean onClick(View view, IProfile profile){
@@ -73,7 +73,7 @@ public class BasicPage extends AppCompatActivity {
                             }
                             return false;
                         }
-                    })
+                    })*/
                 .withOnAccountHeaderProfileImageListener(new AccountHeader.OnAccountHeaderProfileImageListener() {
                     @Override
                     public boolean onProfileImageClick(View view, IProfile profile, boolean current) {

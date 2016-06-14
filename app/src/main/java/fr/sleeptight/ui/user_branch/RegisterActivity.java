@@ -105,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                         showToast("Sign up Faild");
 
                         try {
-                            thread.sleep(500);
+                            thread.sleep(300);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                         showToast("Sign up Succeeded");
 
                         try {
-                            thread.sleep(700);
+                            thread.sleep(300);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
