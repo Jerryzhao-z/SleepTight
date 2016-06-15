@@ -11,14 +11,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 
 import com.refresh.menuitem.RefreshMenuItemHelper;
 
+import java.util.Calendar;
+
 import fr.sleeptight.R;
 import fr.sleeptight.data.acces.APIClient.AsyncCall;
+import fr.sleeptight.ui.calendar.CalendarActivity;
 import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.listener.ChromeTabListener;
 import fr.sleeptight.ui.page.SleepPlanActivity;
@@ -40,6 +45,25 @@ public class HomePage extends BasicPage {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+
+        if(CalendarActivity.eventList != null){
+            if(CalendarActivity.eventList.get(0).getStartTime().get(Calendar.HOUR_OF_DAY) > 8) {
+                checkBox.setText("SleepTight recommands you to sleep before " + (CalendarActivity.eventList.get(0).getStartTime().get(Calendar.HOUR_OF_DAY) - 8) + " o'clock. ");
+            } else {
+                checkBox.setText("SleepTight recommands you to sleep before " + (CalendarActivity.eventList.get(0).getStartTime().get(Calendar.HOUR_OF_DAY) + 24 - 8) + " o'clock. ");
+            }
+
+        }
+        if((CalendarActivity.eventList.size() > 1)&&(CalendarActivity.eventList.get(1) != null)) {
+            if (CalendarActivity.eventList.get(0).getStartTime().get(Calendar.HOUR_OF_DAY) >= 8) {
+                checkBox.setText("SleepTight recommands you to sleep before " + (CalendarActivity.eventList.get(1).getStartTime().get(Calendar.HOUR_OF_DAY) - 8) + " o'clock. ");
+            } else {
+                checkBox.setText("SleepTight recommands you to sleep before " + (CalendarActivity.eventList.get(1).getStartTime().get(Calendar.HOUR_OF_DAY) + 24 - 8) + " o'clock. ");
+            }
+        }
+
 
         Slide_Bar(toolbar);
 

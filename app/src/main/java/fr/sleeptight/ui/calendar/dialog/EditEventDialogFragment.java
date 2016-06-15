@@ -5,6 +5,7 @@ import android.app.DialogFragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -96,7 +97,7 @@ public class EditEventDialogFragment extends DialogFragment{
         rb1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getNewEvent().setColor(R.color.orange_dark);
+                getNewEvent().setColor(Color.RED);
             }
         });
 
@@ -104,15 +105,15 @@ public class EditEventDialogFragment extends DialogFragment{
         rb2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getNewEvent().setColor(R.color.yellow);
+                getNewEvent().setColor(Color.YELLOW);
             }
         });
 
-        RadioButton rb3 = (RadioButton) v.findViewById(R.id.dialog_event_importance_2);
+        RadioButton rb3 = (RadioButton) v.findViewById(R.id.dialog_event_importance_3);
         rb3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                getNewEvent().setColor(R.color.blue_dark);
+                getNewEvent().setColor(Color.GREEN);
             }
         });
 
