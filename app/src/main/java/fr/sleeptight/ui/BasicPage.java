@@ -168,7 +168,8 @@ public class BasicPage extends AppCompatActivity {
                                     break;
                                 case 7:
                                     User.getInstance().setId("unset");
-                                    DaoManager.getInstance().CloseConnection();
+                                    //DaoManager.getInstance().CloseConnection();
+                                    SyncPrensenter.DropAllDB();
                                     intent  = new Intent(getApplicationContext(), LoginActivity.class);
                                     break;
 								default: break;
