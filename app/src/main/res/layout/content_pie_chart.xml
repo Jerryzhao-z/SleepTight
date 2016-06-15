@@ -19,6 +19,6 @@
         android:id="@+id/textView156"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="85dp" />
+        android:layout_marginBottom="50dp" />
 
 </RelativeLayout>
