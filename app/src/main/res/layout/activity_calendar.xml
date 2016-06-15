@@ -12,6 +12,9 @@
         android:layout_height="wrap_content"
         android:background="@color/theme_primary_dark" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <com.github.tibolte.agendacalendarview.AgendaCalendarView
         android:id="@+id/agenda_calendar_view"
         android:layout_width="match_parent"
@@ -24,9 +27,18 @@
         agendaCalendar:calendarPastDayTextColor="@android:color/darker_gray"
         agendaCalendar:fabColor="@android:color/holo_orange_light" />
 
-    <com.github.tibolte.agendacalendarview.widgets.FloatingActionButton
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:visibility="invisible" />
+    <fr.sleeptight.ui.calendar.widget.NewEventButton
+        android:src="@drawable/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_event_button"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom= "30dp"
+        android:layout_marginRight="30dp"
+        elevation="8dp"
+        pressedTranslationZ="6dp"
+         />
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package fr.sleeptight.ui.calendar.dialog;
 
+import android.app.Activity;
 import android.app.DialogFragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -22,6 +23,7 @@ import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent;
 import java.util.Calendar;
 
 import fr.sleeptight.R;
+import fr.sleeptight.ui.calendar.CalendarActivity;
 
 /**
  * Created by Yifan on 2016/6/11.
@@ -38,6 +40,16 @@ public class EditEventDialogFragment extends DialogFragment{
 
     public TextView getStartDate() { return startDate; }
 
+    private EditText title;
+    private EditText place;
+
+    OnSaveEventListener onSaveEventListener;
+
+    interface OnSaveEventListener {
+        public void saveEvent(BaseCalendarEvent newEvent);
+    }
+
+
 
     private OnClickListener cbOnClickListener = new OnClickListener() {
         @Override
@@ -53,19 +65,8 @@ public class EditEventDialogFragment extends DialogFragment{
         }
     };
 
-    private OnClickListener scOnClickListener = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
 
-        }
-    };
 
-    private OnClickListener ecOnClickListener = new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    };
 
     public static EditEventDialogFragment newInstance() {
         EditEventDialogFragment dialogFragment = new EditEventDialogFragment();
@@ -79,16 +80,15 @@ public class EditEventDialogFragment extends DialogFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //rendering configuration
+        this.setNewEvent(new BaseCalendarEvent(Calendar.getInstance(), "Unknown"));
 
         //Create a new BasicCalendarEvent instance
-        BaseCalendarEvent newEvent = new BaseCalendarEvent(Calendar.getInstance(), "Unknown");
-        newEvent.setLocation("Paris");
 
 
         //Text view, title and place setters
         View v = inflater.inflate(R.layout.view_edit_event_dialog, container,false);
-        EditText title = (EditText) v.findViewById(R.id.dialog_event_title);
-        EditText place = (EditText) v.findViewById(R.id.dialog_event_place);
+        title = (EditText) v.findViewById(R.id.dialog_event_title);
+        place = (EditText) v.findViewById(R.id.dialog_event_place);
         TextView dialogTitle = (TextView) v.findViewById(R.id.dialog_title_text);
         TextView startCalendarText = (TextView) v.findViewById(R.id.dialog_text_startDate);
         TextView endCalendarText = (TextView) v.findViewById(R.id.dialog_text_endDate);
@@ -102,7 +102,7 @@ public class EditEventDialogFragment extends DialogFragment{
         rb1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                newEvent.setColor(R.color.orange_dark);
+                getNewEvent().setColor(R.color.orange_dark);
             }
         });
 
@@ -110,7 +110,7 @@ public class EditEventDialogFragment extends DialogFragment{
         rb2.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                newEvent.setColor(R.color.yellow);
+                getNewEvent().setColor(R.color.yellow);
             }
         });
 
@@ -118,7 +118,7 @@ public class EditEventDialogFragment extends DialogFragment{
         rb3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                newEvent.setColor(R.color.blue_dark);
+                getNewEvent().setColor(R.color.blue_dark);
             }
         });
 
@@ -128,7 +128,7 @@ public class EditEventDialogFragment extends DialogFragment{
         startDate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                StartDatePickerDialogFragment startDatePickerFragment = new StartDatePickerDialogFragment(newEvent);
+                StartDatePickerDialogFragment startDatePickerFragment = new StartDatePickerDialogFragment(getNewEvent());
                 startDatePickerFragment.show(getFragmentManager(), "StartDateSetter");
             }
         });
@@ -136,7 +136,7 @@ public class EditEventDialogFragment extends DialogFragment{
         startTime.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                StartTimePickerDialogFragment startTimePickerFragment = new StartTimePickerDialogFragment(newEvent);
+                StartTimePickerDialogFragment startTimePickerFragment = new StartTimePickerDialogFragment(getNewEvent());
                 startTimePickerFragment.show(getFragmentManager(), "StartTimeSetter");
             }
         });
@@ -144,7 +144,7 @@ public class EditEventDialogFragment extends DialogFragment{
         endDate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                EndDatePickerDialogFragment endDatePickerFragment = new EndDatePickerDialogFragment(newEvent);
+                EndDatePickerDialogFragment endDatePickerFragment = new EndDatePickerDialogFragment(getNewEvent());
                 endDatePickerFragment.show(getFragmentManager(), "EndDateSetter");
             }
         });
@@ -152,7 +152,7 @@ public class EditEventDialogFragment extends DialogFragment{
         endTime.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                EndTimePickerDialogFragment endTimePickerFragment = new EndTimePickerDialogFragment(newEvent);
+                EndTimePickerDialogFragment endTimePickerFragment = new EndTimePickerDialogFragment(getNewEvent());
                 endTimePickerFragment.show(getFragmentManager(), "EndTimeSetter");
             }
         });
@@ -164,9 +164,17 @@ public class EditEventDialogFragment extends DialogFragment{
 
             @Override
             public void onClick(View v) {
-                newEvent.setTitle(title.getText().toString());
-                newEvent.setLocation(place.getText().toString());
+                getNewEvent().setTitle(title.getText().toString());
+                getNewEvent().setLocation(place.getText().toString());
 
+
+
+
+                ((CalendarActivity)getActivity()).getEventList().add(newEvent);
+                Log.v("wo ccao", newEvent.getTitle());
+                Log.v("wo cao",((CalendarActivity)getActivity()).getEventList().get(3).getTitle());
+                onSaveEventListener.saveEvent(newEvent);
+                dismiss();
 
                 //CharSequence text = "Title:" + newEvent.getTitle() + " Location:" + newEvent.getLocation() + "Start date" + newEvent.getStartTime().toString();
                 //Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
@@ -185,6 +193,12 @@ public class EditEventDialogFragment extends DialogFragment{
         return v;
     }
 
+    @Override
+    public void onAttach(Activity a) {
+        super.onAttach(a);
+        onSaveEventListener = (OnSaveEventListener) a;
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -192,6 +206,7 @@ public class EditEventDialogFragment extends DialogFragment{
         setCancelable(true);
         setStyle(0,0);
     }
+
 
     @Override
     public void onStart() {

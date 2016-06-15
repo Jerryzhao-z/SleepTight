@@ -48,4 +48,19 @@
         <item name="android:shadowRadius">1</item>
     </style>
 
+
+
+    <style name="neb">
+        <item name="android:src">@drawable/fab_add</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">bottom|right</item>
+        <item name="android:layout_marginBottom">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="rippleColor">#ff00ff</item>
+        <item name="elevation">8dp</item>
+        <item name="fabSize">normal</item>
+        <item name="pressedTranslationZ">6dp</item>
+    </style>
+
 </resources>

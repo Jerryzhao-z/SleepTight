@@ -1,10 +1,13 @@
 package fr.sleeptight.ui.calendar;
 
+import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
 import com.github.tibolte.agendacalendarview.AgendaCalendarView;
 import com.github.tibolte.agendacalendarview.CalendarPickerController;
@@ -20,17 +23,27 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import fr.sleeptight.R;
+import fr.sleeptight.ui.calendar.dialog.EditEventDialogFragment;
+import fr.sleeptight.ui.calendar.widget.NewEventButton;
 
-public class CalendarActivity extends AppCompatActivity implements CalendarPickerController {
+public class CalendarActivity extends AppCompatActivity implements CalendarPickerController, fr.sleeptight.ui.calendar.dialog.EditEventDialogFragment. {
 
     private static final String LOG_TAG = CalendarActivity.class.getSimpleName();
 
-    private List<CalendarEvent> eventList;
+    private List<CalendarEvent> eventList = new ArrayList<>();
+
+
+    Calendar minDate = Calendar.getInstance();
+    Calendar maxDate = Calendar.getInstance();
 
     @Bind(R.id.activity_calendar_toolbar)
     Toolbar mToolbar;
     @Bind(R.id.agenda_calendar_view)
     AgendaCalendarView mAgendaCalendarView;
+    @Bind(R.id.new_event_button)
+    NewEventButton newEventButton;
+
+
 
 
     // region Lifecycle methods
@@ -45,23 +58,39 @@ public class CalendarActivity extends AppCompatActivity implements CalendarPicke
 
         setSupportActionBar(mToolbar);
 
+        newEventButton.setBackgroundColor(Color.YELLOW);
+        newEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditEventDialogFragment editEventDialogFragment = EditEventDialogFragment.newInstance();
+                //editEventDialogFragment.getDialog().getWindow().setLayout(300,300);
+                editEventDialogFragment.show(getFragmentManager(),"New Event Settings");
+
+            }
+        });
+
         // minimum and maximum date of our calendar
         // 2 month behind, one year ahead, example: March 2015 <-> May 2015 <-> May 2016
-        Calendar minDate = Calendar.getInstance();
-        Calendar maxDate = Calendar.getInstance();
-
         minDate.add(Calendar.MONTH, -2);
         minDate.set(Calendar.DAY_OF_MONTH, 1);
         maxDate.add(Calendar.YEAR, 1);
 
-        eventList = new ArrayList<>();
-        mockList(eventList);
 
 
-        mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
-        mAgendaCalendarView.addEventRenderer(new DrawableEventRenderer());
 
     }
+
+
+
+    @Override
+    protected void onResume() {
+        mockList(eventList);
+        mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
+        mAgendaCalendarView.addEventRenderer(new DrawableEventRenderer());
+        super.onResume();
+    }
+
+
 
 
 
