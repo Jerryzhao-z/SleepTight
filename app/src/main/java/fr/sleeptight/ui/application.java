@@ -24,6 +24,7 @@ public class application extends Application {
         DaoManager manager = DaoManager.getInstance();
         manager.init(this.getApplicationContext());
         manager.OnCreate();
+        manager.getDaoMaster().dropAllTables(manager.getDatabase(), true);
         manager.getDaoMaster().createAllTables(manager.getDatabase(), true);
     }
 

@@ -148,20 +148,13 @@ public class SyncPrensenter {
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        if(User.isUserLoggedIn())
-            generationTestData(AsyncCall.dateFormatter.format(date).toString()
-                , AsyncCall.dateTimeFormatter.format(date).toString());
-        else
-            generationAllData(AsyncCall.dateFormatter.format(date).toString()
+
+        generationAllData(AsyncCall.dateFormatter.format(date).toString()
                 , AsyncCall.dateTimeFormatter.format(date).toString());
         for(int i=0; i<nombre-1; i++) {
             calendar.add(Calendar.DATE, -1);
             Date thisDate = new Date(calendar.getTimeInMillis());
-            if(User.isUserLoggedIn())
-                generationTestData(AsyncCall.dateFormatter.format(thisDate).toString()
-                    , AsyncCall.dateTimeFormatter.format(thisDate).toString());
-            else
-                generationAllData(AsyncCall.dateFormatter.format(thisDate).toString()
+            generationAllData(AsyncCall.dateFormatter.format(thisDate).toString()
                     , AsyncCall.dateTimeFormatter.format(thisDate).toString());
         }
     }
@@ -232,9 +225,6 @@ public class SyncPrensenter {
                 awakeDuration, dateOfSleep, duration, isMainSleep, minutesAfterWakeup,
                 minutesAwake, minutesAsleep, minutesToFallAsleep, restlessCount, timeInBed);
         CommitUtils commitUtils = new CommitUtils(ContextHolder.getContext());
-        List<Sleep> sleepsInData = commitUtils.QuerySleepSpecifiqueTime(startTime,dateOfSleep);
-        for(Sleep sleep: sleepsInData)
-            commitUtils.deleteSleep(sleep);
         commitUtils.insertSleep(sleepobject);
     }
 
