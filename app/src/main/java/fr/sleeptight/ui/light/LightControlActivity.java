@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
 import android.widget.ToggleButton;
 
 import fr.sleeptight.data.light.LightManager;
@@ -62,6 +63,24 @@ public class LightControlActivity extends BasicPage {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) lightManager.turnOn("1");
                 else lightManager.turnOff("1");
+
+            }
+        });
+
+        SeekBar lightBrightness = (SeekBar) findViewById(R.id.light1_brightness);
+        lightBrightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(fromUser) lightManager.modifyBri("1", progress * 2);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });

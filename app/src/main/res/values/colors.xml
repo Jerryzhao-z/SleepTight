@@ -39,4 +39,8 @@
     <color name="orange_dark">#E64A19</color>
     <color name="blue_dark">#00537F</color>
     <color name="yellow">#F5A623</color>
+
+    <color name="theme_button_dialog">#1976d2</color>
+
+
 </resources>

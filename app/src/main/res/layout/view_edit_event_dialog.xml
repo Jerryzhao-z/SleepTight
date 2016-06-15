@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/theme_button_dialog"
+        android:text="Save"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/theme_button_dialog"
+        android:text="Cancel"/>
+
+    <ImageView android:id="@+id/image_new_event"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/new_event"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/button_save"
+        android:layout_alignEnd="@+id/button_save" />
+
+    <TextView android:id="@+id/dialog_title_text"
+        android:layout_width="wrap_content"
+        android:text="Set your new event"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dialog_event_title"
+        android:layout_toRightOf="@+id/image_new_event"
+        android:layout_toEndOf="@+id/image_new_event" />
+
+    <EditText
+        android:id="@+id/dialog_event_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the name of the event:"
+        android:layout_below="@+id/image_new_event"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="48dp" />
+
+    <EditText
+        android:id="@+id/dialog_event_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the location of the event:"
+        android:layout_below="@+id/dialog_event_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView android:id="@+id/dialog_text_startDate"
+        android:layout_width="wrap_content"
+        android:text="The start date: "
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_event_place"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp" />
+
+    <TextView android:id="@+id/dialog_event_startDate"
+        android:layout_width="wrap_content"
+        android:text="****.**.**"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/new_event"
+        android:layout_above="@+id/dialog_event_endDate"
+        android:layout_toLeftOf="@+id/button_cancel"
+        android:layout_toStartOf="@+id/button_cancel"
+        android:layout_marginRight="19dp"
+        android:layout_marginEnd="19dp" />
+
+    <TextView android:id="@+id/dialog_event_startTime"
+        android:layout_width="wrap_content"
+        android:text="**.**"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/new_event"
+        android:layout_above="@+id/dialog_event_endTime"
+        android:layout_alignRight="@+id/dialog_title_text"
+        android:layout_alignEnd="@+id/dialog_title_text" />
+
+    <TextView android:id="@+id/dialog_text_endDate"
+        android:layout_width="wrap_content"
+        android:text="The end date:"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/new_event"
+        android:layout_below="@+id/dialog_text_startDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView android:id="@+id/dialog_event_endDate"
+    android:layout_width="wrap_content"
+    android:text="****.**.**"
+    android:textSize="20sp"
+    android:layout_height="wrap_content"
+    android:src="@drawable/new_event"
+        android:layout_above="@+id/dialog_event_importance_title"
+        android:layout_alignLeft="@+id/dialog_event_startDate"
+        android:layout_alignStart="@+id/dialog_event_startDate" />
+
+    <TextView android:id="@+id/dialog_event_endTime"
+        android:layout_width="wrap_content"
+        android:text="**.**"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/new_event"
+        android:layout_above="@+id/dialog_event_importance_title"
+        android:layout_alignLeft="@+id/dialog_event_startTime"
+        android:layout_alignStart="@+id/dialog_event_startTime" />
+
+    <TextView android:id="@+id/dialog_event_importance_title"
+        android:layout_width="wrap_content"
+        android:text="Choose the event's importance level"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/new_event"
+        android:layout_below="@+id/dialog_text_endDate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/dialog_event_importance"
+        android:tag="Choose the importance level"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/dialog_event_importance_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <RadioButton android:id="@+id/dialog_event_importance_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Urgent" />
+        <RadioButton android:id="@+id/dialog_event_importance_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Important" />
+        <RadioButton android:id="@+id/dialog_event_importance_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unsignificant" />
+
+    </RadioGroup>
+
+
+
+
+</RelativeLayout>

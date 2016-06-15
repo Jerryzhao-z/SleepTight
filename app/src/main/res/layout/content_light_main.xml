@@ -56,6 +56,14 @@
             android:layout_alignRight="@+id/textView9"
             android:layout_alignEnd="@+id/textView9" />
 
+        <SeekBar
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:id="@+id/light1_brightness"
+            android:layout_below="@+id/textView11"
+            android:layout_alignLeft="@+id/light1_switch"
+            android:layout_alignStart="@+id/light1_switch" />
+
     </RelativeLayout>
 
     <View
@@ -111,6 +119,14 @@
             android:layout_below="@+id/light2_switch"
             android:layout_alignRight="@+id/textView10"
             android:layout_alignEnd="@+id/textView10" />
+
+        <SeekBar
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:id="@+id/light2_brightness"
+            android:layout_below="@+id/textView12"
+            android:layout_alignLeft="@+id/light2_switch"
+            android:layout_alignStart="@+id/light2_switch" />
 
     </RelativeLayout>
 
