@@ -26,6 +26,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import fr.sleeptight.R;
 import fr.sleeptight.data.localdb.DaoManager;
 import fr.sleeptight.data.traitement.User;
+import fr.sleeptight.ui.calendar.CalendarActivity;
 import fr.sleeptight.ui.chart.PieChartActivity;
 import fr.sleeptight.ui.light.LightAuthActivity;
 import fr.sleeptight.ui.listener.ChromeTabListener;
@@ -146,7 +147,7 @@ public class BasicPage extends AppCompatActivity {
 									intent  = new Intent(getApplicationContext(), HomePage.class);
 									break;
 								case 1:
-									intent  = new Intent(getApplicationContext(), Page1.class);
+									intent  = new Intent(getApplicationContext(), CalendarActivity.class);
 									break;
 								case 2:
 									intent  = new Intent(getApplicationContext(), PieChartActivity.class);
@@ -168,7 +169,8 @@ public class BasicPage extends AppCompatActivity {
                                     break;
                                 case 7:
                                     User.getInstance().setId("unset");
-                                    DaoManager.getInstance().CloseConnection();
+                                    //DaoManager.getInstance().CloseConnection();
+                                    SyncPrensenter.DropAllDB();
                                     intent  = new Intent(getApplicationContext(), LoginActivity.class);
                                     break;
 								default: break;

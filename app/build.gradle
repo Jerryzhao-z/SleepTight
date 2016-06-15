@@ -33,6 +33,7 @@ dependencies {
         transitive = true
     }
     compile 'com.github.nicolasjafelle:refreshmenuitem:1.0'
+    compile 'com.github.tibolte:agendacalendarview:1.0.4'
 
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'org.greenrobot:greendao:2.2.1'
@@ -54,4 +55,5 @@ dependencies {
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.github.nicolasjafelle:refreshmenuitem:1.0'
     compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.jakewharton:butterknife:7.0.0'
 }

@@ -11,6 +11,8 @@ import java.util.Random;
 
 import fr.sleeptight.data.acces.APIClient.AsyncCall;
 import fr.sleeptight.data.localdb.CommitUtils;
+import fr.sleeptight.data.localdb.DaoManager;
+import fr.sleeptight.data.localdb.DaoMaster;
 import fr.sleeptight.data.localdb.Sleep;
 import fr.sleeptight.data.localdb.SleepDetail;
 import fr.sleeptight.data.traitement.User;
@@ -146,12 +148,20 @@ public class SyncPrensenter {
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        generationTestData(AsyncCall.dateFormatter.format(date).toString()
+        if(User.isUserLoggedIn())
+            generationTestData(AsyncCall.dateFormatter.format(date).toString()
+                , AsyncCall.dateTimeFormatter.format(date).toString());
+        else
+            generationAllData(AsyncCall.dateFormatter.format(date).toString()
                 , AsyncCall.dateTimeFormatter.format(date).toString());
         for(int i=0; i<nombre-1; i++) {
             calendar.add(Calendar.DATE, -1);
             Date thisDate = new Date(calendar.getTimeInMillis());
-            generationTestData(AsyncCall.dateFormatter.format(thisDate).toString()
+            if(User.isUserLoggedIn())
+                generationTestData(AsyncCall.dateFormatter.format(thisDate).toString()
+                    , AsyncCall.dateTimeFormatter.format(thisDate).toString());
+            else
+                generationAllData(AsyncCall.dateFormatter.format(thisDate).toString()
                     , AsyncCall.dateTimeFormatter.format(thisDate).toString());
         }
     }
@@ -174,7 +184,7 @@ public class SyncPrensenter {
         boolean isMainSleep = Boolean.TRUE;
         int minutesAfterWakeup = 0;
         int minutesAwake = awakeDuration + restlessDuration;
-        int minutesAsleep = 417 + (int)(Math.random()*20) - (int)(Math.random()*20);
+        int minutesAsleep = 375 + (int)(Math.random()*50) - (int)(Math.random()*50);
         int minutesToFallAsleep = 0;
         int restlessCount = 36;
         int timeInBed = minutesAfterWakeup+minutesAwake+minutesAsleep+minutesToFallAsleep;
@@ -192,4 +202,47 @@ public class SyncPrensenter {
         commitUtils.insertSleep(sleepobject);
     }
 
+    public static void generationAllData(String dateofSleepStr, String startTimeStr)
+    {
+        Date startTime = null;
+        Date dateOfSleep = null;
+        try {
+            startTime = AsyncCall.dateTimeFormatter.parse(startTimeStr);
+            dateOfSleep = AsyncCall.dateFormatter.parse(dateofSleepStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        int restlessDuration = 30 + (int)(Math.random()*10) - (int)(Math.random()*10);
+        int awakeCount = 2 ;
+        int awakeningsCount = 3;
+        int awakeDuration = 10 + (int)(Math.random()*5) - (int)(Math.random()*5);
+        boolean isMainSleep = Boolean.TRUE;
+        int minutesAfterWakeup = 0;
+        int minutesAwake = awakeDuration + restlessDuration;
+        int minutesAsleep = 375 + (int)(Math.random()*50) - (int)(Math.random()*50);
+        int minutesToFallAsleep = 0;
+        int restlessCount = 36;
+        int timeInBed = minutesAfterWakeup+minutesAwake+minutesAsleep+minutesToFallAsleep;
+        int efficiency = 100*minutesAsleep/timeInBed;
+        int duration = timeInBed*60000;
+
+        Sleep sleepobject = new Sleep(null, startTime,
+                restlessDuration, efficiency, awakeCount, awakeningsCount,
+                awakeDuration, dateOfSleep, duration, isMainSleep, minutesAfterWakeup,
+                minutesAwake, minutesAsleep, minutesToFallAsleep, restlessCount, timeInBed);
+        CommitUtils commitUtils = new CommitUtils(ContextHolder.getContext());
+        List<Sleep> sleepsInData = commitUtils.QuerySleepSpecifiqueTime(startTime,dateOfSleep);
+        for(Sleep sleep: sleepsInData)
+            commitUtils.deleteSleep(sleep);
+        commitUtils.insertSleep(sleepobject);
+    }
+
+    public static void DropAllDB()
+    {
+        DaoManager daoManager = DaoManager.getInstance();
+        DaoMaster master = daoManager.getDaoMaster();
+        master.dropAllTables(daoManager.getDatabase(), true);
+        master.createAllTables(daoManager.getDatabase(), true);
+    }
 }
