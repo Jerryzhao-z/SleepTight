@@ -78,11 +78,21 @@ public class APIClass {
     {
         public boolean gender;
         public int age;
+        public boolean isNoon;
 
-        public Profile(boolean gender, int age)
+        public Profile(boolean gender, int age, boolean isNoon)
         {
             this.gender = gender;
             this.age = age;
+            this.isNoon = isNoon;
         }
+    }
+
+    public static class ProfileWithUser
+    {
+        public boolean gender;
+        public int age;
+        public boolean isNoon;
+        public String username;
     }
 }

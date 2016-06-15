@@ -1,6 +1,7 @@
 package fr.sleeptight.data.localdb;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import de.greenrobot.dao.query.QueryBuilder;
@@ -130,4 +131,27 @@ public class DaoManager {
 
     }
 
+
+    public boolean isTableExists(String tableName, boolean openDb) {
+        if(openDb) {
+            if(database == null || !database.isOpen()) {
+                database = helper.getReadableDatabase();
+            }
+
+            if(!database.isReadOnly()) {
+                database.close();
+                database = helper.getReadableDatabase();
+            }
+        }
+
+        Cursor cursor = database.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '"+tableName+"'", null);
+        if(cursor!=null) {
+            if(cursor.getCount()>0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+        }
+        return false;
+    }
 }

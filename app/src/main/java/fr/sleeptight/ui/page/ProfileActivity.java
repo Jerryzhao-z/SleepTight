@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import fr.sleeptight.R;
 import fr.sleeptight.data.acces.APIClient.APIClass;
+import fr.sleeptight.data.acces.APIClient.AsyncCall;
 import fr.sleeptight.data.traitement.User;
 import fr.sleeptight.ui.BasicPage;
 import fr.sleeptight.ui.HomePage;
@@ -124,7 +125,7 @@ public class ProfileActivity extends BasicPage {
                 break;
         }
 
-
+        //AsyncCall.setProfileCall();
 
 
 

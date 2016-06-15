@@ -63,7 +63,7 @@ public class LineChartActivity extends BasicChartPage implements  OnChartValueSe
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
 
-        setData(10);
+        setData(7);
 
     }
 

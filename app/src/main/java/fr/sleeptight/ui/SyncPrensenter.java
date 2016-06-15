@@ -14,7 +14,9 @@ import fr.sleeptight.data.localdb.CommitUtils;
 import fr.sleeptight.data.localdb.DaoManager;
 import fr.sleeptight.data.localdb.DaoMaster;
 import fr.sleeptight.data.localdb.Sleep;
+import fr.sleeptight.data.localdb.SleepDao;
 import fr.sleeptight.data.localdb.SleepDetail;
+import fr.sleeptight.data.localdb.SleepDetailDao;
 import fr.sleeptight.data.traitement.User;
 
 /**
@@ -25,9 +27,13 @@ public class SyncPrensenter {
     public static void listAllSleepData() {
         if (ContextHolder.getContext() != null) {
             CommitUtils sql = new CommitUtils(ContextHolder.getContext());
+            if(!DaoManager.getInstance().isTableExists(SleepDao.TABLENAME, true))
+                return;
             List<Sleep> sleeps = sql.ListAllSleep();
             for (Sleep sleep : sleeps) {
                 Log.d(sleep.getDateOfSleep().toString(), Long.toString(sleep.getId()));
+                if(!DaoManager.getInstance().isTableExists(SleepDetailDao.TABLENAME, true))
+                    continue;
                 List<SleepDetail> sleepDetails = sql.ListSleepDetailsOfSleep(sleep.getId());
                 for (SleepDetail sleepDetail : sleepDetails)
                     Log.d(Long.toString(sleepDetail.getSleepId()), sleepDetail.getTime().toString());

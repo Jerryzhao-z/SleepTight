@@ -24,4 +24,7 @@ public interface APIService {
 
     @POST("users/set")
     Call<APIClass.ReponseProfile> setProfile(@Body APIClass.Profile profile);
+
+    @GET("users/getprofile")
+    Call<APIClass.ProfileWithUser> getUserProfile();
 }
