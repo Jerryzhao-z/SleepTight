@@ -210,7 +210,7 @@ public class BasicPage extends AppCompatActivity {
             icon=R.drawable.nouser;
         }else{
             username = curUser.getUsername();
-            email = curUser.getEmail();
+            email = curUser.getId();
         }
         //username = curUser.getUsername();
         //email = curUser.getId();

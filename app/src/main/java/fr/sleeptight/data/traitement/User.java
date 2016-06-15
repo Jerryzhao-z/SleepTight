@@ -28,6 +28,7 @@ public class User {
     private String email;
     private boolean gender; // woman = true, man = false;
     private int age;
+    private boolean isNoon;
 
     private static RequestQueue requestQueue = NoHttp.newRequestQueue();
     private User(){}
@@ -36,8 +37,9 @@ public class User {
     {
         this.setUsername(userName)
                 .setPassword(pw)
-                .setGender(false)
-                .setAge(25);
+                .setGender(true)
+                .setAge(25)
+                .setNoon(true);
     }
 
     public static synchronized User getInstance()
@@ -303,6 +305,16 @@ public class User {
     {
         this.recentEvents = recentEvents;
         return this;
+    }
+
+    public boolean getNoon()
+    {
+        return isNoon;
+    }
+
+    public void setNoon(boolean isnoon)
+    {
+        isNoon=isnoon;
     }
 
     public EventList getRecentEvents()
