@@ -1,6 +1,8 @@
 package fr.sleeptight.data.localdb;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import de.greenrobot.dao.query.QueryBuilder;
 
@@ -12,7 +14,7 @@ public class DaoManager {
     private static final String DB_NAME = "sleeptight.sqlite";  //声明数据库
     private volatile static DaoManager manager; //多线程名称
     private static DaoMaster.DevOpenHelper helper;
-
+    private static SQLiteDatabase database;
     private static DaoMaster daomaster;
     private static DaoSession daoSession;
 
@@ -41,6 +43,14 @@ public class DaoManager {
         return manager;
     }
 
+    public void OnCreate()
+    {
+        this.helper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
+        this.database = helper.getWritableDatabase();
+        this.daomaster = new DaoMaster(database);
+        this.daoSession = this.daomaster.newSession();
+    }
+
     /**
      * 2 Master类的创建
      * 得到DaoMaster
@@ -49,13 +59,22 @@ public class DaoManager {
      */
     public DaoMaster getDaoMaster() {
         if (daomaster == null) {
-            DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
-            daomaster = new DaoMaster(helper.getWritableDatabase());
+            helper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
+            this.database = helper.getWritableDatabase();
+            daomaster = new DaoMaster(this.database);
         }
         return daomaster;
     }
 
-
+    public SQLiteDatabase getDatabase()
+    {
+        if (database == null) {
+            helper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
+            this.database = helper.getWritableDatabase();
+            daomaster = new DaoMaster(this.database);
+        }
+        return database;
+    }
     /**
      * 3 数据库会话层DaoSession的创建
      * 完成对数据库的增删改查的操作，这里仅仅是一个接口。
@@ -73,12 +92,13 @@ public class DaoManager {
     }
 
 
+
     /**
      * 关闭数据库的操作，使用完毕数据库，必须执行此操作。
      */
     public void CloseConnection() {
         CloseHelper();
-        ColseDaoSession();
+        CloseDaoSession();
     }
 
     /**
@@ -94,7 +114,7 @@ public class DaoManager {
     /**
      * 关闭Session会话层
      */
-    public void ColseDaoSession() {
+    public void CloseDaoSession() {
         if (daoSession != null) {
             daoSession.clear();
             daoSession = null;
@@ -111,4 +131,27 @@ public class DaoManager {
 
     }
 
+
+    public boolean isTableExists(String tableName, boolean openDb) {
+        if(openDb) {
+            if(database == null || !database.isOpen()) {
+                database = helper.getReadableDatabase();
+            }
+
+            if(!database.isReadOnly()) {
+                database.close();
+                database = helper.getReadableDatabase();
+            }
+        }
+
+        Cursor cursor = database.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '"+tableName+"'", null);
+        if(cursor!=null) {
+            if(cursor.getCount()>0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+        }
+        return false;
+    }
 }

@@ -163,37 +163,80 @@ public class AsyncCall {
     {
         User user = User.getInstance();
         APIService client = ServiceGenerator.createService(APIService.class);
-        Call<APIClass.ReponseProfile> call = client.setProfile(new APIClass.Profile(user.getGender(), user.getAge()));
+        Call<APIClass.ReponseProfile> call = client.setProfile(new APIClass.Profile(user.getGender(), user.getAge(), user.getNoon()));
         call.enqueue(new Callback<APIClass.ReponseProfile>() {
-                         @Override
-                         public void onResponse(Call<APIClass.ReponseProfile> call, Response<APIClass.ReponseProfile> response) {
-                             if (response.isSuccessful()) {
-                                 // tasks available
-                                 APIClass.ReponseProfile reponseProfile = response.body();
-                                 if(reponseProfile.returns.equals("invalide"))
-                                     return;
-                                 Context context = ContextHolder.getContext();
-                                 SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
-                                 SharedPreferences.Editor editor
-                                         = sharedPreferences.edit();
-                                 if(User.getInstance().getGender())
-                                    editor.putString("gender", "F");
-                                 else
-                                    editor.putString("gender", "M");
-                                 editor.putString("age", Integer.toString(User.getInstance().getAge()));
-                                 editor.commit();
-                             } else {
-                                 // error response, no access to resource?
-                                 Log.d("APIClass.ProfileResetting", response.message());
+            @Override
+            public void onResponse(Call<APIClass.ReponseProfile> call, Response<APIClass.ReponseProfile> response) {
+                if (response.isSuccessful()) {
+                    // tasks available
+                    APIClass.ReponseProfile reponseProfile  = response.body();
+                    if(reponseProfile.returns.equals("invalide"))
+                        return;
+                    Context context = ContextHolder.getContext();
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor
+                            = sharedPreferences.edit();
+                    if(User.getInstance().getGender())
+                        editor.putString("gender", "F");
+                    else
+                        editor.putString("gender", "M");
+                    editor.putString("age", Integer.toString(User.getInstance().getAge()));
+                    editor.commit();
+                } else {
+                    // error response, no access to resource?
+                    Log.d("APIClass.ProfileResetting", response.message());
 
-                             }
-                         }
+                }
+            }
 
-                         @Override
-                         public void onFailure(Call<APIClass.ReponseProfile> call, Throwable t) {
-                             Log.d("Error", t.getMessage());
-                         }
-                     });
+            @Override
+            public void onFailure(Call<APIClass.ReponseProfile> call, Throwable t) {
+                Log.d("Error", t.getMessage());
+            }
+        });
+
+
+    }
+
+    public static void getProfile()
+    {
+        User user = User.getInstance();
+        APIService client = ServiceGenerator.createService(APIService.class);
+        Call<APIClass.ProfileWithUser> call = client.getUserProfile();
+        call.enqueue(new Callback<APIClass.ProfileWithUser>() {
+            @Override
+            public void onResponse(Call<APIClass.ProfileWithUser> call, Response<APIClass.ProfileWithUser> response) {
+                if (response.isSuccessful()) {
+                    // tasks available
+                    APIClass.ProfileWithUser profile  = response.body();
+                    if(!profile.username.equals(User.getInstance().getUsername()))
+                        return;
+                    Context context = ContextHolder.getContext();
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor
+                            = sharedPreferences.edit();
+                    if(User.getInstance().getGender())
+                        editor.putString("gender", "F");
+                    else
+                        editor.putString("gender", "M");
+                    editor.putString("age", Integer.toString(User.getInstance().getAge()));
+                    editor.commit();
+                    User.getInstance().setGender(profile.gender);
+                    User.getInstance().setNoon(profile.isNoon);
+                    User.getInstance().setAge(profile.age);
+
+                } else {
+                    // error response, no access to resource?
+                    Log.d("APIClass.ProfileResetting", response.message());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<APIClass.ProfileWithUser> call, Throwable t) {
+
+            }
+        });
 
 
     }

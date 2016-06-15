@@ -18,8 +18,13 @@ import java.util.concurrent.SynchronousQueue;
 import fr.sleeptight.R;
 import fr.sleeptight.data.acces.APIClient.AsyncCall;
 import fr.sleeptight.data.localdb.CommitUtils;
+import fr.sleeptight.data.localdb.DaoManager;
+import fr.sleeptight.data.localdb.DaoMaster;
+import fr.sleeptight.data.localdb.DaoSession;
 import fr.sleeptight.data.localdb.Sleep;
+import fr.sleeptight.data.localdb.SleepDao;
 import fr.sleeptight.data.localdb.SleepDetail;
+import fr.sleeptight.data.localdb.SleepDetailDao;
 import fr.sleeptight.ui.BasicPage;
 import fr.sleeptight.ui.ContextHolder;
 import fr.sleeptight.ui.SyncPrensenter;
@@ -79,6 +84,14 @@ public class BasicChartPage extends BasicPage {
 
             case R.id.testData: {
                 WEEK=0;
+                DaoManager daoManager = DaoManager.getInstance();
+                DaoSession daoSession = daoManager.getDaoSession();
+                SleepDao sleepDao = daoSession.getSleepDao();
+                SleepDetailDao sleepDetailDao = daoSession.getSleepDetailDao();
+                sleepDao.dropTable(daoManager.getDatabase(), true);
+                sleepDao.createTable(daoManager.getDatabase(), true);
+                sleepDetailDao.dropTable(daoManager.getDatabase(), true);
+                sleepDao.createTable(daoManager.getDatabase(), true);
                 SyncPrensenter.generationSeveralDayData(get_Date_yy(0),30);
                 Intent refresh = new Intent(getApplicationContext(), this.getClass());
                 startActivity(refresh);//Start the same Activity

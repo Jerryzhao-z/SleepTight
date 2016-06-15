@@ -130,7 +130,7 @@ public class PieChartActivity extends BasicChartPage implements OnChartValueSele
 
         ArrayList<String> xVals = new ArrayList<String>();
         xVals.add("Awake Duration");
-        xVals.add("Deep Sleep Duration");
+        xVals.add("Sleep Duration");
         xVals.add("Restless Duration");
 
         //dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);

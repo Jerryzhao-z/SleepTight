@@ -121,7 +121,7 @@ public class HomePage extends BasicPage {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-
+               // AsyncCall.getProfile();
                 SyncPrensenter.getSleepOfWeek();
 
                 refreshHelper.setMenuItem(item);

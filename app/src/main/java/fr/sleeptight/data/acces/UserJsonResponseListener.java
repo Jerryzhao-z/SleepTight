@@ -7,6 +7,8 @@ import com.yolanda.nohttp.OnResponseListener;
 import com.yolanda.nohttp.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import fr.sleeptight.data.localdb.DaoManager;
 import fr.sleeptight.data.traitement.User;
 import fr.sleeptight.ui.ContextHolder;
 
@@ -56,6 +58,9 @@ public class UserJsonResponseListener implements OnResponseListener<JSONObject> 
                     editor.putString("password", user.getPassword());
                     editor.putString("id", user.getId());
                     editor.commit();
+                    DaoManager manager = DaoManager.getInstance();
+                    manager.init(ContextHolder.getContext());
+                    manager.OnCreate();
 
                     //lecture
                     String name = sharedPreferences.getString("username", "");

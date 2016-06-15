@@ -169,7 +169,8 @@ public class BasicPage extends AppCompatActivity {
                                     break;
                                 case 7:
                                     User.getInstance().setId("unset");
-                                    DaoManager.getInstance().CloseConnection();
+                                    //DaoManager.getInstance().CloseConnection();
+                                    SyncPrensenter.DropAllDB();
                                     intent  = new Intent(getApplicationContext(), LoginActivity.class);
                                     break;
 								default: break;
@@ -209,7 +210,7 @@ public class BasicPage extends AppCompatActivity {
             icon=R.drawable.nouser;
         }else{
             username = curUser.getUsername();
-            email = curUser.getEmail();
+            email = curUser.getId();
         }
         //username = curUser.getUsername();
         //email = curUser.getId();

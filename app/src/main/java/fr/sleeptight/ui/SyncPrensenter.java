@@ -11,8 +11,12 @@ import java.util.Random;
 
 import fr.sleeptight.data.acces.APIClient.AsyncCall;
 import fr.sleeptight.data.localdb.CommitUtils;
+import fr.sleeptight.data.localdb.DaoManager;
+import fr.sleeptight.data.localdb.DaoMaster;
 import fr.sleeptight.data.localdb.Sleep;
+import fr.sleeptight.data.localdb.SleepDao;
 import fr.sleeptight.data.localdb.SleepDetail;
+import fr.sleeptight.data.localdb.SleepDetailDao;
 import fr.sleeptight.data.traitement.User;
 
 /**
@@ -23,9 +27,13 @@ public class SyncPrensenter {
     public static void listAllSleepData() {
         if (ContextHolder.getContext() != null) {
             CommitUtils sql = new CommitUtils(ContextHolder.getContext());
+            if(!DaoManager.getInstance().isTableExists(SleepDao.TABLENAME, true))
+                return;
             List<Sleep> sleeps = sql.ListAllSleep();
             for (Sleep sleep : sleeps) {
                 Log.d(sleep.getDateOfSleep().toString(), Long.toString(sleep.getId()));
+                if(!DaoManager.getInstance().isTableExists(SleepDetailDao.TABLENAME, true))
+                    continue;
                 List<SleepDetail> sleepDetails = sql.ListSleepDetailsOfSleep(sleep.getId());
                 for (SleepDetail sleepDetail : sleepDetails)
                     Log.d(Long.toString(sleepDetail.getSleepId()), sleepDetail.getTime().toString());
@@ -42,7 +50,7 @@ public class SyncPrensenter {
         Log.d("Envoyer Request first", date.toString());
         AsyncCall.getSleepCall(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
 
-        for(int i=0; i<6; i++) {
+        for(int i=0; i<20; i++) {
             Log.d("Date ", Integer.toString(Calendar.DATE));
             date.add(Calendar.DATE, -1);
             Log.d("Envoyer Request", date.toString());
@@ -102,7 +110,7 @@ public class SyncPrensenter {
         if (dataType == DURATION)
             longeur /= 3600000;
 
-        Log.d("Sync", dateString + Float.toString(longeur));
+        Log.d("Sync", dateString +" "+ Float.toString(longeur));
         return longeur;
     }
 
@@ -129,10 +137,13 @@ public class SyncPrensenter {
                     timeToSleep = 7;
             }
             float longeur = getDataOfDay(date, SyncPrensenter.SLEEPTIME);
-            if(timeToSleep != 0)
-                return longeur/timeToSleep;
-            else
+
+            if(timeToSleep != 0) {
+                Log.d("Sync", date + " Evaluation " + Float.toString(longeur / timeToSleep));
+                return longeur / timeToSleep;
+            }else {
                 return 0;
+            }
         }
     }
 
@@ -146,12 +157,13 @@ public class SyncPrensenter {
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        generationTestData(AsyncCall.dateFormatter.format(date).toString()
+
+        generationAllData(AsyncCall.dateFormatter.format(date).toString()
                 , AsyncCall.dateTimeFormatter.format(date).toString());
         for(int i=0; i<nombre-1; i++) {
             calendar.add(Calendar.DATE, -1);
             Date thisDate = new Date(calendar.getTimeInMillis());
-            generationTestData(AsyncCall.dateFormatter.format(thisDate).toString()
+            generationAllData(AsyncCall.dateFormatter.format(thisDate).toString()
                     , AsyncCall.dateTimeFormatter.format(thisDate).toString());
         }
     }
@@ -174,7 +186,7 @@ public class SyncPrensenter {
         boolean isMainSleep = Boolean.TRUE;
         int minutesAfterWakeup = 0;
         int minutesAwake = awakeDuration + restlessDuration;
-        int minutesAsleep = 417 + (int)(Math.random()*20) - (int)(Math.random()*20);
+        int minutesAsleep = 375 + (int)(Math.random()*50) - (int)(Math.random()*50);
         int minutesToFallAsleep = 0;
         int restlessCount = 36;
         int timeInBed = minutesAfterWakeup+minutesAwake+minutesAsleep+minutesToFallAsleep;
@@ -192,4 +204,44 @@ public class SyncPrensenter {
         commitUtils.insertSleep(sleepobject);
     }
 
+    public static void generationAllData(String dateofSleepStr, String startTimeStr)
+    {
+        Date startTime = null;
+        Date dateOfSleep = null;
+        try {
+            startTime = AsyncCall.dateTimeFormatter.parse(startTimeStr);
+            dateOfSleep = AsyncCall.dateFormatter.parse(dateofSleepStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        int restlessDuration = 30 + (int)(Math.random()*10) - (int)(Math.random()*10);
+        int awakeCount = 2 ;
+        int awakeningsCount = 3;
+        int awakeDuration = 10 + (int)(Math.random()*5) - (int)(Math.random()*5);
+        boolean isMainSleep = Boolean.TRUE;
+        int minutesAfterWakeup = 0;
+        int minutesAwake = awakeDuration + restlessDuration;
+        int minutesAsleep = 375 + (int)(Math.random()*50) - (int)(Math.random()*50);
+        int minutesToFallAsleep = 0;
+        int restlessCount = 36;
+        int timeInBed = minutesAfterWakeup+minutesAwake+minutesAsleep+minutesToFallAsleep;
+        int efficiency = 100*minutesAsleep/timeInBed;
+        int duration = timeInBed*60000;
+
+        Sleep sleepobject = new Sleep(null, startTime,
+                restlessDuration, efficiency, awakeCount, awakeningsCount,
+                awakeDuration, dateOfSleep, duration, isMainSleep, minutesAfterWakeup,
+                minutesAwake, minutesAsleep, minutesToFallAsleep, restlessCount, timeInBed);
+        CommitUtils commitUtils = new CommitUtils(ContextHolder.getContext());
+        commitUtils.insertSleep(sleepobject);
+    }
+
+    public static void DropAllDB()
+    {
+        DaoManager daoManager = DaoManager.getInstance();
+        DaoMaster master = daoManager.getDaoMaster();
+        master.dropAllTables(daoManager.getDatabase(), true);
+        master.createAllTables(daoManager.getDatabase(), true);
+    }
 }
