@@ -44,7 +44,7 @@ public class SyncPrensenter {
         Log.d("Envoyer Request first", date.toString());
         AsyncCall.getSleepCall(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DAY_OF_MONTH));
 
-        for(int i=0; i<6; i++) {
+        for(int i=0; i<20; i++) {
             Log.d("Date ", Integer.toString(Calendar.DATE));
             date.add(Calendar.DATE, -1);
             Log.d("Envoyer Request", date.toString());
@@ -104,7 +104,7 @@ public class SyncPrensenter {
         if (dataType == DURATION)
             longeur /= 3600000;
 
-        Log.d("Sync", dateString + Float.toString(longeur));
+        Log.d("Sync", dateString +" "+ Float.toString(longeur));
         return longeur;
     }
 
@@ -131,10 +131,13 @@ public class SyncPrensenter {
                     timeToSleep = 7;
             }
             float longeur = getDataOfDay(date, SyncPrensenter.SLEEPTIME);
-            if(timeToSleep != 0)
-                return longeur/timeToSleep;
-            else
+
+            if(timeToSleep != 0) {
+                Log.d("Sync", date + " Evaluation " + Float.toString(longeur / timeToSleep));
+                return longeur / timeToSleep;
+            }else {
                 return 0;
+            }
         }
     }
 
