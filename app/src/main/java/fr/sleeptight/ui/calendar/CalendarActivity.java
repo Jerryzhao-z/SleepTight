@@ -1,6 +1,7 @@
 package fr.sleeptight.ui.calendar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -23,14 +24,15 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import fr.sleeptight.R;
+import fr.sleeptight.ui.HomePage;
 import fr.sleeptight.ui.calendar.dialog.EditEventDialogFragment;
 import fr.sleeptight.ui.calendar.widget.NewEventButton;
 
-public class CalendarActivity extends AppCompatActivity implements CalendarPickerController, fr.sleeptight.ui.calendar.dialog.EditEventDialogFragment. {
+public class CalendarActivity extends AppCompatActivity implements CalendarPickerController {
 
     private static final String LOG_TAG = CalendarActivity.class.getSimpleName();
 
-    private List<CalendarEvent> eventList = new ArrayList<>();
+    public static List<CalendarEvent> eventList = new ArrayList<>();
 
 
     Calendar minDate = Calendar.getInstance();
@@ -74,7 +76,8 @@ public class CalendarActivity extends AppCompatActivity implements CalendarPicke
         minDate.add(Calendar.MONTH, -2);
         minDate.set(Calendar.DAY_OF_MONTH, 1);
         maxDate.add(Calendar.YEAR, 1);
-
+        mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
+        mAgendaCalendarView.addEventRenderer(new DrawableEventRenderer());
 
 
 
@@ -84,10 +87,16 @@ public class CalendarActivity extends AppCompatActivity implements CalendarPicke
 
     @Override
     protected void onResume() {
-        mockList(eventList);
-        mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
-        mAgendaCalendarView.addEventRenderer(new DrawableEventRenderer());
         super.onResume();
+        Log.v("fuck", "fuck");
+        printEvent();
+
+    }
+
+    public void printEvent() {
+        for(int i=0; i<eventList.size(); i++) {
+            Log.v("Event:" , eventList.get(i).getTitle());
+        }
     }
 
 
@@ -141,9 +150,15 @@ public class CalendarActivity extends AppCompatActivity implements CalendarPicke
         startTime3.set(Calendar.MINUTE, 0);
         endTime3.set(Calendar.HOUR_OF_DAY, 15);
         endTime3.set(Calendar.MINUTE, 0);
-        DrawableCalendarEvent event3 = new DrawableCalendarEvent("Johnny was fucked by a dog", "ROFL", "South Africa",
+        DrawableCalendarEvent event3 = new DrawableCalendarEvent("Johnny was lost in Sahara desert", "ROFL", "Egypt",
                 ContextCompat.getColor(this, R.color.blue_dark), startTime3, endTime3, false, R.drawable.event_fucked_by_dog);
         eventList.add(event3);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), HomePage.class);
+        startActivity(intent);
     }
 
     // endregion

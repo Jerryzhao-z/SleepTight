@@ -114,7 +114,8 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.calendar.CalendarActivity"
             android:label="Calendar"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.HomePage" />
     </application>
 
 </manifest>

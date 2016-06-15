@@ -43,12 +43,6 @@ public class EditEventDialogFragment extends DialogFragment{
     private EditText title;
     private EditText place;
 
-    OnSaveEventListener onSaveEventListener;
-
-    interface OnSaveEventListener {
-        public void saveEvent(BaseCalendarEvent newEvent);
-    }
-
 
 
     private OnClickListener cbOnClickListener = new OnClickListener() {
@@ -172,8 +166,6 @@ public class EditEventDialogFragment extends DialogFragment{
 
                 ((CalendarActivity)getActivity()).getEventList().add(newEvent);
                 Log.v("wo ccao", newEvent.getTitle());
-                Log.v("wo cao",((CalendarActivity)getActivity()).getEventList().get(3).getTitle());
-                onSaveEventListener.saveEvent(newEvent);
                 dismiss();
 
                 //CharSequence text = "Title:" + newEvent.getTitle() + " Location:" + newEvent.getLocation() + "Start date" + newEvent.getStartTime().toString();
@@ -193,11 +185,6 @@ public class EditEventDialogFragment extends DialogFragment{
         return v;
     }
 
-    @Override
-    public void onAttach(Activity a) {
-        super.onAttach(a);
-        onSaveEventListener = (OnSaveEventListener) a;
-    }
 
 
     @Override
