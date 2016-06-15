@@ -48,7 +48,7 @@ public class HomePage extends BasicPage {
         CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
         CheckBox checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
 
-        if(CalendarActivity.eventList != null){
+        if((CalendarActivity.eventList.size() >= 1)&&(CalendarActivity.eventList != null)){
             if(CalendarActivity.eventList.get(0).getStartTime().get(Calendar.HOUR_OF_DAY) > 8) {
                 checkBox.setText("SleepTight recommands you to sleep before " + (CalendarActivity.eventList.get(0).getStartTime().get(Calendar.HOUR_OF_DAY) - 8) + " o'clock. ");
             } else {
